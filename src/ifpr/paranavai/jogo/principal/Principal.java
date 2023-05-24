@@ -1,9 +1,12 @@
 package ifpr.paranavai.jogo.principal;
-
+import ifpr.paranavai.jogo.modelo.*;
 import javax.swing.JFrame;
+
+import ifpr.paranavai.jogo.modelo.Fase;
 
 public class Principal extends JFrame{
     public Principal(){
+    Fase fase = new Fase();
     super.setTitle("Space Invaders Clone");
     super.setSize(1024, 728);
     super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
