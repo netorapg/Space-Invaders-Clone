@@ -7,8 +7,9 @@ import ifpr.paranavai.jogo.modelo.Fase;
 public class Principal extends JFrame{
     public Principal(){
     Fase fase = new Fase();
+    super.add(fase);
     super.setTitle("Space Invaders Clone");
-    super.setSize(1024, 728);
+    super.setSize(474, 375);
     super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     super.setLocationRelativeTo(null);
     super.setResizable(false);
