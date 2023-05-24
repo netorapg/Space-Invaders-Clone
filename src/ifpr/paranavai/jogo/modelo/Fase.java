@@ -8,9 +8,12 @@ import javax.swing.JPanel;
 
 public class Fase extends JPanel{
     private Image background;
+    private  Personagem Personagem;
     public Fase() {
             ImageIcon loading = new ImageIcon("src/ifpr/paranavai/jogo/recursos/Imagens/background.jpg");
             this.background = loading.getImage();
+
+            this.personagem = new Personagem();
     }
 
     public void paint(Graphics g) {
