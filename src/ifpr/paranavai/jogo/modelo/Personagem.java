@@ -2,17 +2,33 @@ package ifpr.paranavai.jogo.modelo;
 
 import java.awt.Image;
 
+import javax.swing.ImageIcon;
+
 public class Personagem {
     private int positionX;
     private int positionY;
     private int deslocamentoX;
     private int deslocamentoY;
-    private Image personagem;
+    private Image imagem;
     private int largura;
     private int altura;
+
     public Personagem() {
-    
+        this.positionX = 100;
+        this.positionY = 100;
+        this.deslocamentoX = 0;
+        this.deslocamentoY = 0;
+        
     }
+    public void carregar() {
+        ImageIcon loading = new ImageIcon("src/ifpr/paranavai/jogo/recursos/Imagens/spaceship.png");
+        this.imagem = loading.getImage();
+        this.largura = this.imagem.getWidth(null);
+        this.altura = this.imagem.getHeight(null);
+
+        
+    }
+
     public int getPositionX() {
         return positionX;
     }
@@ -29,12 +45,12 @@ public class Personagem {
         this.positionY = positionY;
     }
 
-    public Image getPersonagem() {
-        return personagem;
+    public Image getImagem() {
+        return imagem;
     }
 
-    public void setPersonagem(Image personagem) {
-        this.personagem = personagem;
+    public void setImagem(Image imagem) {
+        this.imagem = imagem;
     }
 
     public int getDeslocamentoX() {
