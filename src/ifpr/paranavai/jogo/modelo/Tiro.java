@@ -4,45 +4,45 @@ import javax.swing.ImageIcon;
 
 
 public class Tiro {
-    private int positionInX;
-    private int positionInY;
+    private int posicaoEmX;
+    private int posicaoEmY;
     private Image imagem;
     private int larguraImagem;
     private int alturaImagem;
     private static int VELOCIDADE = 2;
 
 
-    public Tiro(int positionX, int positionY) {
-        this.positionInX = positionX;
-        this.positionInY = positionY;
+    public Tiro(int posicaoPersonagemX, int posicaoPersonagemY) {
+        this.posicaoEmX = posicaoPersonagemX;
+        this.posicaoEmY = posicaoPersonagemY;
     }
 
     public void carregar() {
         ImageIcon carregando = new ImageIcon("src/ifpr/paranavai/jogo/recursos/Imagens/laser.png");
         this.imagem = carregando.getImage();
-        this.larguraImagem = this.imagem.getWidth(null);
-        this.alturaImagem = this.imagem.getHeight(null);
+        this.alturaImagem = this.imagem.getWidth(null);
+        this.larguraImagem = this.imagem.getHeight(null);
     }
 
     public void atualizar() {
-        this.positionInX += VELOCIDADE;
+        this.posicaoEmX += VELOCIDADE;
     }
 
 
-    public int getPositionInX() {
-        return this.positionInX;
+    public int getPosicaoEmX() {
+        return this.posicaoEmX;
     }
 
-    public void setPositionInX(int positionInX) {
-        this.positionInX = positionInX;
+    public void setPosicaoEmX(int positionInX) {
+        this.posicaoEmX = positionInX;
     }
 
-    public int getPositionInY() {
-        return this.positionInY;
+    public int getPosicaoEmY() {
+        return this.posicaoEmY;
     }
 
-    public void setPositionInY(int positionInY) {
-        this.positionInY = positionInY;
+    public void setPosicaoEmY(int positionInY) {
+        this.posicaoEmY = positionInY;
     }
 
     public Image getImagem() {

@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class Fase extends JPanel implements ActionListener, KeyListener{
-    private static final int DELAY = 5;
+    private static final int DELAY = 2;
     private Image background;
     private  Personagem personagem;
     private Timer timer;
@@ -23,7 +23,7 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
         setDoubleBuffered(true);
         ImageIcon loading = new ImageIcon("src/ifpr/paranavai/jogo/recursos/Imagens/background.png");
         this.background = loading.getImage();
-        this.personagem = new Personagem();
+        personagem = new Personagem();
         personagem.carregar();
         addKeyListener(this);
         timer = new Timer(DELAY, this);
@@ -37,7 +37,7 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
         ArrayList<Tiro> tiros = personagem.getTiros();
         for (Tiro tiro : tiros) {
             tiro.carregar();
-            graphics.drawImage(tiro.getImagem(), tiro.getPositionInX(), tiro.getPositionInY(), this);
+            graphics.drawImage(tiro.getImagem(), tiro.getPosicaoEmX(), tiro.getPosicaoEmY(), this);
         }
         g.dispose();
     }
@@ -47,7 +47,7 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
         personagem.atualizar();
         ArrayList<Tiro> tiros = personagem.getTiros();
         for (Tiro tiro : tiros) {
-            if (tiro.getPositionInX() > LARGURA_DA_JANELA) {
+            if (tiro.getPosicaoEmX() > LARGURA_DA_JANELA) {
                 tiros.remove(tiro);
             }
             else if (tiros.indexOf(tiro) < tiros.size())
