@@ -14,8 +14,8 @@ public class Personagem {
     private int deslocamentoEmX;
     private int deslocamentoEmY;
     private Image imagem;
-    private int largura;
-    private int altura;
+    private int larguraImagem;
+    private int alturaImagem;
     private ArrayList<Tiro> tiros;
 
     public Personagem() {
@@ -34,15 +34,15 @@ public class Personagem {
     public void carregar() {
         ImageIcon loading = new ImageIcon("src/ifpr/paranavai/jogo/recursos/Imagens/spaceship.png");
         this.imagem = loading.getImage();
-        this.largura = this.imagem.getWidth(null);
-        this.altura = this.imagem.getHeight(null);
+        this.larguraImagem = this.imagem.getWidth(null);
+        this.alturaImagem = this.imagem.getHeight(null);
 
         
     }
 
     public void atirar() {
-        int frenteDaNave = this.posicaoEmX + this.largura;
-        int centroDaNave = this.posicaoEmY + (this.altura / 2);
+        int frenteDaNave = this.posicaoEmX + this.larguraImagem;
+        int centroDaNave = this.posicaoEmY + (this.alturaImagem / 2);
         Tiro tiro = new Tiro(frenteDaNave, centroDaNave);
         this.tiros.add(tiro);
     }
@@ -96,20 +96,20 @@ public class Personagem {
         this.deslocamentoEmY = deslocamentoY;
     }
 
-    public int getLargura() {
-        return largura;
+    public int getLarguraImagem() {
+        return larguraImagem;
     }
 
-    public void setLargura(int largura) {
-        this.largura = largura;
+    public void setLarguraImagem(int largura) {
+        this.larguraImagem = largura;
     }
 
-    public int getAltura() {
-        return altura;
+    public int getAlturaImagem() {
+        return alturaImagem;
     }
 
-    public void setAltura(int altura) {
-        this.altura = altura;
+    public void setAlturaImagem(int altura) {
+        this.alturaImagem = altura;
     }
 
     public void mover (KeyEvent tecla) {

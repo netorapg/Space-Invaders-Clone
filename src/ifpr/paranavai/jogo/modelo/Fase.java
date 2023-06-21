@@ -13,11 +13,11 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class Fase extends JPanel implements ActionListener, KeyListener{
-    private static final int DELAY = 2;
+    private static final int DELAY = 5;
     private Image background;
     private  Personagem personagem;
     private Timer timer;
-    private static final int LARGURA_DA_JANELA = 938;
+    private static final int LARGURA_DA_JANELA = 600;
     public Fase() {
         setFocusable(true);
         setDoubleBuffered(true);
@@ -32,7 +32,7 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
 
     public void paint(Graphics g) {
         Graphics2D graphics = (Graphics2D) g;
-        graphics.drawImage(this.background, 0, 0, null);
+        graphics.drawImage(background, 0, 0, null);
         graphics.drawImage(personagem.getImagem(), this.personagem.getPositionX(), this.personagem.getPositionY(), this);
         ArrayList<Tiro> tiros = personagem.getTiros();
         for (Tiro tiro : tiros) {
@@ -48,12 +48,11 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
         ArrayList<Tiro> tiros = personagem.getTiros();
         for (Tiro tiro : tiros) {
             if (tiro.getPosicaoEmX() > LARGURA_DA_JANELA) {
-                tiros.remove(tiro);
+               // tiros.remove(tiro);
             }
-            else if (tiros.indexOf(tiro) < tiros.size())
+            else
                 tiro.atualizar(); 
         }
-        personagem.setTiros(tiros);
         repaint();
     }
 
