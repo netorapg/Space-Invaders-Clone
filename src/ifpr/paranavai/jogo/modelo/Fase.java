@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -14,6 +16,7 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
     private static final int DELAY = 5;
     private Image background;
     private  Personagem personagem;
+    private static final int LARGURA_DA_JANELA = 938;
     public Fase() {
         setFocusable(true);
         setDoubleBuffered(true);
@@ -30,18 +33,35 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
         Graphics2D graphics = (Graphics2D) g;
         graphics.drawImage(this.background, 0, 0, null);
         graphics.drawImage(personagem.getImagem(), this.personagem.getPositionX(), this.personagem.getPositionY(), this);
+        ArrayList<Tiro> tiros = personagem.getTiros();
+        for (Tiro tiro : tiros) {
+            tiro.carregar();
+            graphics.drawImage(tiro.getImagem(), tiro.getPositionInX(), tiro.getPositionInY(), this);
+        }
         g.dispose();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         personagem.atualizar();
+        ArrayList<Tiro> tiros = personagem.getTiros();
+        for (Tiro tiro : tiros) {
+            if (tiro.getPositionInX() > LARGURA_DA_JANELA) {
+                tiros.remove(tiro);
+            }
+            else 
+                tiro.atualizar();
+        }
         repaint();
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        personagem.mover(e);
+        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+            personagem.atirar();
+        }
+        else
+            personagem.mover(e);
     }
 
     @Override
