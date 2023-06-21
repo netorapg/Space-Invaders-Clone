@@ -9,7 +9,7 @@ public class Principal extends JFrame{
     Fase fase = new Fase();
     super.add(fase);
     super.setTitle("Space Invaders Clone");
-    super.setSize(474, 375);
+    super.setSize(800, 600);
     super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     super.setLocationRelativeTo(null);
     super.setResizable(false);

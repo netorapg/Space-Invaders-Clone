@@ -6,30 +6,30 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 public class Personagem {
-    private int positionX;
-    private int positionY;
+    private int posicaoEmX;
+    private int posicaoEmY;
     private static final int DESLOCAMENTO = 3;
     private static final int POSICAO_INICIAL_EM_X = 100;
     private static final int POSICAO_INICIAL_EM_Y = 100;
-    private int deslocamentoX;
-    private int deslocamentoY;
+    private int deslocamentoEmX;
+    private int deslocamentoEmY;
     private Image imagem;
     private int largura;
     private int altura;
     private ArrayList<Tiro> tiros;
 
     public Personagem() {
-        this.positionX = POSICAO_INICIAL_EM_X;
-        this.positionY = POSICAO_INICIAL_EM_Y;
+        this.posicaoEmX = POSICAO_INICIAL_EM_X;
+        this.posicaoEmY = POSICAO_INICIAL_EM_Y;
         this.tiros = new ArrayList<Tiro>();
-        this.deslocamentoX = 0;
-        this.deslocamentoY = 0;
+        this.deslocamentoEmX = 0;
+        this.deslocamentoEmY = 0;
         
     }
 
     public void atualizar() {
-        this.positionX += this.deslocamentoX;
-        this.positionY += this.deslocamentoY;
+        this.posicaoEmX += this.deslocamentoEmX;
+        this.posicaoEmY += this.deslocamentoEmY;
     }
     public void carregar() {
         ImageIcon loading = new ImageIcon("src/ifpr/paranavai/jogo/recursos/Imagens/spaceship.png");
@@ -41,8 +41,8 @@ public class Personagem {
     }
 
     public void atirar() {
-        int frenteDaNave = this.positionX + this.largura;
-        int centroDaNave = this.positionY + (this.altura / 2);
+        int frenteDaNave = this.posicaoEmX + this.largura;
+        int centroDaNave = this.posicaoEmY + (this.altura / 2);
         Tiro tiro = new Tiro(frenteDaNave, centroDaNave);
         this.tiros.add(tiro);
     }
@@ -52,23 +52,24 @@ public class Personagem {
     }
 
     public void setTiros(ArrayList<Tiro> tiros) {
+        this.tiros = new ArrayList<Tiro>();
         this.tiros = tiros;
     }
 
     public int getPositionX() {
-        return positionX;
+        return posicaoEmX;
     }
 
-    public void setPositionX(int positionX) {
-        this.positionX = positionX;
+    public void setPositionX(int posicaoEmX) {
+        this.posicaoEmX = posicaoEmX;
     }
 
     public int getPositionY() {
-        return positionY;
+        return posicaoEmY;
     }
 
-    public void setPositionY(int positionY) {
-        this.positionY = positionY;
+    public void setPositionY(int posicaoEmY) {
+        this.posicaoEmY = posicaoEmY;
     }
 
     public Image getImagem() {
@@ -79,20 +80,20 @@ public class Personagem {
         this.imagem = imagem;
     }
 
-    public int getDeslocamentoX() {
-        return deslocamentoX;
+    public int getDeslocamentoEmX() {
+        return deslocamentoEmX;
     }
 
-    public void setDeslocamentoX(int deslocamentoX) {
-        this.deslocamentoX = deslocamentoX;
+    public void setDeslocamentoEmX(int deslocamentoX) {
+        this.deslocamentoEmX = deslocamentoX;
     }
 
-    public int getDeslocamentoY() {
-        return deslocamentoY;
+    public int getDeslocamentoEmY() {
+        return deslocamentoEmY;
     }
 
-    public void setDeslocamentoY(int deslocamentoY) {
-        this.deslocamentoY = deslocamentoY;
+    public void setDeslocamentoEmY(int deslocamentoY) {
+        this.deslocamentoEmY = deslocamentoY;
     }
 
     public int getLargura() {
@@ -115,19 +116,19 @@ public class Personagem {
         int codigo = tecla.getKeyCode();
         switch (codigo) {
             case KeyEvent.VK_UP:
-            this.deslocamentoY = -DESLOCAMENTO;
-            break;
+                this.deslocamentoEmY = -DESLOCAMENTO;
+                break;
             case KeyEvent.VK_DOWN:
-            this.deslocamentoY = DESLOCAMENTO;
-            break;
+                this.deslocamentoEmY = DESLOCAMENTO;
+                break;
             case KeyEvent.VK_LEFT:
-            this.deslocamentoX = -DESLOCAMENTO;
-            break;
+                this.deslocamentoEmX = -DESLOCAMENTO;
+                break;
             case KeyEvent.VK_RIGHT:
-            this.deslocamentoX = DESLOCAMENTO;
-            break;
+                this.deslocamentoEmX = DESLOCAMENTO;
+                break;
             default:
-            break;
+                break;
         }
     }
 
@@ -135,19 +136,34 @@ public class Personagem {
         int codigo = tecla.getKeyCode();
         switch (codigo) {
             case KeyEvent.VK_UP:
-            this.deslocamentoY = 0;
-            break;
+                this.deslocamentoEmY = 0;
+                break;
             case KeyEvent.VK_DOWN:
-            this.deslocamentoY = 0;
-            break;
+                this.deslocamentoEmY = 0;
+                break;
             case KeyEvent.VK_LEFT:
-            this.deslocamentoX = 0;
-            break;
+                this.deslocamentoEmX = 0;
+                break;
             case KeyEvent.VK_RIGHT:
-            this.deslocamentoX = 0;
-            break;
+                this.deslocamentoEmX = 0;
+                break;
             default:
-            break;
+                break;
         }        
+    }
+    public int getPosicaoEmX() {
+        return this.posicaoEmX;
+    }
+
+    public void setPosicaoEmX(int posicaoEmX) {
+        this.posicaoEmX = posicaoEmX;
+    }
+
+    public int getPosicaoEmY() {
+        return this.posicaoEmY;
+    }
+
+    public void setPosicaoEmY(int posicaoEmY) {
+        this.posicaoEmY = posicaoEmY;
     }
 }

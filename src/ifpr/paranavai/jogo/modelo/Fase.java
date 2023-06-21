@@ -16,17 +16,18 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
     private static final int DELAY = 5;
     private Image background;
     private  Personagem personagem;
+    private Timer timer;
     private static final int LARGURA_DA_JANELA = 938;
     public Fase() {
         setFocusable(true);
         setDoubleBuffered(true);
-            this.personagem = new Personagem();
-            ImageIcon loading = new ImageIcon("src/ifpr/paranavai/jogo/recursos/Imagens/background.jpg");
-            this.background = loading.getImage();
-            personagem.carregar();
-            addKeyListener(this);
-            Timer timer = new Timer(DELAY, this);
-            timer.start();
+        ImageIcon loading = new ImageIcon("src/ifpr/paranavai/jogo/recursos/Imagens/background.png");
+        this.background = loading.getImage();
+        this.personagem = new Personagem();
+        personagem.carregar();
+        addKeyListener(this);
+        timer = new Timer(DELAY, this);
+        timer.start();
     }
 
     public void paint(Graphics g) {
@@ -49,9 +50,10 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
             if (tiro.getPositionInX() > LARGURA_DA_JANELA) {
                 tiros.remove(tiro);
             }
-            else 
-                tiro.atualizar();
+            else if (tiros.indexOf(tiro) < tiros.size())
+                tiro.atualizar(); 
         }
+        personagem.setTiros(tiros);
         repaint();
     }
 
@@ -71,7 +73,5 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
 
     @Override
     public void keyTyped(KeyEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'keyTyped'");
     }
 }
