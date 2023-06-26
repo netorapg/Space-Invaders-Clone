@@ -18,6 +18,8 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
     private  Personagem personagem;
     private Timer timer;
     private static final int ALTURA_DA_JANELA = 700;
+    private boolean podeAtirar = true;
+
     public Fase() {
         setFocusable(true);
         setDoubleBuffered(true);
@@ -46,27 +48,31 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
     public void actionPerformed(ActionEvent e) {
         personagem.atualizar();
         ArrayList<Tiro> tiros = personagem.getTiros();
-       for (int i = 0; i < tiros.size(); i++) {
-        if (tiros.get(i).getPosicaoEmY() > ALTURA_DA_JANELA) {
-            tiros.remove(i);
+        for (int i = 0; i < tiros.size(); i++) {
+            if (tiros.get(i).getPosicaoEmY() > ALTURA_DA_JANELA) {
+                tiros.remove(i);
+            } else {
+                tiros.get(i).atualizar();
+            }
         }
-        else
-            tiros.get(i).atualizar();
-       }
         repaint();
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-            personagem.atirar();
-        }
-        else
+        if (e.getKeyCode() == KeyEvent.VK_SPACE && podeAtirar) {
+            personagem.dispararTiro();
+            podeAtirar = false;
+        } else {
             personagem.mover(e);
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+            podeAtirar = true;
+        }
         personagem.parar(e);
     }
 

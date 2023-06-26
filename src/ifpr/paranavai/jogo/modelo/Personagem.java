@@ -17,6 +17,7 @@ public class Personagem {
     private int larguraImagem;
     private int alturaImagem;
     private ArrayList<Tiro> tiros;
+    private boolean podeAtirar = true;
 
     public Personagem() {
         this.posicaoEmX = POSICAO_INICIAL_EM_X;
@@ -165,5 +166,11 @@ public class Personagem {
 
     public void setPosicaoEmY(int posicaoEmY) {
         this.posicaoEmY = posicaoEmY;
+    }
+
+    public void dispararTiro() {
+        
+            atirar();
+       
     }
 }
