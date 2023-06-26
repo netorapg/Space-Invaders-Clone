@@ -17,7 +17,7 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
     private Image background;
     private  Personagem personagem;
     private Timer timer;
-    private static final int LARGURA_DA_JANELA = 600;
+    private static final int LARGURA_DA_JANELA = 700;
     public Fase() {
         setFocusable(true);
         setDoubleBuffered(true);
@@ -46,13 +46,13 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
     public void actionPerformed(ActionEvent e) {
         personagem.atualizar();
         ArrayList<Tiro> tiros = personagem.getTiros();
-        for (Tiro tiro : tiros) {
-            if (tiro.getPosicaoEmX() > LARGURA_DA_JANELA) {
-               // tiros.remove(tiro);
-            }
-            else
-                tiro.atualizar(); 
+       for (int i = 0; i < tiros.size(); i++) {
+        if (tiros.get(i).getPosicaoEmX() > LARGURA_DA_JANELA) {
+            tiros.remove(i);
         }
+        else
+            tiros.get(i).atualizar();
+       }
         repaint();
     }
 
