@@ -25,7 +25,7 @@ public class Tiro {
     }
 
     public void atualizar() {
-        this.posicaoEmX += VELOCIDADE;
+        this.posicaoEmY -= VELOCIDADE;
     }
 
 
