@@ -1,9 +1,7 @@
 package ifpr.paranavai.jogo.modelo;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 
 public class Personagem {

@@ -19,6 +19,7 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
     private static final int DELAY = 5;
     private Image background;
     private  Personagem personagem;
+    private Inimigo inimigo;
     private Timer timer;
     private static final int ALTURA_DA_JANELA = 700;
     private boolean podeAtirar = true;
@@ -34,6 +35,7 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
         addKeyListener(this);
         timer = new Timer(DELAY, this);
         timer.start();
+        inimigo = new Inimigo();
 
         stars = new ArrayList<Star>();
         preencherEstrelas();
@@ -58,6 +60,7 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
         Graphics2D graphics = (Graphics2D) g;
         graphics.drawImage(background, 0, 0, null);
         graphics.drawImage(personagem.getImagem(), this.personagem.getPositionX(), this.personagem.getPositionY(), this);
+        graphics.drawImage(inimigo.getImagem(), this.inimigo.getPosicaoEmX(), this.inimigo.getPosicaoEmY(), this);
         ArrayList<Tiro> tiros = personagem.getTiros();
         ArrayList<SuperTiro> superTiros = personagem.getSuperTiros();
         for (Star star: stars) {
@@ -83,6 +86,7 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         personagem.atualizar();
+        inimigo.atualizar();
 
         for (Star star : stars) {
             star.setPosicaoY(star.getPosicaoY() + 2);
