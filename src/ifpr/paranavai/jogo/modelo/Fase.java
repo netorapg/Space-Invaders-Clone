@@ -47,7 +47,7 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
             int distancia = (int) (Math.random() * distanciaMaxima);
             int x = (int) (centroX + distancia * Math.cos(angulo));
             int y = (int) (centroY + distancia * Math.sin(angulo));
-            Star star = new Star(x, y);
+            Star star = new Star(x, y, 2);
             stars.add(star);
         }
     }
@@ -58,6 +58,10 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
         graphics.drawImage(personagem.getImagem(), this.personagem.getPositionX(), this.personagem.getPositionY(), this);
         ArrayList<Tiro> tiros = personagem.getTiros();
         for (Star star: stars) {
+            if (star.getPosicaoY() >= getHeight()) {
+                star.setPosicaoY(-star.getTamanho());
+                star.setPosicaoX((int) (Math.random() * getWidth()));
+            }
             graphics.setColor(Color.WHITE);
             graphics.fillRect(star.getPosicaoX(), star.getPosicaoY(), 2, 2);
         }
@@ -73,9 +77,9 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
         personagem.atualizar();
 
         for (Star star : stars) {
-            star.setPosicaoY(star.getPosicaoY() + 1);
+            star.setPosicaoY(star.getPosicaoY() + 2);
             if (star.getPosicaoY() >= getHeight()) {
-                star.setPosicaoY(0);
+                star.setPosicaoY(-star.getTamanho());
             }
         }
         ArrayList<Tiro> tiros = personagem.getTiros();
