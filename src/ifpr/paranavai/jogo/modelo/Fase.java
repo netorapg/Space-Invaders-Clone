@@ -33,10 +33,12 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
         this.background = loading.getImage();
         personagem = new Personagem();
         personagem.carregar();
+        
         addKeyListener(this);
         timer = new Timer(DELAY, this);
         timer.start();
         inimigo = new Inimigo();
+        inimigo.carregar();
 
         stars = new ArrayList<Star>();
         preencherEstrelas();

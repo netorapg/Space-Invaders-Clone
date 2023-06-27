@@ -37,7 +37,7 @@ public class Personagem {
         this.imagem = loading.getImage();
         this.larguraImagem = this.imagem.getWidth(null);
         this.alturaImagem = this.imagem.getHeight(null);
-
+        
         
     }
 
