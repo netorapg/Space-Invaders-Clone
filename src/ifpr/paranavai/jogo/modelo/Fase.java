@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,6 +59,7 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
         graphics.drawImage(background, 0, 0, null);
         graphics.drawImage(personagem.getImagem(), this.personagem.getPositionX(), this.personagem.getPositionY(), this);
         ArrayList<Tiro> tiros = personagem.getTiros();
+        ArrayList<SuperTiro> superTiros = personagem.getSuperTiros();
         for (Star star: stars) {
             if (star.getPosicaoY() >= getHeight()) {
                 star.setPosicaoY((int) (Math.random() * getHeight()));
@@ -69,6 +71,11 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
         for (Tiro tiro : tiros) {
             tiro.carregar();
             graphics.drawImage(tiro.getImagem(), tiro.getPosicaoEmX(), tiro.getPosicaoEmY(), this);
+        }
+
+        for (SuperTiro superTiro : personagem.getSuperTiros()) {
+            superTiro.carregar();
+            graphics.drawImage(superTiro.getImagem(), superTiro.getPosicaoEmX(), superTiro.getPosicaoEmY(), this);
         }
         g.dispose();
     }

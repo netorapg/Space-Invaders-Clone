@@ -1,6 +1,7 @@
 package ifpr.paranavai.jogo.modelo;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -17,11 +18,13 @@ public class Personagem {
     private int larguraImagem;
     private int alturaImagem;
     private ArrayList<Tiro> tiros;
+    private ArrayList<SuperTiro> superTiros;
 
     public Personagem() {
         this.posicaoEmX = POSICAO_INICIAL_EM_X;
         this.posicaoEmY = POSICAO_INICIAL_EM_Y;
         this.tiros = new ArrayList<Tiro>();
+        this.superTiros = new ArrayList<SuperTiro>();
         this.deslocamentoEmX = 0;
         this.deslocamentoEmY = 0;
         
@@ -41,14 +44,27 @@ public class Personagem {
     }
 
     public void atirar() {
+        int frenteDaNave = this.posicaoEmX + this.larguraImagem / 2;
+        Tiro tiro = new Tiro(frenteDaNave, this.posicaoEmY );
+        this.tiros.add(tiro);
+    }
+
+    public void superAtirar() {
         int frenteDaNave = this.posicaoEmX + this.larguraImagem / 3;
         int centroDaNave = this.posicaoEmY + this.alturaImagem / 30;
-        Tiro tiro = new Tiro(frenteDaNave, centroDaNave);
-        this.tiros.add(tiro);
+        SuperTiro superTiro = new SuperTiro(frenteDaNave, centroDaNave);
+        this.superTiros.add(superTiro);
     }
 
     public ArrayList<Tiro> getTiros() {
         return this.tiros;
+    }
+
+    public ArrayList<SuperTiro> getSuperTiros() {
+        return this.superTiros;
+    }
+    public void setSuperTiros(ArrayList<SuperTiro> superTiros) {
+        this.superTiros = superTiros;
     }
 
     public void setTiros(ArrayList<Tiro> tiros) {

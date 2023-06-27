@@ -13,7 +13,8 @@ public class Tiro {
 
 
     public Tiro(int posicaoPersonagemX, int posicaoPersonagemY) {
-        this.posicaoEmX = posicaoPersonagemX;
+        this.carregar();
+        this.posicaoEmX = posicaoPersonagemX - (this.larguraImagem / 2);
         this.posicaoEmY = posicaoPersonagemY;
     }
 
