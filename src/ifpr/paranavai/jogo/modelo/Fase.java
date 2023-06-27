@@ -102,6 +102,14 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
                 tiros.get(i).atualizar();
             }
         }
+        ArrayList<SuperTiro> superTiros = personagem.getSuperTiros();
+        for (int i = 0; i < superTiros.size(); i++) {
+            if (superTiros.get(i).getPosicaoEmY() > ALTURA_DA_JANELA) {
+                superTiros.remove(i);
+            } else {
+                superTiros.get(i).atualizar();
+            }
+        }
         repaint();
     }
 
@@ -113,6 +121,10 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
         } else {
             personagem.mover(e);
         }
+        if (e.getKeyCode() == KeyEvent.VK_SHIFT) {
+            personagem.dispararSuperTiro();
+            podeAtirar = false;
+        }
     }
 
     @Override
@@ -121,6 +133,10 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
             podeAtirar = true;
         }
         personagem.parar(e);
+
+        if (e.getKeyCode() == KeyEvent.VK_SHIFT) {
+            podeAtirar = true;
+        }
     }
 
     @Override

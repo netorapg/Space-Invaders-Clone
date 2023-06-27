@@ -12,8 +12,10 @@ public class SuperTiro  extends Tiro{
     private static int VELOCIDADE = 2;
 
     public SuperTiro(int posicaoPersonagemX, int posicaoPersonagemY) {
+        
         super(posicaoPersonagemX, posicaoPersonagemY);
-        this.posicaoEmX = posicaoPersonagemX;
+        this.carregar();
+        this.posicaoEmX = posicaoPersonagemX - (this.larguraImagem / 2);
         this.posicaoEmY = posicaoPersonagemY;
 
     }

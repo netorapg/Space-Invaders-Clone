@@ -48,9 +48,8 @@ public class Personagem {
     }
 
     public void superAtirar() {
-        int frenteDaNave = this.posicaoEmX + this.larguraImagem / 3;
-        int centroDaNave = this.posicaoEmY + this.alturaImagem / 30;
-        SuperTiro superTiro = new SuperTiro(frenteDaNave, centroDaNave);
+        int frenteDaNave = this.posicaoEmX + this.larguraImagem / 2;
+        SuperTiro superTiro = new SuperTiro(frenteDaNave, this.posicaoEmY);
         this.superTiros.add(superTiro);
     }
 
@@ -184,6 +183,9 @@ public class Personagem {
     public void dispararTiro() {
         
             atirar();
-       
+    }
+
+    public void dispararSuperTiro() {
+        superAtirar();
     }
 }
