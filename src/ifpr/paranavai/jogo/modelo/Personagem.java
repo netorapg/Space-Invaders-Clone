@@ -8,8 +8,8 @@ public class Personagem {
     private int posicaoEmX;
     private int posicaoEmY;
     private static final int DESLOCAMENTO = 3;
-    private static final int POSICAO_INICIAL_EM_X = 100;
-    private static final int POSICAO_INICIAL_EM_Y = 100;
+    private static final int POSICAO_INICIAL_EM_X = 360;
+    private static final int POSICAO_INICIAL_EM_Y = 500;
     private int deslocamentoEmX;
     private int deslocamentoEmY;
     private Image imagem;
