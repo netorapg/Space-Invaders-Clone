@@ -39,9 +39,10 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
     }
     public void preencherEstrelas() {
         int quantidadeEstrelas = 100;
+        int distanciaMaxima = 1000;
         int centroX = getWidth() / 2;
         int centroY = getHeight() / 2;
-        int distanciaMaxima = 1000;
+        
         for (int i = 0; i < quantidadeEstrelas; i++) {
             double angulo = Math.random() * 2 * Math.PI;
             int distancia = (int) (Math.random() * distanciaMaxima);
@@ -59,11 +60,11 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
         ArrayList<Tiro> tiros = personagem.getTiros();
         for (Star star: stars) {
             if (star.getPosicaoY() >= getHeight()) {
-                star.setPosicaoY(-star.getTamanho());
+                star.setPosicaoY((int) (Math.random() * getHeight()));
                 star.setPosicaoX((int) (Math.random() * getWidth()));
             }
             graphics.setColor(Color.WHITE);
-            graphics.fillRect(star.getPosicaoX(), star.getPosicaoY(), 2, 2);
+            graphics.fillOval(star.getPosicaoX(), star.getPosicaoY(), 2, 2);
         }
         for (Tiro tiro : tiros) {
             tiro.carregar();
@@ -78,7 +79,7 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
 
         for (Star star : stars) {
             star.setPosicaoY(star.getPosicaoY() + 2);
-            if (star.getPosicaoY() >= getHeight()) {
+            if (star.getPosicaoY() > getHeight()) {
                 star.setPosicaoY(-star.getTamanho());
             }
         }
