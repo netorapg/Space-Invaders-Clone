@@ -24,6 +24,7 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
     private static final int ALTURA_DA_JANELA = 700;
     private boolean podeAtirar = true;
     private List<Star> stars;
+    private int temporizador = 0;
 
     public Fase() {
         setFocusable(true);
@@ -76,7 +77,7 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
             graphics.drawImage(tiro.getImagem(), tiro.getPosicaoEmX(), tiro.getPosicaoEmY(), this);
         }
 
-        for (SuperTiro superTiro : personagem.getSuperTiros()) {
+        for (SuperTiro superTiro : superTiros) {
             superTiro.carregar();
             graphics.drawImage(superTiro.getImagem(), superTiro.getPosicaoEmX(), superTiro.getPosicaoEmY(), this);
         }
@@ -85,6 +86,7 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        temporizador++;
         personagem.atualizar();
         inimigo.atualizar();
 
@@ -121,9 +123,12 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
         } else {
             personagem.mover(e);
         }
-        if (e.getKeyCode() == KeyEvent.VK_SHIFT) {
+        if (e.getKeyCode() == KeyEvent.VK_SHIFT && podeAtirar && temporizador >= 500) {
             personagem.dispararSuperTiro();
             podeAtirar = false;
+            temporizador = 0;
+        } else {
+            personagem.mover(e);
         }
     }
 
