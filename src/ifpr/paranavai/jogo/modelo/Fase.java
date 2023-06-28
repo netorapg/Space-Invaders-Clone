@@ -131,7 +131,7 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
         }
 
         for (int i = 0; i < inimigos.size(); i++) {
-            if (inimigos.get(i).getPosicaoEmY() > 800) {
+            if (inimigos.get(i).getPosicaoEmY() > 700) {
                 inimigos.remove(i);
             } else {
                 inimigos.get(i).atualizar();
