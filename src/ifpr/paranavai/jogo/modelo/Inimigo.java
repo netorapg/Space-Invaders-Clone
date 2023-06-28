@@ -22,7 +22,7 @@ public class Inimigo {
         this.larguraImagem = this.imagem.getHeight(null);
     }
     public void atualizar() {
-        this.posicaoEmY -= VELOCIDADE;
+        this.posicaoEmY += VELOCIDADE;
     }
 
 
