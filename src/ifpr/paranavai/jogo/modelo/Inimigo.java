@@ -8,7 +8,7 @@ public class Inimigo {
     private Image imagem;
     private int larguraImagem;
     private int alturaImagem;
-    private static int VELOCIDADE = 2;
+    private static int VELOCIDADE = 1;
 
     public Inimigo (int xAleatorio, int yAleatorio) {
         this.posicaoEmX = xAleatorio;
