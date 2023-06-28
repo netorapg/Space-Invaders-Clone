@@ -19,7 +19,6 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
     private static final int DELAY = 5;
     private Image background;
     private  Personagem personagem;
-    private Inimigo inimigo;
     private Timer timer;
     private static final int ALTURA_DA_JANELA = 700;
     private boolean podeAtirar = true;
@@ -49,8 +48,8 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
         inimigos = new ArrayList<Inimigo>();
 
         for (int i = 0; i < QUANTIDADE_INIMIGOS; i++) {
-            int x = (int) (Math.random() * 8000 + 1024);
-            int y = (int) (Math.random() * 650 + 30);
+            int y = (int) (Math.random() * 8000 + 1024);
+            int x = (int) (Math.random() * 650 + 30);
             Inimigo inimigo = new Inimigo(x, y);
             inimigos.add(inimigo);
         }
@@ -132,7 +131,7 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
         }
 
         for (int i = 0; i < inimigos.size(); i++) {
-            if (inimigos.get(i).getPosicaoEmX() < 0) {
+            if (inimigos.get(i).getPosicaoEmY() < 0) {
                 inimigos.remove(i);
             } else {
                 inimigos.get(i).atualizar();
