@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.lang.reflect.Array;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +24,9 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
     private static final int ALTURA_DA_JANELA = 700;
     private boolean podeAtirar = true;
     private List<Star> stars;
+    private ArrayList<Inimigo> inimigos;
     private int temporizador = 0;
+    private static final int QUANTIDADE_INIMIGOS = 40;
 
     public Fase() {
         setFocusable(true);
@@ -33,16 +35,27 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
         this.background = loading.getImage();
         personagem = new Personagem();
         personagem.carregar();
+
+        this.inicializaInimigos();
         
         addKeyListener(this);
         timer = new Timer(DELAY, this);
         timer.start();
-        inimigo = new Inimigo();
-        inimigo.carregar();
 
         stars = new ArrayList<Star>();
         preencherEstrelas();
     }
+    public void inicializaInimigos(){
+        inimigos = new ArrayList<Inimigo>();
+
+        for (int i = 0; i < QUANTIDADE_INIMIGOS; i++) {
+            int x = (int) (Math.random() * 8000 + 1024);
+            int y = (int) (Math.random() * 650 + 30);
+            Inimigo inimigo = new Inimigo(x, y);
+            inimigos.add(inimigo);
+        }
+    }
+
     public void preencherEstrelas() {
         int quantidadeEstrelas = 100;
         int distanciaMaxima = 1000;
@@ -63,7 +76,6 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
         Graphics2D graphics = (Graphics2D) g;
         graphics.drawImage(background, 0, 0, null);
         graphics.drawImage(personagem.getImagem(), this.personagem.getPositionX(), this.personagem.getPositionY(), this);
-        graphics.drawImage(inimigo.getImagem(), this.inimigo.getPosicaoEmX(), this.inimigo.getPosicaoEmY(), this);
         ArrayList<Tiro> tiros = personagem.getTiros();
         ArrayList<SuperTiro> superTiros = personagem.getSuperTiros();
         for (Star star: stars) {
@@ -83,6 +95,11 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
             superTiro.carregar();
             graphics.drawImage(superTiro.getImagem(), superTiro.getPosicaoEmX(), superTiro.getPosicaoEmY(), this);
         }
+
+        for (Inimigo inimigo : inimigos) {
+            inimigo.carregar();
+            graphics.drawImage(inimigo.getImagem(), inimigo.getPosicaoEmX(), inimigo.getPosicaoEmY(), this);
+        }
         g.dispose();
     }
 
@@ -90,7 +107,6 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
     public void actionPerformed(ActionEvent e) {
         temporizador++;
         personagem.atualizar();
-        inimigo.atualizar();
 
         for (Star star : stars) {
             star.setPosicaoY(star.getPosicaoY() + 2);
@@ -112,6 +128,14 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
                 superTiros.remove(i);
             } else {
                 superTiros.get(i).atualizar();
+            }
+        }
+
+        for (int i = 0; i < inimigos.size(); i++) {
+            if (inimigos.get(i).getPosicaoEmX() < 0) {
+                inimigos.remove(i);
+            } else {
+                inimigos.get(i).atualizar();
             }
         }
         repaint();
