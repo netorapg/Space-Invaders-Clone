@@ -158,6 +158,27 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
             temporizador = 0;
         } else {
             personagem.mover(e);
+
+            int posX = personagem.getPositionX();
+            int posY = personagem.getPositionY();
+
+            int larguraPersonagem = personagem.getImagem().getWidth(null);
+            int alturaPersonagem = personagem.getImagem().getHeight(null);
+
+            if (posX < 0) {
+                posX = 0;
+            } else if (posX + larguraPersonagem > getWidth()) {
+                posX = getWidth() - larguraPersonagem;
+            }
+
+            if (posY < 0) {
+                posY = 0;
+            } else if (posY + alturaPersonagem > getHeight()) {
+                posY = getHeight() - alturaPersonagem;
+            }
+
+            personagem.setPositionX(posX);
+            personagem.setPositionY(posY);
         }
     }
 
