@@ -25,7 +25,7 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
     private List<Star> stars;
     private ArrayList<Inimigo> inimigos;
     private int temporizador = 0;
-    private int QUANTIDADE_INIMIGOS = 5;
+    private int QUANTIDADE_INIMIGOS = 10;
 
     public Fase() {
         setFocusable(true);
