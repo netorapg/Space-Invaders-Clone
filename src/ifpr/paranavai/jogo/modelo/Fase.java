@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -69,6 +70,10 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
             Star star = new Star(x, y, 2);
             stars.add(star);
         }
+    }
+
+    private boolean colisao(Rectangle r1, Rectangle r2) {
+        return r1.intersects(r2);
     }
 
     public void paint(Graphics g) {
@@ -139,6 +144,24 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
                 inimigos.add(inimigo);
             } else {
                 inimigos.get(i).atualizar();
+            }
+        }
+        
+
+        for (int i = 0; i < tiros.size(); i++) {
+            Tiro tiro = tiros.get(i);
+            Rectangle tiroRect = new Rectangle (tiro.getPosicaoEmX(), tiro.getPosicaoEmY(), tiro.getImagem().getWidth(null), tiro.getImagem().getHeight(null));
+
+            for (int j = 0; j < inimigos.size(); j++) {
+                Inimigo inimigo = inimigos.get(j);
+                Rectangle inimigoRect = new Rectangle (inimigo.getPosicaoEmX(), inimigo.getPosicaoEmY(), inimigo.getImagem().getWidth(null), inimigo.getImagem().getHeight(null));
+
+                if (colisao(tiroRect, inimigoRect)) {
+                    tiros.remove(i);
+                    inimigos.remove(j);
+                    i--;
+                    break;
+                }
             }
         }
         repaint();
