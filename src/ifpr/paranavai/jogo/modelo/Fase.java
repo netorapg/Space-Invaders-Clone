@@ -25,7 +25,7 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
     private List<Star> stars;
     private ArrayList<Inimigo> inimigos;
     private int temporizador = 0;
-    private static final int QUANTIDADE_INIMIGOS = 40;
+    private int QUANTIDADE_INIMIGOS = 5;
 
     public Fase() {
         setFocusable(true);
@@ -48,7 +48,7 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
         inimigos = new ArrayList<Inimigo>();
 
         for (int i = 0; i < QUANTIDADE_INIMIGOS; i++) {
-            int y = (int) (Math.random() * 8000 - 1024);
+            int y = (int) (Math.random() * 800 - 1024);
             int x = (int) (Math.random() * 650 + 30);
             Inimigo inimigo = new Inimigo(x, y);
             inimigos.add(inimigo);
@@ -129,10 +129,14 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
                 superTiros.get(i).atualizar();
             }
         }
-
+        
         for (int i = 0; i < inimigos.size(); i++) {
-            if (inimigos.get(i).getPosicaoEmY() > 700) {
+            if (inimigos.get(i).getPosicaoEmY() > 800) {
                 inimigos.remove(i);
+                int y = (int) (Math.random() * 800 - 1024);
+                int x = (int) (Math.random() * 650 + 30);
+                Inimigo inimigo = new Inimigo(x, y);
+                inimigos.add(inimigo);
             } else {
                 inimigos.get(i).atualizar();
             }
