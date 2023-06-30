@@ -190,13 +190,13 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
 
             if (posX < 0) {
                 posX = 0;
-            } else if (posX + larguraPersonagem > getWidth()) {
+            } else if (posX + larguraPersonagem > 700) {
                 posX = getWidth() - larguraPersonagem;
             }
 
             if (posY < 0) {
                 posY = 0;
-            } else if (posY + alturaPersonagem > getHeight()) {
+            } else if (posY + alturaPersonagem > 640) {
                 posY = getHeight() - alturaPersonagem;
             }
 
