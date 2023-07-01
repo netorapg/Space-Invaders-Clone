@@ -3,11 +3,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -90,14 +90,30 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
             graphics.drawImage(tiro.getImagem(), tiro.getPosicaoEmX(), tiro.getPosicaoEmY(), this);
         }
 
+        for (Tiro tiro : tiros) {
+            Rectangle tiroBounds = new Rectangle(tiro.getPosicaoEmX(), tiro.getPosicaoEmY(), tiro.getImagem().getWidth(null), tiro.getImagem().getHeight(null));
+            for (int i = 0; i < inimigos.size(); i++) {
+                Inimigo inimigo = inimigos.get(i);
+                Rectangle inimigoBounds = new Rectangle(inimigo.getPosicaoEmX(), inimigo.getPosicaoEmY(), inimigo.getImagem().getWidth(null), inimigo.getImagem().getHeight(null));
+                if (tiroBounds.intersects(inimigoBounds)) {
+                    inimigo.setVivo(false);
+                    tiros.remove(tiro);
+                    break;
+                }
+            }
+        }
+
         for (SuperTiro superTiro : superTiros) {
             superTiro.carregar();
             graphics.drawImage(superTiro.getImagem(), superTiro.getPosicaoEmX(), superTiro.getPosicaoEmY(), this);
         }
 
         for (Inimigo inimigo : inimigos) {
-            inimigo.carregar();
+            if (inimigo.isVivo()) {
+                inimigo.carregar();
             graphics.drawImage(inimigo.getImagem(), inimigo.getPosicaoEmX(), inimigo.getPosicaoEmY(), this);
+            }
+            
         }
         g.dispose();
     }
@@ -141,7 +157,7 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
                 inimigos.get(i).atualizar();
             }
         }
-            
+        
         repaint();
     }
 

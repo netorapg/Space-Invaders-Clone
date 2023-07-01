@@ -9,10 +9,12 @@ public class Inimigo {
     private int larguraImagem;
     private int alturaImagem;
     private static int VELOCIDADE = 1;
+    private boolean vivo;
 
     public Inimigo (int xAleatorio, int yAleatorio) {
         this.posicaoEmX = xAleatorio;
         this.posicaoEmY = yAleatorio;
+        this.vivo = true;
     }
 
     public void carregar() {
@@ -22,9 +24,24 @@ public class Inimigo {
         this.larguraImagem = this.imagem.getHeight(null);
     }
     public void atualizar() {
+        if (!vivo){
+            return;
+        }
         this.posicaoEmY += VELOCIDADE;
     }
 
+
+    public boolean isVivo() {
+        return this.vivo;
+    }
+
+    public boolean getVivo() {
+        return this.vivo;
+    }
+
+    public void setVivo(boolean vivo) {
+        this.vivo = vivo;
+    }
 
     public int getPosicaoEmX() {
         return this.posicaoEmX;
@@ -65,5 +82,5 @@ public class Inimigo {
     public void setAlturaImagem(int alturaImagem) {
         this.alturaImagem = alturaImagem;
     }
-
+    
 }
