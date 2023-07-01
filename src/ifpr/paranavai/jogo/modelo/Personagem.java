@@ -1,5 +1,6 @@
 package ifpr.paranavai.jogo.modelo;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -187,5 +188,15 @@ public class Personagem {
 
     public void dispararSuperTiro() {
         superAtirar();
+    }
+
+    public Rectangle getBounds() {
+        return null;
+    }
+
+    public void setVisivel(boolean b) {
+    }
+
+    public void morrer() {
     }
 }

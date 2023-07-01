@@ -9,13 +9,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
-
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class Fase extends JPanel implements ActionListener, KeyListener{
+    private static final long serialVersionUID = 1L;
     private static final int DELAY = 5;
     private Image background;
     private  Personagem personagem;
@@ -35,7 +36,7 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
         personagem = new Personagem();
         personagem.carregar();
 
-        this.inicializaInimigos();
+        inicializaInimigos();
         
         addKeyListener(this);
         timer = new Timer(DELAY, this);
@@ -71,7 +72,8 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
         }
     }
 
-    public void paint(Graphics g) {
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
         Graphics2D graphics = (Graphics2D) g;
         graphics.drawImage(background, 0, 0, null);
         graphics.drawImage(personagem.getImagem(), this.personagem.getPositionX(), this.personagem.getPositionY(), this);
@@ -92,11 +94,12 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
 
         for (Tiro tiro : tiros) {
             Rectangle tiroBounds = new Rectangle(tiro.getPosicaoEmX(), tiro.getPosicaoEmY(), tiro.getImagem().getWidth(null), tiro.getImagem().getHeight(null));
-            for (int i = 0; i < inimigos.size(); i++) {
-                Inimigo inimigo = inimigos.get(i);
+            Iterator<Inimigo> iterator = inimigos.iterator();
+            while (iterator.hasNext()) {
+                Inimigo inimigo = iterator.next();
                 Rectangle inimigoBounds = new Rectangle(inimigo.getPosicaoEmX(), inimigo.getPosicaoEmY(), inimigo.getImagem().getWidth(null), inimigo.getImagem().getHeight(null));
                 if (tiroBounds.intersects(inimigoBounds)) {
-                    inimigo.setVivo(false);
+                    iterator.remove();
                     tiros.remove(tiro);
                     break;
                 }
@@ -111,11 +114,11 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
         for (Inimigo inimigo : inimigos) {
             if (inimigo.isVivo()) {
                 inimigo.carregar();
-            graphics.drawImage(inimigo.getImagem(), inimigo.getPosicaoEmX(), inimigo.getPosicaoEmY(), this);
+                graphics.drawImage(inimigo.getImagem(), inimigo.getPosicaoEmX(), inimigo.getPosicaoEmY(), this);
             }
             
         }
-        g.dispose();
+        graphics.dispose();
     }
 
     @Override
@@ -145,9 +148,8 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
                 superTiros.get(i).atualizar();
             }
         }
-        
         for (int i = 0; i < inimigos.size(); i++) {
-            if (inimigos.get(i).getPosicaoEmY() > 800) {
+            if (inimigos.get(i).getPosicaoEmY() > 800){
                 inimigos.remove(i);
                 int y = (int) (Math.random() * 800 - 1024);
                 int x = (int) (Math.random() * 650 + 30);
@@ -157,6 +159,18 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
                 inimigos.get(i).atualizar();
             }
         }
+        /* Iterator<Inimigo> iterator = inimigos.iterator();
+        while (iterator.hasNext()) {
+            Inimigo inimigo = iterator.next();
+            Rectangle inimigoBounds = new Rectangle(inimigo.getPosicaoEmX(), inimigo.getPosicaoEmY(), inimigo.getImagem().getWidth(null), inimigo.getImagem().getHeight(null));
+            Rectangle personagemBounds = new Rectangle(personagem.getPositionX(), personagem.getPositionY(), personagem.getImagem().getWidth(null), personagem.getImagem().getHeight(null));
+            if(personagemBounds.intersects(inimigoBounds)){
+               timer.stop();
+               personagem.morrer();
+                break;
+            }
+        }*/
+        
         
         repaint();
     }
