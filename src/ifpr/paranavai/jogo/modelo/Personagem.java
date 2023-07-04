@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWGamepadState;
+import org.lwjgl.opengl.GL;
 
 
 public class Personagem {
@@ -130,8 +131,8 @@ public class Personagem {
         this.alturaImagem = altura;
     }
 
-    public void mover (KeyEvent tecla) {
-         int codigo = tecla.getKeyCode();
+    public void mover (GLFWGamepadState state, KeyEvent tecla) {
+        int codigo = tecla.getKeyCode();
         switch (codigo) {
             case KeyEvent.VK_UP:
                 this.deslocamentoEmY = -DESLOCAMENTO;
@@ -149,6 +150,7 @@ public class Personagem {
                 break;
         }
         
+        
 
         if (GLFW.glfwGetGamepadState(GLFW.GLFW_JOYSTICK_1, state)) {
 
@@ -160,8 +162,8 @@ public class Personagem {
         }
     }
 
-    public void parar (KeyEvent tecla) {
-        int codigo = tecla.getKeyCode();
+    public void parar (GLFWGamepadState state, KeyEvent tecla) {
+          int codigo = tecla.getKeyCode();
         switch (codigo) {
             case KeyEvent.VK_UP:
                 this.deslocamentoEmY = 0;
@@ -178,6 +180,7 @@ public class Personagem {
             default:
                 break;
         }
+       
                 
 
         if (GLFW.glfwGetGamepadState(GLFW.GLFW_JOYSTICK_1, state)) {

@@ -15,6 +15,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import org.lwjgl.glfw.GLFWGamepadState;
+
 public class Fase extends JPanel implements ActionListener, KeyListener{
     private static final long serialVersionUID = 1L;
     private static final int DELAY = 5;
@@ -226,6 +228,7 @@ public void actionPerformed(ActionEvent e) {
             personagem.setPositionX(posX);
             personagem.setPositionY(posY);
         }
+        
     }
 
     @Override
@@ -238,6 +241,7 @@ public void actionPerformed(ActionEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_SHIFT) {
             podeAtirar = true;
         }
+        
     }
 
     @Override
