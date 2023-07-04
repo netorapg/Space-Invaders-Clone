@@ -4,6 +4,9 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import org.lwjgl.glfw.GLFW;
+import org.lwjgl.glfw.GLFWGamepadState;
+
 
 public class Personagem {
     private int posicaoEmX;
@@ -18,6 +21,7 @@ public class Personagem {
     private int alturaImagem;
     private ArrayList<Tiro> tiros;
     private ArrayList<SuperTiro> superTiros;
+    private GLFWGamepadState state;
 
     public Personagem() {
         this.posicaoEmX = POSICAO_INICIAL_EM_X;
@@ -26,7 +30,7 @@ public class Personagem {
         this.superTiros = new ArrayList<SuperTiro>();
         this.deslocamentoEmX = 0;
         this.deslocamentoEmY = 0;
-        
+        this.state = GLFWGamepadState.create();
     }
 
     public void atualizar() {
@@ -127,7 +131,7 @@ public class Personagem {
     }
 
     public void mover (KeyEvent tecla) {
-        int codigo = tecla.getKeyCode();
+         int codigo = tecla.getKeyCode();
         switch (codigo) {
             case KeyEvent.VK_UP:
                 this.deslocamentoEmY = -DESLOCAMENTO;
@@ -143,6 +147,16 @@ public class Personagem {
                 break;
             default:
                 break;
+        }
+        
+
+        if (GLFW.glfwGetGamepadState(GLFW.GLFW_JOYSTICK_1, state)) {
+
+            float xAxisValue = state.axes(GLFW.GLFW_GAMEPAD_AXIS_LEFT_X);
+            float yAxisValue = state.axes(GLFW.GLFW_GAMEPAD_AXIS_LEFT_Y);
+
+            this.deslocamentoEmX = (int) (xAxisValue * DESLOCAMENTO);
+            this.deslocamentoEmY = (int) (yAxisValue * DESLOCAMENTO);
         }
     }
 
@@ -163,7 +177,20 @@ public class Personagem {
                 break;
             default:
                 break;
-        }        
+        }
+                
+
+        if (GLFW.glfwGetGamepadState(GLFW.GLFW_JOYSTICK_1, state)) {
+            float xAxisValue = state.axes(GLFW.GLFW_GAMEPAD_AXIS_LEFT_X);
+            float yAxisValue = state.axes(GLFW.GLFW_GAMEPAD_AXIS_LEFT_Y);
+
+            if (Math.abs(xAxisValue) < 0.2f) {
+                this.deslocamentoEmX = 0;
+            }
+            if (Math.abs(yAxisValue) < 0.2f) {
+                this.deslocamentoEmY = 0;
+            }
+        }
     }
     public int getPosicaoEmX() {
         return this.posicaoEmX;
