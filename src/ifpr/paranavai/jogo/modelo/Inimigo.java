@@ -86,7 +86,7 @@ public class Inimigo {
     }
 
     public Rectangle getBounds() {
-        return null;
+         return new Rectangle(getPosicaoEmX(), getPosicaoEmY(), getImagem().getWidth(null), getImagem().getHeight(null));
     }
     
 }

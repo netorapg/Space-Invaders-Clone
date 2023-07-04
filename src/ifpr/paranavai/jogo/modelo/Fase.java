@@ -91,8 +91,7 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
             tiro.carregar();
             graphics.drawImage(tiro.getImagem(), tiro.getPosicaoEmX(), tiro.getPosicaoEmY(), this);
         }
-
-        for (Tiro tiro : tiros) {
+        /* for (Tiro tiro : tiros) {
             Rectangle tiroBounds = new Rectangle(tiro.getPosicaoEmX(), tiro.getPosicaoEmY(), tiro.getImagem().getWidth(null), tiro.getImagem().getHeight(null));
             Iterator<Inimigo> iterator = inimigos.iterator();
             while (iterator.hasNext()) {
@@ -101,10 +100,12 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
                 if (tiroBounds.intersects(inimigoBounds)) {
                     iterator.remove();
                     tiros.remove(tiro);
+                    inimigo.setVivo(false);
                     break;
                 }
             }
-        }
+        }*/
+        
 
         for (SuperTiro superTiro : superTiros) {
             superTiro.carregar();
@@ -122,58 +123,72 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        temporizador++;
-        personagem.atualizar();
+public void actionPerformed(ActionEvent e) {
+    temporizador++;
+    personagem.atualizar();
 
-        for (Star star : stars) {
-            star.setPosicaoY(star.getPosicaoY() + 2);
-            if (star.getPosicaoY() > getHeight()) {
-                star.setPosicaoY(-star.getTamanho());
-            }
+    for (Star star : stars) {
+        star.setPosicaoY(star.getPosicaoY() + 2);
+        if (star.getPosicaoY() > getHeight()) {
+            star.setPosicaoY(-star.getTamanho());
         }
-        ArrayList<Tiro> tiros = personagem.getTiros();
-        for (int i = 0; i < tiros.size(); i++) {
-            if (tiros.get(i).getPosicaoEmY() > ALTURA_DA_JANELA) {
+    }
+
+    ArrayList<Tiro> tiros = personagem.getTiros();
+    for (int i = tiros.size() - 1; i >= 0; i--) {
+        if (tiros.get(i).getPosicaoEmY() >= ALTURA_DA_JANELA) {
+            tiros.remove(i);
+        } else {
+            tiros.get(i).atualizar();
+        }
+    }
+
+    ArrayList<SuperTiro> superTiros = personagem.getSuperTiros();
+    for (int i = superTiros.size() - 1; i >= 0; i--) {
+        if (superTiros.get(i).getPosicaoEmY() > ALTURA_DA_JANELA) {
+            superTiros.remove(i);
+        } else {
+            superTiros.get(i).atualizar();
+        }
+    }
+    /* for (int i = inimigos.size() - 1; i >= 0; i--) {
+        Inimigo inimigo = inimigos.get(i);
+        Rectangle inimigoBounds = inimigo.getBounds();
+        Tiro tiro = tiros.get(i);
+        if (tiro != null) {
+            Rectangle tiroBounds = new Rectangle(tiro.getPosicaoEmX(), tiro.getPosicaoEmY(), tiro.getImagem().getWidth(null), tiro.getImagem().getHeight(null));
+
+            if (tiroBounds.intersects(inimigoBounds)) {
+                inimigo.setVivo(false);
                 tiros.remove(i);
-            } else {
-                tiros.get(i).atualizar();
-            }
-        }
-        ArrayList<SuperTiro> superTiros = personagem.getSuperTiros();
-        for (int i = 0; i < superTiros.size(); i++) {
-            if (superTiros.get(i).getPosicaoEmY() > ALTURA_DA_JANELA) {
-                superTiros.remove(i);
-            } else {
-                superTiros.get(i).atualizar();
-            }
-        }
-        for (int i = 0; i < inimigos.size(); i++) {
-            if (inimigos.get(i).getPosicaoEmY() > 800){
-                inimigos.remove(i);
-                int y = (int) (Math.random() * 800 - 1024);
-                int x = (int) (Math.random() * 650 + 30);
-                Inimigo inimigo = new Inimigo(x, y);
-                inimigos.add(inimigo);
-            } else {
-                inimigos.get(i).atualizar();
-            }
-        }
-        /* Iterator<Inimigo> iterator = inimigos.iterator();
-        while (iterator.hasNext()) {
-            Inimigo inimigo = iterator.next();
-            Rectangle inimigoBounds = new Rectangle(inimigo.getPosicaoEmX(), inimigo.getPosicaoEmY(), inimigo.getImagem().getWidth(null), inimigo.getImagem().getHeight(null));
-            Rectangle personagemBounds = new Rectangle(personagem.getPositionX(), personagem.getPositionY(), personagem.getImagem().getWidth(null), personagem.getImagem().getHeight(null));
-            if(personagemBounds.intersects(inimigoBounds)){
-               timer.stop();
-               personagem.morrer();
                 break;
             }
-        }*/
-        
-        
-        repaint();
+        }
     }
+*/
+    
+    for (int i = inimigos.size() - 1; i >= 0; i--) {
+        Inimigo inimigo = inimigos.get(i);
+        if (!inimigo.isVivo()) {
+            inimigos.remove(i);
+        }
+    }
+
+    for (int i = 0; i < inimigos.size(); i++) {
+        if (inimigos.get(i).getPosicaoEmY() > 800) {
+            inimigos.remove(i);
+            int y = (int) (Math.random() * 800 - 1024);
+            int x = (int) (Math.random() * 650 + 30);
+            Inimigo inimigo = new Inimigo(x, y);
+            inimigos.add(inimigo);
+        } else {
+            inimigos.get(i).atualizar();
+        }
+    }
+
+    repaint();
+}
+
 
     @Override
     public void keyPressed(KeyEvent e) {

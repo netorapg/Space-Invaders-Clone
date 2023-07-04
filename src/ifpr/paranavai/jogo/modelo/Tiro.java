@@ -69,4 +69,8 @@ public class Tiro {
     public void setAlturaImagem(int alturaImagem) {
         this.alturaImagem = alturaImagem;
     }
+
+    public Tiro get(int i) {
+        return null;
+    }
 }
