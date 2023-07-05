@@ -1,6 +1,4 @@
 package ifpr.paranavai.jogo.modelo;
-
-import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public class SuperTiro  extends ElementoGrafico{
