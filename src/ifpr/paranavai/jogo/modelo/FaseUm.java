@@ -183,7 +183,7 @@ public class FaseUm extends Fase{
 
             if (posX < 0) {
                 posX = 0;
-            } else if (posX + larguraPersonagem > 700) {
+            } else if (posX + larguraPersonagem > 800) {
                 posX = getWidth() - larguraPersonagem;
             }
 
