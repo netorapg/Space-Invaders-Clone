@@ -73,15 +73,19 @@ public class Personagem extends ElementoGrafico {
         int codigo = tecla.getKeyCode();
         switch (codigo) {
             case KeyEvent.VK_UP:
+            case KeyEvent.VK_W:
                 this.deslocamentoEmY = -DESLOCAMENTO;
                 break;
             case KeyEvent.VK_DOWN:
+            case KeyEvent.VK_S:
                 this.deslocamentoEmY = DESLOCAMENTO;
                 break;
             case KeyEvent.VK_LEFT:
+            case KeyEvent.VK_A:
                 this.deslocamentoEmX = -DESLOCAMENTO;
                 break;
             case KeyEvent.VK_RIGHT:
+            case KeyEvent.VK_D:
                 this.deslocamentoEmX = DESLOCAMENTO;
                 break;
             default:
@@ -102,15 +106,19 @@ public class Personagem extends ElementoGrafico {
           int codigo = tecla.getKeyCode();
         switch (codigo) {
             case KeyEvent.VK_UP:
+            case KeyEvent.VK_W:
                 this.deslocamentoEmY = 0;
                 break;
             case KeyEvent.VK_DOWN:
+            case KeyEvent.VK_S:
                 this.deslocamentoEmY = 0;
                 break;
             case KeyEvent.VK_LEFT:
+            case KeyEvent.VK_A:
                 this.deslocamentoEmX = 0;
                 break;
             case KeyEvent.VK_RIGHT:
+            case KeyEvent.VK_D:
                 this.deslocamentoEmX = 0;
                 break;
             default:
