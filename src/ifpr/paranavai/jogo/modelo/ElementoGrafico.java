@@ -24,7 +24,7 @@ private boolean visivel = true;
     }
 
     public Rectangle getRectangle() {
-        return new Rectangle(posicaoEmX, posicaoEmY, larguraImagem, alturaImagem);
+        return new Rectangle(this.getPosicaoEmX(), this.getPosicaoEmY(), this.getImagem().getWidth(null), this.getImagem().getHeight(null));
     }
 
     public int getPosicaoEmX() {

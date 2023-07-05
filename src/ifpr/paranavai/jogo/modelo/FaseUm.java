@@ -101,7 +101,7 @@ public class FaseUm extends Fase{
             graphics.drawImage(fimDeJogo.getImage(), 0, 0, null);
         }
        
-        g.dispose();
+        graphics.dispose();
     }
 
     @Override
@@ -220,9 +220,10 @@ public class FaseUm extends Fase{
             Inimigo inimigo = inimigos.get(i);
             Rectangle formaInimigo = inimigo.getRectangle();
             if (formaInimigo.intersects(formaPersonagem)) {
+                emJogo = false;
                 this.personagem.setVisivel(false);
                 inimigo.setVisivel(false);
-                emJogo = false;
+                
             }
 
             ArrayList<Tiro> tiros = personagem.getTiros();
