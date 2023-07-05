@@ -61,6 +61,7 @@ public class Personagem extends ElementoGrafico {
         return this.superTiros;
     }
     public void setSuperTiros(ArrayList<SuperTiro> superTiros) {
+        this.superTiros = new ArrayList<SuperTiro>();
         this.superTiros = superTiros;
     }
 
