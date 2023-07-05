@@ -2,11 +2,9 @@ package ifpr.paranavai.jogo.modelo;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-//import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-//import java.util.Iterator;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
@@ -23,6 +21,7 @@ public class FaseUm extends Fase{
     private ArrayList<Inimigo> inimigos;
     private int temporizador = 0;
     private int QUANTIDADE_INIMIGOS = 10;
+    private boolean emJogo = true;
 
     public FaseUm() {
         super();
@@ -68,7 +67,8 @@ public class FaseUm extends Fase{
     @Override
     public void paint(Graphics g) {
         Graphics2D graphics = (Graphics2D) g;
-        graphics.drawImage(background, 0, 0, null);
+        if (emJogo){
+             graphics.drawImage(background, 0, 0, null);
         graphics.drawImage(personagem.getImagem(), personagem.getPosicaoEmX(), this.personagem.getPosicaoEmY(), this);
         ArrayList<Tiro> tiros = personagem.getTiros();
         ArrayList<SuperTiro> superTiros = personagem.getSuperTiros();
@@ -84,22 +84,7 @@ public class FaseUm extends Fase{
             tiro.carregar();
             graphics.drawImage(tiro.getImagem(), tiro.getPosicaoEmX(), tiro.getPosicaoEmY(), this);
         }
-        /* for (Tiro tiro : tiros) {
-            Rectangle tiroBounds = new Rectangle(tiro.getPosicaoEmX(), tiro.getPosicaoEmY(), tiro.getImagem().getWidth(null), tiro.getImagem().getHeight(null));
-            Iterator<Inimigo> iterator = inimigos.iterator();
-            while (iterator.hasNext()) {
-                Inimigo inimigo = iterator.next();
-                Rectangle inimigoBounds = new Rectangle(inimigo.getPosicaoEmX(), inimigo.getPosicaoEmY(), inimigo.getImagem().getWidth(null), inimigo.getImagem().getHeight(null));
-                if (tiroBounds.intersects(inimigoBounds)) {
-                    iterator.remove();
-                    tiros.remove(tiro);
-                    inimigo.setVivo(false);
-                    break;
-                }
-            }
-        }*/
         
-
         for (SuperTiro superTiro : superTiros) {
             superTiro.carregar();
             graphics.drawImage(superTiro.getImagem(), superTiro.getPosicaoEmX(), superTiro.getPosicaoEmY(), this);
@@ -107,11 +92,14 @@ public class FaseUm extends Fase{
 
         for (Inimigo inimigo : inimigos) {
                 inimigo.carregar();
-                graphics.drawImage(inimigo.getImagem(), inimigo.getPosicaoEmX(), inimigo.getPosicaoEmY(), this);
-        
-            
+                graphics.drawImage(inimigo.getImagem(), inimigo.getPosicaoEmX(), inimigo.getPosicaoEmY(), this); 
+            }
+        } else {
+            ImageIcon fimDeJogo = new ImageIcon("/home/netorapg/Projetos/Space Invaders Clone/src/ifpr/paranavai/jogo/recursos/Imagens/game-over.png");
+            graphics.drawImage(fimDeJogo.getImage(), 0, 0, null);
         }
-        graphics.dispose();
+       
+        g.dispose();
     }
 
     @Override
@@ -145,28 +133,6 @@ public class FaseUm extends Fase{
             superTiro.atualizar();
         }
     }
-    /* for (int i = inimigos.size() - 1; i >= 0; i--) {
-        Inimigo inimigo = inimigos.get(i);
-        Rectangle inimigoBounds = inimigo.getBounds();
-        Tiro tiro = tiros.get(i);
-        if (tiro != null) {
-            Rectangle tiroBounds = new Rectangle(tiro.getPosicaoEmX(), tiro.getPosicaoEmY(), tiro.getImagem().getWidth(null), tiro.getImagem().getHeight(null));
-
-            if (tiroBounds.intersects(inimigoBounds)) {
-                inimigo.setVivo(false);
-                tiros.remove(i);
-                break;
-            }
-        }
-    }
-*/
-    /*for (int i = inimigos.size() - 1; i >= 0; i--) {
-        Inimigo inimigo = inimigos.get(i);
-        if (!inimigo.isVivo()) {
-            inimigos.remove(i);
-        }
-    } */
-    
 
     for (int i = 0; i < inimigos.size(); i++) {
         Inimigo inimigo = this.inimigos.get(i);
