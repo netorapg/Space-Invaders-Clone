@@ -15,7 +15,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import org.lwjgl.glfw.GLFWGamepadState;
+//import org.lwjgl.glfw.GLFW;
+//import org.lwjgl.glfw.GLFWGamepadState;
 
 public class Fase extends JPanel implements ActionListener, KeyListener{
     private static final long serialVersionUID = 1L;
@@ -37,6 +38,7 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
         this.background = loading.getImage();
         personagem = new Personagem();
         personagem.carregar();
+        //int present = glfwJoystickPresent(GLFW_JOYSTICK_1);
 
         inicializaInimigos();
         
@@ -194,7 +196,7 @@ public void actionPerformed(ActionEvent e) {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_SPACE && podeAtirar) {
+         if (e.getKeyCode() == KeyEvent.VK_SPACE && podeAtirar) {
             personagem.dispararTiro();
             podeAtirar = false;
         } else {
@@ -228,6 +230,7 @@ public void actionPerformed(ActionEvent e) {
             personagem.setPositionX(posX);
             personagem.setPositionY(posY);
         }
+
         
     }
 
