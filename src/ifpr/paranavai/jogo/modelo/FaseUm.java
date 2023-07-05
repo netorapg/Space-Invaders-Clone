@@ -2,8 +2,10 @@ package ifpr.paranavai.jogo.modelo;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
@@ -117,7 +119,7 @@ public class FaseUm extends Fase{
     ArrayList<Tiro> tiros = personagem.getTiros();
     for (int i = tiros.size() - 1; i >= 0; i--) {
         Tiro tiro = tiros.get(i);
-        if (tiro.getPosicaoEmY() >= ALTURA_DA_JANELA) {
+        if (tiro.getPosicaoEmY() >= ALTURA_DA_JANELA || !tiro.getVisivel()) {
             tiros.remove(tiro);
         } else {
             tiro.atualizar();
@@ -127,7 +129,7 @@ public class FaseUm extends Fase{
     ArrayList<SuperTiro> superTiros = personagem.getSuperTiros();
     for (int i = superTiros.size() - 1; i >= 0; i--) {
         SuperTiro superTiro = superTiros.get(i);
-        if (superTiro.getPosicaoEmY() >= ALTURA_DA_JANELA) {
+        if (superTiro.getPosicaoEmY() >= ALTURA_DA_JANELA || !superTiro.getVisivel()) {
             superTiros.remove(superTiro);
         } else {
             superTiro.atualizar();
@@ -136,7 +138,7 @@ public class FaseUm extends Fase{
 
     for (int i = 0; i < inimigos.size(); i++) {
         Inimigo inimigo = this.inimigos.get(i);
-        if (inimigo.getPosicaoEmY() > 800) {
+        if (inimigo.getPosicaoEmY() > 800 || !inimigo.getVisivel()) {
             inimigos.remove(inimigo);
             int y = (int) (Math.random() * 800 - 1024);
             int x = (int) (Math.random() * 650 + 30);
@@ -148,6 +150,7 @@ public class FaseUm extends Fase{
         }
     }
 
+    this.verificarColisoes();
     repaint();
 }
 
@@ -207,5 +210,40 @@ public class FaseUm extends Fase{
 
     @Override
     public void keyTyped(KeyEvent e) {
+    }
+
+
+    @Override
+    public void verificarColisoes() {
+        Rectangle formaPersonagem = personagem.getRectangle();
+        for (int i = 0; i < this.inimigos.size(); i++) {
+            Inimigo inimigo = inimigos.get(i);
+            Rectangle formaInimigo = inimigo.getRectangle();
+            if (formaInimigo.intersects(formaPersonagem)) {
+                this.personagem.setVisivel(false);
+                inimigo.setVisivel(false);
+                emJogo = false;
+            }
+
+            ArrayList<Tiro> tiros = personagem.getTiros();
+            for (int j  = 0; j < tiros.size(); j++) {
+                Tiro tiro = tiros.get(j);
+                Rectangle formaTiro = tiro.getRectangle();
+                if (formaInimigo.intersects(formaTiro)) {
+                    inimigo.setVisivel(false);
+                    tiro.setVisivel(false);
+                }
+            }
+            ArrayList<SuperTiro> superTiros = personagem.getSuperTiros();
+            for (int k = 0; k < superTiros.size(); k++) {
+                SuperTiro superTiro = superTiros.get(k);
+                Rectangle formaSuperTiro = superTiro.getRectangle();
+                if (formaInimigo.intersects(formaSuperTiro)) {
+                    inimigo.setVisivel(false);
+                    superTiro.setVisivel(false);
+                }
+            }
+
+        }
     }
 }
