@@ -12,7 +12,7 @@ public class SuperTiro  extends ElementoGrafico{
     }
 
      public void carregar() {
-        ImageIcon carregando = new ImageIcon("src/ifpr/paranavai/jogo/recursos/Imagens/superLaser.png");
+        ImageIcon carregando = new ImageIcon("src/ifpr/paranavai/jogo/recursos/Imagens/BigLaser.png");
         this.setImagem(carregando.getImage());
         this.setAlturaImagem(this.getImagem().getWidth(null));
         this.setLarguraImagem(this.getImagem().getHeight(null));

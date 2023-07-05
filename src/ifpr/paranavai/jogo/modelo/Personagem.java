@@ -48,7 +48,7 @@ public class Personagem extends ElementoGrafico {
     }
 
     public void superAtirar() {
-        int frenteDaNave = this.getPosicaoEmX() + this.getLarguraImagem()/ 2;
+        int frenteDaNave = this.getPosicaoEmX() + this.getLarguraImagem() / 2;
         SuperTiro superTiro = new SuperTiro(frenteDaNave, this.getPosicaoEmY());
         this.superTiros.add(superTiro);
     }

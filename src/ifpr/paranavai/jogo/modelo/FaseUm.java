@@ -214,6 +214,7 @@ public class FaseUm extends Fase{
 
         if (e.getKeyCode() == KeyEvent.VK_R) {
             emJogo = true;
+            pontuacao = 0;
             personagem.setVisivel(true);
         }
     }
@@ -266,7 +267,7 @@ public class FaseUm extends Fase{
                 Rectangle formaSuperTiro = superTiro.getRectangle();
                 if (formaInimigo.intersects(formaSuperTiro)) {
                     inimigo.setVisivel(false);
-                    superTiro.setVisivel(false);
+                    //superTiro.setVisivel(false);
                     pontuacao += 20;
                 }
             }
