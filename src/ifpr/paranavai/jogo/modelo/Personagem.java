@@ -1,5 +1,4 @@
 package ifpr.paranavai.jogo.modelo;
-import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -8,53 +7,49 @@ import javax.swing.ImageIcon;
 //import org.lwjgl.glfw.GLFWGamepadState;
 
 
-public class Personagem {
-    private int posicaoEmX;
-    private int posicaoEmY;
+public class Personagem extends ElementoGrafico {
     private static final int DESLOCAMENTO = 3;
     private static final int POSICAO_INICIAL_EM_X = 360;
     private static final int POSICAO_INICIAL_EM_Y = 500;
     private int deslocamentoEmX;
     private int deslocamentoEmY;
-    private Image imagem;
-    private int larguraImagem;
-    private int alturaImagem;
     private ArrayList<Tiro> tiros;
     private ArrayList<SuperTiro> superTiros;
     //private GLFWGamepadState state;
 
     public Personagem() {
-        this.posicaoEmX = POSICAO_INICIAL_EM_X;
-        this.posicaoEmY = POSICAO_INICIAL_EM_Y;
         this.tiros = new ArrayList<Tiro>();
         this.superTiros = new ArrayList<SuperTiro>();
         this.deslocamentoEmX = 0;
         this.deslocamentoEmY = 0;
+        setPosicaoEmX(POSICAO_INICIAL_EM_X);
+        setPosicaoEmY(POSICAO_INICIAL_EM_Y);
+
         //this.state = GLFWGamepadState.create();
     }
 
     public void atualizar() {
-        this.posicaoEmX += this.deslocamentoEmX;
-        this.posicaoEmY += this.deslocamentoEmY;
+       this.setPosicaoEmX((this.getPosicaoEmX() + this.getDeslocamentoEmX()));
+       this.setPosicaoEmY((this.getPosicaoEmY() + this.getDeslocamentoEmY()));
     }
     public void carregar() {
         ImageIcon loading = new ImageIcon("src/ifpr/paranavai/jogo/recursos/Imagens/spaceship.png");
-        this.imagem = loading.getImage();
-        this.larguraImagem = this.imagem.getWidth(null);
-        this.alturaImagem = this.imagem.getHeight(null);
-        
-        
+        setImagem(loading.getImage());
+        setAlturaImagem(getImagem().getWidth(null));
+        setLarguraImagem(getImagem().getHeight(null));
+        setPosicaoEmX(POSICAO_INICIAL_EM_X);
+        setPosicaoEmY(POSICAO_INICIAL_EM_Y);
     }
 
     public void atirar() {
-        int frenteDaNave = this.posicaoEmX + this.larguraImagem / 2;
-        Tiro tiro = new Tiro(frenteDaNave, this.posicaoEmY );
+        int frenteDaNave = this.getPosicaoEmX() + this.getLarguraImagem() / 2;
+        Tiro tiro = new Tiro(frenteDaNave, this.getPosicaoEmY());
         this.tiros.add(tiro);
     }
 
     public void superAtirar() {
-        int frenteDaNave = this.posicaoEmX + this.larguraImagem / 2;
-        SuperTiro superTiro = new SuperTiro(frenteDaNave, this.posicaoEmY);
+        int frenteDaNave = this.getPosicaoEmX() + this.getLarguraImagem()/ 2;
+        SuperTiro superTiro = new SuperTiro(frenteDaNave, this.getPosicaoEmY());
         this.superTiros.add(superTiro);
     }
 
@@ -72,62 +67,6 @@ public class Personagem {
     public void setTiros(ArrayList<Tiro> tiros) {
         this.tiros = new ArrayList<Tiro>();
         this.tiros = tiros;
-    }
-
-    public int getPositionX() {
-        return posicaoEmX;
-    }
-
-    public void setPositionX(int posicaoEmX) {
-        this.posicaoEmX = posicaoEmX;
-    }
-
-    public int getPositionY() {
-        return posicaoEmY;
-    }
-
-    public void setPositionY(int posicaoEmY) {
-        this.posicaoEmY = posicaoEmY;
-    }
-
-    public Image getImagem() {
-        return imagem;
-    }
-
-    public void setImagem(Image imagem) {
-        this.imagem = imagem;
-    }
-
-    public int getDeslocamentoEmX() {
-        return deslocamentoEmX;
-    }
-
-    public void setDeslocamentoEmX(int deslocamentoX) {
-        this.deslocamentoEmX = deslocamentoX;
-    }
-
-    public int getDeslocamentoEmY() {
-        return deslocamentoEmY;
-    }
-
-    public void setDeslocamentoEmY(int deslocamentoY) {
-        this.deslocamentoEmY = deslocamentoY;
-    }
-
-    public int getLarguraImagem() {
-        return larguraImagem;
-    }
-
-    public void setLarguraImagem(int largura) {
-        this.larguraImagem = largura;
-    }
-
-    public int getAlturaImagem() {
-        return alturaImagem;
-    }
-
-    public void setAlturaImagem(int altura) {
-        this.alturaImagem = altura;
     }
 
     public void mover (/*GLFWGamepadState state,*/ KeyEvent tecla) {
@@ -192,21 +131,6 @@ public class Personagem {
         }*/
         
     }
-    public int getPosicaoEmX() {
-        return this.posicaoEmX;
-    }
-
-    public void setPosicaoEmX(int posicaoEmX) {
-        this.posicaoEmX = posicaoEmX;
-    }
-
-    public int getPosicaoEmY() {
-        return this.posicaoEmY;
-    }
-
-    public void setPosicaoEmY(int posicaoEmY) {
-        this.posicaoEmY = posicaoEmY;
-    }
 
     public void dispararTiro() {
         
@@ -225,5 +149,21 @@ public class Personagem {
     }
 
     public void morrer() {
+    }
+
+    public int getDeslocamentoEmX() {
+        return this.deslocamentoEmX;
+    }
+
+    public void setDeslocamentoEmX(int deslocamentoEmX) {
+        this.deslocamentoEmX = deslocamentoEmX;
+    }
+
+    public int getDeslocamentoEmY() {
+        return this.deslocamentoEmY;
+    }
+
+    public void setDeslocamentoEmY(int deslocamentoEmY) {
+        this.deslocamentoEmY = deslocamentoEmY;
     }
 }

@@ -2,7 +2,7 @@ package ifpr.paranavai.jogo.modelo;
 
 import java.awt.Image;
 
-public class ElementoGrafico {
+public abstract class ElementoGrafico {
 private int posicaoEmX;
 private int posicaoEmY;
 private Image imagem;

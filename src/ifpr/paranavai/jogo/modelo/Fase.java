@@ -80,7 +80,7 @@ public class Fase extends JPanel implements ActionListener, KeyListener{
         super.paintComponent(g);
         Graphics2D graphics = (Graphics2D) g;
         graphics.drawImage(background, 0, 0, null);
-        graphics.drawImage(personagem.getImagem(), this.personagem.getPositionX(), this.personagem.getPositionY(), this);
+        graphics.drawImage(personagem.getImagem(), personagem.getPosicaoEmX(), this.personagem.getPosicaoEmY(), this);
         ArrayList<Tiro> tiros = personagem.getTiros();
         ArrayList<SuperTiro> superTiros = personagem.getSuperTiros();
         for (Star star: stars) {
@@ -209,8 +209,8 @@ public void actionPerformed(ActionEvent e) {
         } else {
             personagem.mover(e);
 
-            int posX = personagem.getPositionX();
-            int posY = personagem.getPositionY();
+            int posX = personagem.getPosicaoEmX();
+            int posY = personagem.getPosicaoEmY();
 
             int larguraPersonagem = personagem.getImagem().getWidth(null);
             int alturaPersonagem = personagem.getImagem().getHeight(null);
@@ -227,8 +227,8 @@ public void actionPerformed(ActionEvent e) {
                 posY = getHeight() - alturaPersonagem;
             }
 
-            personagem.setPositionX(posX);
-            personagem.setPositionY(posY);
+            personagem.setPosicaoEmX(posX);
+            personagem.setPosicaoEmY(posY);
         }
 
         
