@@ -2,26 +2,19 @@ package ifpr.paranavai.jogo.modelo;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 //import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 //import java.util.Iterator;
 import java.util.List;
 import javax.swing.ImageIcon;
-import javax.swing.JPanel;
 import javax.swing.Timer;
 
 //import org.lwjgl.glfw.GLFW;
 //import org.lwjgl.glfw.GLFWGamepadState;
 
-public class FaseUm extends JPanel implements ActionListener, KeyListener{
-    private static final long serialVersionUID = 1L;
-    private static final int DELAY = 5;
-    private Image background;
+public class FaseUm extends Fase{
     private  Personagem personagem;
     private Timer timer;
     private static final int ALTURA_DA_JANELA = 700;
@@ -32,17 +25,13 @@ public class FaseUm extends JPanel implements ActionListener, KeyListener{
     private int QUANTIDADE_INIMIGOS = 10;
 
     public FaseUm() {
-        setFocusable(true);
-        setDoubleBuffered(true);
+        super();
         ImageIcon loading = new ImageIcon("src/ifpr/paranavai/jogo/recursos/Imagens/background.png");
         this.background = loading.getImage();
         personagem = new Personagem();
         personagem.carregar();
+        this.inicializaInimigos();
         //int present = glfwJoystickPresent(GLFW_JOYSTICK_1);
-
-        inicializaInimigos();
-        
-        addKeyListener(this);
         timer = new Timer(DELAY, this);
         timer.start();
 
@@ -76,8 +65,8 @@ public class FaseUm extends JPanel implements ActionListener, KeyListener{
         }
     }
 
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
+    @Override
+    public void paint(Graphics g) {
         Graphics2D graphics = (Graphics2D) g;
         graphics.drawImage(background, 0, 0, null);
         graphics.drawImage(personagem.getImagem(), personagem.getPosicaoEmX(), this.personagem.getPosicaoEmY(), this);
@@ -117,17 +106,16 @@ public class FaseUm extends JPanel implements ActionListener, KeyListener{
         }
 
         for (Inimigo inimigo : inimigos) {
-            if (inimigo.isVivo()) {
                 inimigo.carregar();
                 graphics.drawImage(inimigo.getImagem(), inimigo.getPosicaoEmX(), inimigo.getPosicaoEmY(), this);
-            }
+        
             
         }
         graphics.dispose();
     }
 
     @Override
-public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e) {
     temporizador++;
     personagem.atualizar();
 
@@ -140,19 +128,21 @@ public void actionPerformed(ActionEvent e) {
 
     ArrayList<Tiro> tiros = personagem.getTiros();
     for (int i = tiros.size() - 1; i >= 0; i--) {
-        if (tiros.get(i).getPosicaoEmY() >= ALTURA_DA_JANELA) {
-            tiros.remove(i);
+        Tiro tiro = tiros.get(i);
+        if (tiro.getPosicaoEmY() >= ALTURA_DA_JANELA) {
+            tiros.remove(tiro);
         } else {
-            tiros.get(i).atualizar();
+            tiro.atualizar();
         }
     }
 
     ArrayList<SuperTiro> superTiros = personagem.getSuperTiros();
     for (int i = superTiros.size() - 1; i >= 0; i--) {
-        if (superTiros.get(i).getPosicaoEmY() > ALTURA_DA_JANELA) {
-            superTiros.remove(i);
+        SuperTiro superTiro = superTiros.get(i);
+        if (superTiro.getPosicaoEmY() >= ALTURA_DA_JANELA) {
+            superTiros.remove(superTiro);
         } else {
-            superTiros.get(i).atualizar();
+            superTiro.atualizar();
         }
     }
     /* for (int i = inimigos.size() - 1; i >= 0; i--) {
@@ -170,23 +160,25 @@ public void actionPerformed(ActionEvent e) {
         }
     }
 */
-    
-    for (int i = inimigos.size() - 1; i >= 0; i--) {
+    /*for (int i = inimigos.size() - 1; i >= 0; i--) {
         Inimigo inimigo = inimigos.get(i);
         if (!inimigo.isVivo()) {
             inimigos.remove(i);
         }
-    }
+    } */
+    
 
     for (int i = 0; i < inimigos.size(); i++) {
-        if (inimigos.get(i).getPosicaoEmY() > 800) {
-            inimigos.remove(i);
+        Inimigo inimigo = this.inimigos.get(i);
+        if (inimigo.getPosicaoEmY() > 800) {
+            inimigos.remove(inimigo);
             int y = (int) (Math.random() * 800 - 1024);
             int x = (int) (Math.random() * 650 + 30);
-            Inimigo inimigo = new Inimigo(x, y);
-            inimigos.add(inimigo);
+            Inimigo inimigos = new Inimigo(x, y);
+            this.inimigos.add(inimigos);
         } else {
-            inimigos.get(i).atualizar();
+
+            inimigo.atualizar();
         }
     }
 

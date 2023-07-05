@@ -11,7 +11,7 @@ import javax.swing.Timer;
 public abstract class Fase extends JPanel implements ActionListener, KeyListener{
     public static final int DELAY = 5;
     public static final int ALTURA_DA_JANELA = 700;
-    public static final int QUANTIDADE_INIMIGOS = 10;
+    public static final int QUANTIDADE_INIMIGOS = 40;
 
     protected Image background;
     protected Personagem personagem;
@@ -32,22 +32,14 @@ public abstract class Fase extends JPanel implements ActionListener, KeyListener
     public abstract void preencherEstrelas();
 
     @Override
-    public abstract void keyTyped(KeyEvent e) {
-        // TODO Auto-generated method stub
-    }
+    public abstract void keyTyped(KeyEvent e);
 
     @Override
-    public abstract void keyPressed(KeyEvent e) {
-        // TODO Auto-generated method stub
-    }
+    public abstract void keyPressed(KeyEvent e);
+    
+    @Override
+    public abstract void keyReleased(KeyEvent e);
 
     @Override
-    public abstract void keyReleased(KeyEvent e) {
-        // TODO Auto-generated method stub
-    }
-
-    @Override
-    public abstract void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
-    }
+    public abstract void actionPerformed(ActionEvent e);
 }
