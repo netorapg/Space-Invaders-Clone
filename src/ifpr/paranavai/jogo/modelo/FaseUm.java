@@ -191,7 +191,25 @@ public class FaseUm extends Fase{
             personagem.setPosicaoEmY(posY);
         }
 
-        
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            System.exit(0);
+        }
+
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            emJogo = true;
+            personagem.setVisivel(true);
+            inicializaInimigos();
+        }
+
+        if (e.getKeyCode() == KeyEvent.VK_P) {
+            emJogo = false;
+            personagem.setVisivel(false);
+        }
+
+        if (e.getKeyCode() == KeyEvent.VK_R) {
+            emJogo = true;
+            personagem.setVisivel(true);
+        }
     }
 
     @Override
