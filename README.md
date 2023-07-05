@@ -1,18 +1,17 @@
-## Getting Started
+Jogo Clone de Space Invaders feito durante as aulas de Programação Orientada a Objetos.
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+O objetivo da criação do jogo é fixar os conhecimentos adquiridos durante as aulas e reforçar o conteúdo
 
-## Folder Structure
 
-The workspace contains two folders by default, where:
+Situação atual:
+- O jogador consegue controlar o personagem tanto pelas setas quanto pelas teclas WASD, consegue atirar os tiros normais pela tecla espaço e o super tiro pela tecla SHIFT
+- O jogador também consegue reiniciar o jogo pela tecla R quando morre e consegue sair do jogo apertando a tecla ESC
+- As colisões estão funcionando, no entanto, a colisão entre o jogador e os limites da tela estão apresentando bugs que precisam ser corrigidos.
+- Com as atualizações recentes, os tiros não estão saindo precisamente da ponta da nave, é necessário corrigir.
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+Próximos passos:
+- Fazer com que seja possível jogar através de um controle
+- Adicionar efeitos sonoros e música
+- Adicionar menu de inicio de jogo
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
