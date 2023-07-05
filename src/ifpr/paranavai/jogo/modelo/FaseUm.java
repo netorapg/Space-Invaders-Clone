@@ -5,7 +5,6 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
@@ -70,7 +69,7 @@ public class FaseUm extends Fase{
     public void paint(Graphics g) {
         Graphics2D graphics = (Graphics2D) g;
         if (emJogo){
-             graphics.drawImage(background, 0, 0, null);
+        graphics.drawImage(background, 0, 0, null);
         graphics.drawImage(personagem.getImagem(), personagem.getPosicaoEmX(), this.personagem.getPosicaoEmY(), this);
         ArrayList<Tiro> tiros = personagem.getTiros();
         ArrayList<SuperTiro> superTiros = personagem.getSuperTiros();
@@ -98,7 +97,7 @@ public class FaseUm extends Fase{
             }
         } else {
             ImageIcon fimDeJogo = new ImageIcon("/home/netorapg/Projetos/Space Invaders Clone/src/ifpr/paranavai/jogo/recursos/Imagens/game-over.png");
-            graphics.drawImage(fimDeJogo.getImage(), 0, 0, null);
+            graphics.drawImage(fimDeJogo.getImage(), 150, 30, null);
         }
        
         graphics.dispose();
