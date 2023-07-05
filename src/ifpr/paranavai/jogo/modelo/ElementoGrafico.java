@@ -66,4 +66,5 @@ private boolean visivel = true;
     public void setAlturaImagem(int alturaImagem) {
         this.alturaImagem = alturaImagem;
     }
+
 }

@@ -1,5 +1,6 @@
 package ifpr.paranavai.jogo.modelo;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -23,6 +24,7 @@ public class FaseUm extends Fase{
     private int temporizador = 0;
     private int QUANTIDADE_INIMIGOS = 10;
     private boolean emJogo = true;
+    private int pontuacao = 0;
 
     public FaseUm() {
         super();
@@ -99,6 +101,10 @@ public class FaseUm extends Fase{
             ImageIcon fimDeJogo = new ImageIcon("/home/netorapg/Projetos/Space Invaders Clone/src/ifpr/paranavai/jogo/recursos/Imagens/game-over.png");
             graphics.drawImage(fimDeJogo.getImage(), 150, 30, null);
         }
+
+        graphics.setColor(Color.WHITE);
+        graphics.setFont(new Font("Arial", Font.BOLD, 20));
+        graphics.drawString("Pontuação: " + pontuacao, 10, 20);
        
         graphics.dispose();
     }
@@ -240,6 +246,7 @@ public class FaseUm extends Fase{
                 emJogo = false;
                 this.personagem.setVisivel(false);
                 inimigo.setVisivel(false);
+                pontuacao = 0;
                 
             }
 
@@ -250,6 +257,7 @@ public class FaseUm extends Fase{
                 if (formaInimigo.intersects(formaTiro)) {
                     inimigo.setVisivel(false);
                     tiro.setVisivel(false);
+                    pontuacao += 10;
                 }
             }
             ArrayList<SuperTiro> superTiros = personagem.getSuperTiros();
@@ -259,6 +267,7 @@ public class FaseUm extends Fase{
                 if (formaInimigo.intersects(formaSuperTiro)) {
                     inimigo.setVisivel(false);
                     superTiro.setVisivel(false);
+                    pontuacao += 20;
                 }
             }
 
