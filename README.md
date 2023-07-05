@@ -9,13 +9,12 @@ Situação atual:
 - O jogador também consegue reiniciar o jogo pela tecla R quando morre e consegue sair do jogo apertando a tecla ESC
 - As colisões com as bordas foram corrijidas.
 - Com as atualizações recentes, os tiros não estão saindo precisamente da ponta da nave, é necessário corrigir.
-
+- Agora uma mensagem aparece indicando que o jogador pode usar o super tiro
 
 Próximos passos:
 - Fazer com que seja possível jogar através de um controle
 - Adicionar efeitos sonoros e música
 - Adicionar menu de inicio de jogo
 - Colocar as estrelas na classe abstrata Fase para que todas as fases tenham estrelas
-- Criar um aviso que o super tiro está pronto
 
 

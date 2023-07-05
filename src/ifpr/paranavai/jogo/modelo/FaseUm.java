@@ -105,6 +105,13 @@ public class FaseUm extends Fase{
         graphics.setColor(Color.WHITE);
         graphics.setFont(new Font("Arial", Font.BOLD, 20));
         graphics.drawString("Pontuação: " + pontuacao, 10, 20);
+
+        if (temporizador >= 500) {
+        graphics.setColor(Color.RED);
+        graphics.setFont(new Font("Arial", Font.BOLD, 20));
+        graphics.drawString("SUPER TIRO PRONTO!", 500, 20);
+        }
+        
        
         graphics.dispose();
     }
