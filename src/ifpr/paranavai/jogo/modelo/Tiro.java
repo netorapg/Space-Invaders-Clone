@@ -8,8 +8,8 @@ public class Tiro extends ElementoGrafico {
 
     public Tiro(int posicaoPersonagemEmX, int posicaoPersonagemEmY) {
        this.carregar();
-       this.setPosicaoEmX(posicaoPersonagemEmX);
-        this.setPosicaoEmY(posicaoPersonagemEmY);
+       this.setPosicaoEmX(posicaoPersonagemEmX - this.getLarguraImagem() / 2);
+       this.setPosicaoEmY(posicaoPersonagemEmY);
 
     }
 

@@ -157,7 +157,6 @@ public class FaseUm extends Fase{
             Inimigo inimigos = new Inimigo(x, y);
             this.inimigos.add(inimigos);
         } else {
-
             inimigo.atualizar();
         }
     }

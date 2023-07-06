@@ -6,7 +6,7 @@ public class SuperTiro  extends ElementoGrafico{
 
     public SuperTiro(int posicaoPersonagemEmX, int posicaoPersonagemEmY) {
        this.carregar();
-       this.setPosicaoEmX(posicaoPersonagemEmX);
+       this.setPosicaoEmX(posicaoPersonagemEmX - this.getLarguraImagem() / 2);
        this.setPosicaoEmY(posicaoPersonagemEmY);
 
     }

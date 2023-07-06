@@ -7,7 +7,7 @@ O objetivo da criação do jogo é fixar os conhecimentos adquiridos durante as 
 Situação atual:
 - O jogador consegue controlar o personagem tanto pelas setas quanto pelas teclas WASD, consegue atirar os tiros normais pela tecla espaço e o super tiro pela tecla SHIFT
 - O jogador também consegue reiniciar o jogo pela tecla R quando morre e consegue sair do jogo apertando a tecla ESC
-- As colisões com as bordas foram corrijidas.
+- As colisões com as bordas foram corrigidas.
 - Com as atualizações recentes, os tiros não estão saindo precisamente da ponta da nave, é necessário corrigir.
 - Agora uma mensagem aparece indicando que o jogador pode usar o super tiro
 

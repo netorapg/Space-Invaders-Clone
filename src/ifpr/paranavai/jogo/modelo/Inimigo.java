@@ -4,14 +4,23 @@ import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 
 public class Inimigo extends ElementoGrafico{
-    private static int VELOCIDADE = 1;
+    private  int VELOCIDADE = 1;
     private boolean vivo;
 
     public Inimigo (int xAleatorio, int yAleatorio) {
         this.carregar();
         setPosicaoEmX(xAleatorio);
         setPosicaoEmY(yAleatorio);
+        this.VELOCIDADE = 1;
         this.vivo = true;
+    }
+
+    public int getVELOCIDADE() {
+        return this.VELOCIDADE;
+    }
+
+    public void setVELOCIDADE(int VELOCIDADE) {
+        this.VELOCIDADE = VELOCIDADE;
     }
 
     public void carregar() {
