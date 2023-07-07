@@ -117,8 +117,10 @@ public class FaseUm extends Fase{
         } if (menu) {
 
             graphics.setColor(Color.WHITE);
-            graphics.setFont(new Font("Arial", Font.BOLD, 50));
-            graphics.drawString("SPACE INVADERS CLONE", 90, 100);
+            graphics.setFont(new Font("Arial", Font.BOLD, 40));
+            graphics.drawString("ANOTHER SPACE INVADERS CLONE", 50, 100);
+            graphics.setFont(new Font("Arial", Font.BOLD, 20));
+            graphics.drawString("DEVELOPED BY RENATO AUGUSTO", 400, 150);
 
             ImageIcon wasd = new ImageIcon("src/ifpr/paranavai/jogo/recursos/Imagens/wasd.png");
             ImageIcon enter = new ImageIcon("src/ifpr/paranavai/jogo/recursos/Imagens/enter.png");

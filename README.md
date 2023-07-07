@@ -12,12 +12,12 @@ Situação atual:
 - O jogo agora tem um menu ao iniciar
 - A tela de Game Over mostra a pontuação
 
-
 Próximos passos:
-- Aperfeiçoamento da colisão das bordas
 - Fazer com que seja possível jogar através de um controle
 - Adicionar efeitos sonoros e música
 - Salvar as pontuações em um txt ou json
+- Alguns inimigos acabam nascendo um em cima do outro, é necessário corrigir
+- A colisão das bordas apresenta falhas, é necesário corrigir
 
 
 
