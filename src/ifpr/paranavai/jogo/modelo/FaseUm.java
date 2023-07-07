@@ -111,51 +111,53 @@ public class FaseUm extends Fase{
         graphics.setColor(Color.RED);
         graphics.setFont(new Font("Arial", Font.BOLD, 20));
         graphics.drawString("SUPER TIRO PRONTO!", 500, 20);
-
        
 
         }
         } if (menu) {
 
-            
+            graphics.setColor(Color.WHITE);
+            graphics.setFont(new Font("Arial", Font.BOLD, 50));
+            graphics.drawString("SPACE INVADERS CLONE", 90, 100);
+
             ImageIcon wasd = new ImageIcon("src/ifpr/paranavai/jogo/recursos/Imagens/wasd.png");
             ImageIcon enter = new ImageIcon("src/ifpr/paranavai/jogo/recursos/Imagens/enter.png");
             ImageIcon arrow = new ImageIcon("src/ifpr/paranavai/jogo/recursos/Imagens/arrows.png");
             ImageIcon space = new ImageIcon("src/ifpr/paranavai/jogo/recursos/Imagens/space.png");
             ImageIcon shift = new ImageIcon("src/ifpr/paranavai/jogo/recursos/Imagens/shift.png");
-            enter.paintIcon(this, graphics, 350, 440);
+            enter.paintIcon(this, graphics, 550, 440);
             graphics.setColor(Color.WHITE);
             graphics.setFont(new Font("Arial", Font.BOLD, 50));
-            graphics.drawString("PRESS ENTER", 10, 500);
-            graphics.drawString("TO START", 10, 550);
+            graphics.drawString("PRESS ENTER", 200, 500);
+            graphics.drawString("TO START", 200, 550);
 
-            wasd.paintIcon(this, graphics, 100, 100);
-            arrow.paintIcon(this, graphics, 170, 110);
+            wasd.paintIcon(this, graphics, 100, 260);
+            arrow.paintIcon(this, graphics, 170, 270);
             graphics.setColor(Color.WHITE);
             graphics.setFont(new Font("Arial", Font.BOLD, 20));
-            graphics.drawString("USE WASD OR ARROW KEYS TO MOVE", 240, 150);
+            graphics.drawString("USE WASD OR ARROW KEYS TO MOVE", 240, 310);
 
-            space.paintIcon(this, graphics, 100, 150);
+            space.paintIcon(this, graphics, 100, 320);
             graphics.setColor(Color.WHITE);
             graphics.setFont(new Font("Arial", Font.BOLD, 20));
-            graphics.drawString("PRESS SPACE TO SHOOT", 170, 190);
+            graphics.drawString("PRESS SPACE TO SHOOT", 170, 360);
 
-            shift.paintIcon(this, graphics, 100, 200);
+            shift.paintIcon(this, graphics, 100, 370);
             graphics.setColor(Color.WHITE);
             graphics.setFont(new Font("Arial", Font.BOLD, 20));
-            graphics.drawString("PRESS SHIFT TO SHOOT SUPER BULLET", 170, 240);
+            graphics.drawString("PRESS SHIFT TO SHOOT SUPER BULLET", 170, 420);
 
 
 
-        } 
-        /* if (!vivo) {
+        }
+        
+        if (!vivo && !menu) {
             graphics.setColor(Color.WHITE);
             graphics.setFont(new Font("Arial", Font.BOLD, 50));
             graphics.drawString("GAME OVER", 20, 100);
             graphics.drawString("PONTUAÇÃO: " + pontuacao, 20, 150);
             graphics.drawString("PRESSIONE R PARA REINICIAR", 20, 200);
-        }*/
-        
+        }
        
         
        
@@ -256,6 +258,7 @@ public class FaseUm extends Fase{
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             menu = false;
             emJogo = true;
+            vivo = true;
             personagem.setVisivel(true);
             inicializaInimigos();
         }
