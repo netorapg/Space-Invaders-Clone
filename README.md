@@ -16,5 +16,7 @@ Próximos passos:
 - Adicionar efeitos sonoros e música
 - Adicionar menu de inicio de jogo
 - Colocar as estrelas na classe abstrata Fase para que todas as fases tenham estrelas
+- Salvar as pontuações em um txt
+
 
 

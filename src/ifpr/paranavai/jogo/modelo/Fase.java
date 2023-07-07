@@ -20,7 +20,8 @@ public abstract class Fase extends JPanel implements ActionListener, KeyListener
     protected ArrayList<Inimigo> inimigos;
     protected int temporizador = 0;
     protected ArrayList<Star> stars;
-    private boolean emJogo = true;
+    private boolean emJogo = false;
+    private boolean menu = true;
     
     
     public Fase() {
