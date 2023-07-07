@@ -22,9 +22,12 @@ public class FaseUm extends Fase{
     private List<Star> stars;
     private ArrayList<Inimigo> inimigos;
     private int temporizador = 0;
-    private int QUANTIDADE_INIMIGOS = 10;
-    private boolean emJogo = true;
+    private int QUANTIDADE_INIMIGOS = 20;
+    private boolean emJogo = false;
+    private boolean menu = true;
     private int pontuacao = 0;
+    private boolean vivo = true;
+
 
     public FaseUm() {
         super();
@@ -70,11 +73,7 @@ public class FaseUm extends Fase{
     @Override
     public void paint(Graphics g) {
         Graphics2D graphics = (Graphics2D) g;
-        if (emJogo){
         graphics.drawImage(background, 0, 0, null);
-        graphics.drawImage(personagem.getImagem(), personagem.getPosicaoEmX(), this.personagem.getPosicaoEmY(), this);
-        ArrayList<Tiro> tiros = personagem.getTiros();
-        ArrayList<SuperTiro> superTiros = personagem.getSuperTiros();
         for (Star star: stars) {
             if (star.getPosicaoY() >= getHeight()) {
                 star.setPosicaoY((int) (Math.random() * getHeight()));
@@ -83,6 +82,12 @@ public class FaseUm extends Fase{
             graphics.setColor(Color.WHITE);
             graphics.fillOval(star.getPosicaoX(), star.getPosicaoY(), 2, 2);
         }
+        if (emJogo){
+        
+        graphics.drawImage(personagem.getImagem(), personagem.getPosicaoEmX(), this.personagem.getPosicaoEmY(), this);
+        ArrayList<Tiro> tiros = personagem.getTiros();
+        ArrayList<SuperTiro> superTiros = personagem.getSuperTiros();
+        
         for (Tiro tiro : tiros) {
             tiro.carregar();
             graphics.drawImage(tiro.getImagem(), tiro.getPosicaoEmX(), tiro.getPosicaoEmY(), this);
@@ -97,10 +102,6 @@ public class FaseUm extends Fase{
                 inimigo.carregar();
                 graphics.drawImage(inimigo.getImagem(), inimigo.getPosicaoEmX(), inimigo.getPosicaoEmY(), this); 
             }
-        } else {
-            ImageIcon fimDeJogo = new ImageIcon("/home/netorapg/Projetos/Space Invaders Clone/src/ifpr/paranavai/jogo/recursos/Imagens/game-over.png");
-            graphics.drawImage(fimDeJogo.getImage(), 150, 30, null);
-        }
 
         graphics.setColor(Color.WHITE);
         graphics.setFont(new Font("Arial", Font.BOLD, 20));
@@ -110,7 +111,52 @@ public class FaseUm extends Fase{
         graphics.setColor(Color.RED);
         graphics.setFont(new Font("Arial", Font.BOLD, 20));
         graphics.drawString("SUPER TIRO PRONTO!", 500, 20);
+
+       
+
         }
+        } if (menu) {
+
+            
+            ImageIcon wasd = new ImageIcon("src/ifpr/paranavai/jogo/recursos/Imagens/wasd.png");
+            ImageIcon enter = new ImageIcon("src/ifpr/paranavai/jogo/recursos/Imagens/enter.png");
+            ImageIcon arrow = new ImageIcon("src/ifpr/paranavai/jogo/recursos/Imagens/arrows.png");
+            ImageIcon space = new ImageIcon("src/ifpr/paranavai/jogo/recursos/Imagens/space.png");
+            ImageIcon shift = new ImageIcon("src/ifpr/paranavai/jogo/recursos/Imagens/shift.png");
+            enter.paintIcon(this, graphics, 350, 440);
+            graphics.setColor(Color.WHITE);
+            graphics.setFont(new Font("Arial", Font.BOLD, 50));
+            graphics.drawString("PRESS ENTER", 10, 500);
+            graphics.drawString("TO START", 10, 550);
+
+            wasd.paintIcon(this, graphics, 100, 100);
+            arrow.paintIcon(this, graphics, 170, 110);
+            graphics.setColor(Color.WHITE);
+            graphics.setFont(new Font("Arial", Font.BOLD, 20));
+            graphics.drawString("USE WASD OR ARROW KEYS TO MOVE", 240, 150);
+
+            space.paintIcon(this, graphics, 100, 150);
+            graphics.setColor(Color.WHITE);
+            graphics.setFont(new Font("Arial", Font.BOLD, 20));
+            graphics.drawString("PRESS SPACE TO SHOOT", 170, 190);
+
+            shift.paintIcon(this, graphics, 100, 200);
+            graphics.setColor(Color.WHITE);
+            graphics.setFont(new Font("Arial", Font.BOLD, 20));
+            graphics.drawString("PRESS SHIFT TO SHOOT SUPER BULLET", 170, 240);
+
+
+
+        } 
+        /* if (!vivo) {
+            graphics.setColor(Color.WHITE);
+            graphics.setFont(new Font("Arial", Font.BOLD, 50));
+            graphics.drawString("GAME OVER", 20, 100);
+            graphics.drawString("PONTUAÇÃO: " + pontuacao, 20, 150);
+            graphics.drawString("PRESSIONE R PARA REINICIAR", 20, 200);
+        }*/
+        
+       
         
        
         graphics.dispose();
@@ -208,20 +254,24 @@ public class FaseUm extends Fase{
         }
 
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            menu = false;
             emJogo = true;
             personagem.setVisivel(true);
             inicializaInimigos();
         }
 
         if (e.getKeyCode() == KeyEvent.VK_P) {
+            menu = true;
             emJogo = false;
             personagem.setVisivel(false);
         }
 
         if (e.getKeyCode() == KeyEvent.VK_R) {
             emJogo = true;
+            vivo = true;
             pontuacao = 0;
             personagem.setVisivel(true);
+            inicializaInimigos();
         }
     }
 
@@ -251,9 +301,10 @@ public class FaseUm extends Fase{
             Rectangle formaInimigo = inimigo.getRectangle();
             if (formaInimigo.intersects(formaPersonagem)) {
                 emJogo = false;
+                vivo = false;
                 this.personagem.setVisivel(false);
                 inimigo.setVisivel(false);
-                pontuacao = 0;
+                
                 
             }
 
@@ -265,6 +316,7 @@ public class FaseUm extends Fase{
                     inimigo.setVisivel(false);
                     tiro.setVisivel(false);
                     pontuacao += 10;
+                    
                 }
             }
             ArrayList<SuperTiro> superTiros = personagem.getSuperTiros();
@@ -273,7 +325,6 @@ public class FaseUm extends Fase{
                 Rectangle formaSuperTiro = superTiro.getRectangle();
                 if (formaInimigo.intersects(formaSuperTiro)) {
                     inimigo.setVisivel(false);
-                    //superTiro.setVisivel(false);
                     pontuacao += 20;
                 }
             }
