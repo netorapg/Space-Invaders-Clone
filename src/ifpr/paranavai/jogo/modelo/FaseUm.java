@@ -237,6 +237,7 @@ public class FaseUm extends Fase{
             int larguraPersonagem = personagem.getImagem().getWidth(null);
             int alturaPersonagem = personagem.getImagem().getHeight(null);
 
+            /*  // Impedindo o personagem de sair das bordas horizontais da janela
             if (posX < 0) {
                 posX = 0;
             } else if (posX + larguraPersonagem > 800) {
@@ -247,7 +248,8 @@ public class FaseUm extends Fase{
                 posY = 0;
             } else if (posY + alturaPersonagem > 640) {
                 posY = getHeight() - alturaPersonagem;
-            }
+            } */
+          
 
             personagem.setPosicaoEmX(posX);
             personagem.setPosicaoEmY(posY);

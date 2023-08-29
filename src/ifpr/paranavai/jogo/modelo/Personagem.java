@@ -27,11 +27,35 @@ public class Personagem extends ElementoGrafico {
 
         //this.state = GLFWGamepadState.create();
     }
-
-    public void atualizar() {
+    /*  public void atualizar() {
        this.setPosicaoEmX((this.getPosicaoEmX() + this.getDeslocamentoEmX()));
        this.setPosicaoEmY((this.getPosicaoEmY() + this.getDeslocamentoEmY()));
+
+    } */
+  
+    public void atualizar() {
+        int novaPosX = this.getPosicaoEmX() + this.getDeslocamentoEmX();
+        int novaPosY = this.getPosicaoEmY() + this.getDeslocamentoEmY();
+    
+        // Impedindo o personagem de sair das bordas horizontais da janela
+        if (novaPosX < 0) {
+            novaPosX = 0;
+        } else if (novaPosX + this.getLarguraImagem() > 800) {
+            novaPosX = 800 - this.getLarguraImagem();
+        }
+    
+        // Impedindo o personagem de sair das bordas verticais da janela
+        if (novaPosY < 0) {
+            novaPosY = 0;
+        } else if (novaPosY + this.getAlturaImagem() > 640) {
+            novaPosY = 640 - this.getAlturaImagem();
+        }
+    
+        this.setPosicaoEmX(novaPosX);
+        this.setPosicaoEmY(novaPosY);
     }
+    
+    
     public void carregar() {
         ImageIcon loading = new ImageIcon("src/ifpr/paranavai/jogo/recursos/Imagens/spaceship.png");
         setImagem(loading.getImage());
