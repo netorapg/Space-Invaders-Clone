@@ -7,6 +7,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public abstract class Fase extends JPanel implements ActionListener, KeyListener{
     public static final int DELAY = 5;
@@ -35,6 +38,14 @@ public abstract class Fase extends JPanel implements ActionListener, KeyListener
     public abstract void preencherEstrelas();
     public abstract void verificarColisoes();
 
+    public void salvarPontuacao(int pontuacao) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/ifpr/paranavai/jogo/modelo/pontuacao.txt", true))){
+            writer.write(String.valueOf(pontuacao));
+            writer.newLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     public abstract void keyTyped(KeyEvent e);
 

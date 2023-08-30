@@ -14,12 +14,14 @@ Situação atual:
 - Colisão das bordas corrigidas
 - Os tiros não acertam mais após o jogador morrer
 - O problema dos tiros não serem apagados ao sairem da tela foi corrigido
+- As pontuações agora são salvas em um arquivo txt
 
 Próximos passos:
 - Fazer com que seja possível jogar através de um controle
 - Adicionar efeitos sonoros e música
-- Salvar as pontuações em um txt ou json
+- Faça com que no topo do arquivo sempre apareça a maior pontuação
 - Alguns inimigos acabam nascendo um em cima do outro, é necessário corrigir
+- Modifique para que as estrelas tenham tamanhos diferentes
 
 
 
