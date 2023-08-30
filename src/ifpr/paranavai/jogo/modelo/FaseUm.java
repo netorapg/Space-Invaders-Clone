@@ -43,6 +43,7 @@ public class FaseUm extends Fase{
         stars = new ArrayList<Star>();
         preencherEstrelas();
     }
+
     public void inicializaInimigos(){
         inimigos = new ArrayList<Inimigo>();
 
@@ -83,7 +84,6 @@ public class FaseUm extends Fase{
             star.draw(graphics);
         }
         if (emJogo){
-        
         graphics.drawImage(personagem.getImagem(), personagem.getPosicaoEmX(), this.personagem.getPosicaoEmY(), this);
         ArrayList<Tiro> tiros = personagem.getTiros();
         ArrayList<SuperTiro> superTiros = personagem.getSuperTiros();
@@ -249,6 +249,7 @@ public class FaseUm extends Fase{
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             menu = false;
             emJogo = true;
+            playSound("NaveEntrando.wav");
             vivo = true;
             personagem.setVisivel(true);
             inicializaInimigos();
@@ -262,6 +263,7 @@ public class FaseUm extends Fase{
 
         if (e.getKeyCode() == KeyEvent.VK_R) {
             emJogo = true;
+            playSound("NaveEntrando.wav");
             vivo = true;
             pontuacao = 0;
             personagem.setVisivel(true);
@@ -273,11 +275,13 @@ public class FaseUm extends Fase{
     public void keyReleased(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_SPACE) {
             podeAtirar = true;
+            playSound("tiro.wav");
         }
         personagem.parar(e);
 
         if (e.getKeyCode() == KeyEvent.VK_SHIFT) {
             podeAtirar = true;
+            playSound("super.wav");
         }
         
     }

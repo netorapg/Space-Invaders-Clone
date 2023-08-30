@@ -55,4 +55,5 @@ public class Inimigo extends ElementoGrafico{
          return new Rectangle(getPosicaoEmX(), getPosicaoEmY(), getImagem().getWidth(null), getImagem().getHeight(null));
     }
     
+    
 }
