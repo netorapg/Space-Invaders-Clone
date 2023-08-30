@@ -294,6 +294,7 @@ public class FaseUm extends Fase{
             Rectangle formaInimigo = inimigo.getRectangle();
             if (formaInimigo.intersects(formaPersonagem)) {
                 emJogo = false;
+                salvarPontuacao(pontuacao);
                 vivo = false;
                 this.personagem.setVisivel(false);
                 inimigo.setVisivel(false);
