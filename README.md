@@ -12,6 +12,7 @@ Situação atual:
 - O jogo agora tem um menu ao iniciar
 - A tela de Game Over mostra a pontuação
 - Colisão das bordas corrigidas
+- Os tiros não acertam mais após o jogador morrer
 
 Próximos passos:
 - Fazer com que seja possível jogar através de um controle

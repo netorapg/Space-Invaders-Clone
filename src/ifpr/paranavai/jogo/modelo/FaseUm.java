@@ -310,8 +310,6 @@ public class FaseUm extends Fase{
                 vivo = false;
                 this.personagem.setVisivel(false);
                 inimigo.setVisivel(false);
-                
-                
             }
 
             ArrayList<Tiro> tiros = personagem.getTiros();
@@ -324,6 +322,9 @@ public class FaseUm extends Fase{
                     pontuacao += 10;
                     
                 }
+                if (formaInimigo.intersects(formaPersonagem)) {
+                    tiro.setVisivel(false);
+                }
             }
             ArrayList<SuperTiro> superTiros = personagem.getSuperTiros();
             for (int k = 0; k < superTiros.size(); k++) {
@@ -332,6 +333,9 @@ public class FaseUm extends Fase{
                 if (formaInimigo.intersects(formaSuperTiro)) {
                     inimigo.setVisivel(false);
                     pontuacao += 20;
+                }
+                if (formaInimigo.intersects(formaPersonagem)) {
+                    superTiro.setVisivel(false);
                 }
             }
 
