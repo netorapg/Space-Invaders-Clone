@@ -1,29 +1,16 @@
 package ifpr.paranavai.jogo.modelo;
-public class Star {
-    private int posicaoX;
-    private int posicaoY;
+
+import java.awt.Color;
+import java.awt.Graphics2D;
+
+public class Star extends ElementoGrafico {
+
     private int tamanho;
 
-    public Star(int posicaoX, int posicaoY, int tamanho) {
-        this.posicaoX = posicaoX;
-        this.posicaoY = posicaoY;
+    public Star(int posicaoX, int posicaoY, int tamanho){
+        this.setPosicaoEmX(posicaoY);
+        this.setPosicaoEmY(posicaoY);
         this.tamanho = tamanho;
-    }
-
-    public int getPosicaoX() {
-        return posicaoX;
-    }
-
-    public void setPosicaoX(int posicaoX) {
-        this.posicaoX = posicaoX;
-    }
-
-    public int getPosicaoY() {
-        return posicaoY;
-    }
-
-    public void setPosicaoY(int posicaoY) {
-        this.posicaoY = posicaoY;
     }
 
     public int getTamanho() {
@@ -33,4 +20,14 @@ public class Star {
     public void setTamanho(int tamanho) {
         this.tamanho = tamanho;
     }
+
+    public void draw (Graphics2D graphics) {
+        graphics.setColor(Color.WHITE);
+        graphics.fillOval(this.getPosicaoEmX(), this.getPosicaoEmY(), tamanho, tamanho);
+    }
+
+    public void updatePosition() {
+        this.setPosicaoEmY(this.getPosicaoEmY() + 2);
+    }
 }
+
