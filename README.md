@@ -16,11 +16,12 @@ Situação atual:
 - O problema dos tiros não serem apagados ao sairem da tela foi corrigido
 - As pontuações agora são salvas em um arquivo txt
 - As estrelas agora possuem tamanho diferentes
+- Corrija os efeitos sonoros
+- vidas adicionadas
 
 Próximos passos:
 - Crie um sistema de vidas
 - Fazer com que seja possível jogar através de um controle
-- Adicionar efeitos sonoros e música
 - Faça com que no topo do arquivo sempre apareça a maior pontuação
 - Alguns inimigos acabam nascendo um em cima do outro, é necessário corrigir
 

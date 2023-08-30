@@ -10,6 +10,14 @@ import javax.swing.Timer;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
+import java.net.URL;
+
 
 public abstract class Fase extends JPanel implements ActionListener, KeyListener{
     public static final int DELAY = 5;
@@ -43,6 +51,18 @@ public abstract class Fase extends JPanel implements ActionListener, KeyListener
             writer.write(String.valueOf(pontuacao));
             writer.newLine();
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void playSound(String soundName){
+        try {
+            URL url = this.getClass().getClassLoader().getResource("ifpr/paranavai/jogo/recursos/Sons/" + soundName);
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioIn);
+            clip.start();
+        }catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             e.printStackTrace();
         }
     }
