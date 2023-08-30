@@ -17,7 +17,7 @@ import javax.swing.Timer;
 public class FaseUm extends Fase{
     private  Personagem personagem;
     private Timer timer;
-    private static final int ALTURA_DA_JANELA = 640;
+    //private static final int ALTURA_DA_JANELA = 640;
     private boolean podeAtirar = true;
     private List<Star> stars;
     private ArrayList<Inimigo> inimigos;

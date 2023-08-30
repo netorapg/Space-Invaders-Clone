@@ -17,6 +17,7 @@ Situação atual:
 - As pontuações agora são salvas em um arquivo txt
 
 Próximos passos:
+- Crie um sistema de vidas
 - Fazer com que seja possível jogar através de um controle
 - Adicionar efeitos sonoros e música
 - Faça com que no topo do arquivo sempre apareça a maior pontuação
