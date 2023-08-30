@@ -13,6 +13,7 @@ Situação atual:
 - A tela de Game Over mostra a pontuação
 - Colisão das bordas corrigidas
 - Os tiros não acertam mais após o jogador morrer
+- O problema dos tiros não serem apagados ao sairem da tela foi corrigido
 
 Próximos passos:
 - Fazer com que seja possível jogar através de um controle

@@ -16,8 +16,8 @@ public class Tiro extends ElementoGrafico {
     public void carregar() {
         ImageIcon carregando = new ImageIcon("src/ifpr/paranavai/jogo/recursos/Imagens/laser.png");
         this.setImagem(carregando.getImage());
-        this.setAlturaImagem(this.getImagem().getWidth(null));
-        this.setLarguraImagem(this.getImagem().getHeight(null));
+        this.setAlturaImagem(this.getImagem().getHeight(null));
+        this.setLarguraImagem(this.getImagem().getWidth(null));
     }
 
     public void atualizar() {
