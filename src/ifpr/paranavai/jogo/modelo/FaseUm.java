@@ -65,7 +65,8 @@ public class FaseUm extends Fase{
             int distancia = (int) (Math.random() * distanciaMaxima);
             int x = (int) (centroX + distancia * Math.cos(angulo));
             int y = (int) (centroY + distancia * Math.sin(angulo));
-            Star star = new Star(x, y, 2);
+            int tamanhoAleatorio = 1 + (int) (Math.random() * 5);
+            Star star = new Star(x, y, tamanhoAleatorio);
             stars.add(star);
         }
     }
