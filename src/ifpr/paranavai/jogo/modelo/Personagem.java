@@ -15,6 +15,7 @@ public class Personagem extends ElementoGrafico {
     private int deslocamentoEmY;
     private ArrayList<Tiro> tiros;
     private ArrayList<SuperTiro> superTiros;
+    private int vidas = 3;
     //private GLFWGamepadState state;
 
     public Personagem() {
@@ -198,5 +199,17 @@ public class Personagem extends ElementoGrafico {
 
     public void setDeslocamentoEmY(int deslocamentoEmY) {
         this.deslocamentoEmY = deslocamentoEmY;
+    }
+
+    public void perderVida() {
+        this.vidas--;
+    }
+
+    public int getVidas() {
+        return this.vidas;
+    }
+    
+   public void setVidas(int vidas) {
+        this.vidas = vidas;
     }
 }

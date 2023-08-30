@@ -29,6 +29,7 @@ public class FaseUm extends Fase{
     private boolean vivo = true;
 
 
+
     public FaseUm() {
         super();
         ImageIcon loading = new ImageIcon("src/ifpr/paranavai/jogo/recursos/Imagens/background.png");
@@ -106,13 +107,18 @@ public class FaseUm extends Fase{
         graphics.setColor(Color.WHITE);
         graphics.setFont(new Font("Arial", Font.BOLD, 20));
         graphics.drawString("Pontuação: " + pontuacao, 10, 20);
+        
+        
+        graphics.setColor(Color.WHITE);
+        graphics.setFont(new Font("Arial", Font.BOLD, 20));
+        graphics.drawString("Vidas: " + personagem.getVidas(), 10, 60);
+       
+
 
         if (temporizador >= 500) {
         graphics.setColor(Color.RED);
         graphics.setFont(new Font("Arial", Font.BOLD, 20));
         graphics.drawString("SUPER TIRO PRONTO!", 500, 20);
-       
-
         }
         } if (menu) {
 
@@ -266,6 +272,7 @@ public class FaseUm extends Fase{
             playSound("NaveEntrando.wav");
             vivo = true;
             pontuacao = 0;
+            personagem.setVidas(3);
             personagem.setVisivel(true);
             inicializaInimigos();
         }
@@ -275,7 +282,7 @@ public class FaseUm extends Fase{
     public void keyReleased(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_SPACE) {
             podeAtirar = true;
-            playSound("tiro.wav");
+    //        playSound("tiro.wav");
         }
         personagem.parar(e);
 
@@ -298,11 +305,17 @@ public class FaseUm extends Fase{
             Inimigo inimigo = inimigos.get(i);
             Rectangle formaInimigo = inimigo.getRectangle();
             if (formaInimigo.intersects(formaPersonagem)) {
-                emJogo = false;
-                salvarPontuacao(pontuacao);
-                vivo = false;
-                this.personagem.setVisivel(false);
+                personagem.perderVida();
                 inimigo.setVisivel(false);
+
+                if (personagem.getVidas() <= 0) {
+                emJogo = false;
+                vivo = false;
+                salvarPontuacao(pontuacao);
+                this.personagem.setVisivel(false);
+             
+                }
+                
             }
 
             ArrayList<Tiro> tiros = personagem.getTiros();

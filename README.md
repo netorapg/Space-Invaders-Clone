@@ -17,6 +17,7 @@ Situação atual:
 - As pontuações agora são salvas em um arquivo txt
 - As estrelas agora possuem tamanho diferentes
 - Corrija os efeitos sonoros
+- vidas adicionadas
 
 Próximos passos:
 - Crie um sistema de vidas
