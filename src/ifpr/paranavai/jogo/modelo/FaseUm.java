@@ -75,12 +75,11 @@ public class FaseUm extends Fase{
         Graphics2D graphics = (Graphics2D) g;
         graphics.drawImage(background, 0, 0, null);
         for (Star star: stars) {
-            if (star.getPosicaoY() >= getHeight()) {
-                star.setPosicaoY((int) (Math.random() * getHeight()));
-                star.setPosicaoX((int) (Math.random() * getWidth()));
+            if (star.getPosicaoEmY() >= getHeight()) {
+                star.setPosicaoEmY((int) (Math.random() * getHeight()));
+                star.setPosicaoEmX((int) (Math.random() * getWidth()));
             }
-            graphics.setColor(Color.WHITE);
-            graphics.fillOval(star.getPosicaoX(), star.getPosicaoY(), 2, 2);
+            star.draw(graphics);
         }
         if (emJogo){
         
@@ -172,11 +171,11 @@ public class FaseUm extends Fase{
     personagem.atualizar();
 
     for (Star star : stars) {
-        star.setPosicaoY(star.getPosicaoY() + 2);
-        if (star.getPosicaoY() > getHeight()) {
-            star.setPosicaoY(-star.getTamanho());
+        star.updatePosition();
+        if (star.getPosicaoEmY() > getHeight()) {
+            star.setPosicaoEmY(-star.getTamanho());
         }
-    }
+        }
 
     ArrayList<Tiro> tiros = personagem.getTiros();
     for (int i = tiros.size() - 1; i >= 0; i--) {
