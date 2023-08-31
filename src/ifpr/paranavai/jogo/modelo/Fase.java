@@ -78,6 +78,27 @@ public abstract class Fase extends JPanel implements ActionListener, KeyListener
             e.printStackTrace();
         }
     }
+
+    private Clip clip;
+    public void tocarMusicaDeFundo(String soundName) {
+        try {
+            URL url = this.getClass().getClassLoader().getResource("ifpr/paranavai/jogo/recursos/Sons/" + soundName);
+            if (url == null) {
+                throw new RuntimeException("O arquivo de musica não foi encontrado: " + soundName);
+            }
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+            clip = AudioSystem.getClip();
+            clip.open(audioIn);
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
+    }
+    public void pararMusicaDeFundo(){
+        if (clip != null && clip.isRunning()) {
+            clip.stop();
+        }
+    }
     @Override
     public abstract void keyTyped(KeyEvent e);
 

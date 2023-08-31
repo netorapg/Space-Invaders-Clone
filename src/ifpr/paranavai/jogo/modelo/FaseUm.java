@@ -43,6 +43,8 @@ public class FaseUm extends Fase{
 
         stars = new ArrayList<Star>();
         preencherEstrelas();
+
+        tocarMusicaDeFundo("musicaDeFundo.wav");
     }
 
     public void inicializaInimigos(){
