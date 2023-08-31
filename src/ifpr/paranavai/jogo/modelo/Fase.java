@@ -3,6 +3,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JPanel;
@@ -33,6 +34,7 @@ public abstract class Fase extends JPanel implements ActionListener, KeyListener
     protected ArrayList<Star> stars;
     private boolean emJogo = false;
     private boolean menu = true;
+ 
     
     
     public Fase() {
@@ -46,6 +48,7 @@ public abstract class Fase extends JPanel implements ActionListener, KeyListener
     public abstract void preencherEstrelas();
     public abstract void verificarColisoes();
 
+
     public void salvarPontuacao(int pontuacao) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/ifpr/paranavai/jogo/modelo/pontuacao.txt", true))){
             writer.write(String.valueOf(pontuacao));
@@ -54,14 +57,23 @@ public abstract class Fase extends JPanel implements ActionListener, KeyListener
             e.printStackTrace();
         }
     }
-
+    private HashMap<String, Clip> soundClips = new HashMap<>();
     public void playSound(String soundName){
         try {
-            URL url = this.getClass().getClassLoader().getResource("ifpr/paranavai/jogo/recursos/Sons/" + soundName);
-            AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioIn);
-            clip.start();
+            if (!soundClips.containsKey(soundName)) {
+                URL url = this.getClass().getClassLoader().getResource("ifpr/paranavai/jogo/recursos/Sons/" + soundName);
+                AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+                Clip clip = AudioSystem.getClip();
+                clip.open(audioIn);
+                soundClips.put(soundName, clip);
+            }
+    
+            Clip clipToPlay = soundClips.get(soundName);
+            if (clipToPlay.isRunning()) {
+                clipToPlay.stop(); // Pare o clip antes de reiniciar
+            }
+            clipToPlay.setFramePosition(0); // Volte para o início do clip
+            clipToPlay.start();
         }catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             e.printStackTrace();
         }

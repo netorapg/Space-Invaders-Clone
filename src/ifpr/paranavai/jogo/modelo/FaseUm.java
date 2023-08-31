@@ -55,7 +55,7 @@ public class FaseUm extends Fase{
             inimigos.add(inimigo);
         }
     }
-
+    @Override
     public void preencherEstrelas() {
         int quantidadeEstrelas = 100;
         int distanciaMaxima = 1000;
@@ -282,7 +282,7 @@ public class FaseUm extends Fase{
     public void keyReleased(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_SPACE) {
             podeAtirar = true;
-    //        playSound("tiro.wav");
+            playSound("tiro.wav");
         }
         personagem.parar(e);
 
