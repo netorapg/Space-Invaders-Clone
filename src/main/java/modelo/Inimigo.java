@@ -1,4 +1,4 @@
-package ifpr.paranavai.jogo.modelo;
+package main.java.modelo;
 import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
@@ -24,7 +24,7 @@ public class Inimigo extends ElementoGrafico{
     }
 
     public void carregar() {
-        ImageIcon loading = new ImageIcon("src/ifpr/paranavai/jogo/recursos/Imagens/ufo.png");
+        ImageIcon loading = new ImageIcon(getClass().getResource("/ufo.png"));
         this.setImagem(loading.getImage());
         this.setAlturaImagem(this.getImagem().getWidth(null));
         this.setLarguraImagem(this.getImagem().getHeight(null));
