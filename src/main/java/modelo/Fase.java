@@ -1,4 +1,4 @@
-package ifpr.paranavai.jogo.modelo;
+package main.java.modelo;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -61,7 +61,7 @@ public abstract class Fase extends JPanel implements ActionListener, KeyListener
     public void playSound(String soundName){
         try {
             if (!soundClips.containsKey(soundName)) {
-                URL url = this.getClass().getClassLoader().getResource("ifpr/paranavai/jogo/recursos/Sons/" + soundName);
+                URL url = this.getClass().getClassLoader().getResource("/Sons/" + soundName);
                 AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
                 Clip clip = AudioSystem.getClip();
                 clip.open(audioIn);
@@ -82,7 +82,7 @@ public abstract class Fase extends JPanel implements ActionListener, KeyListener
     private Clip clip;
     public void tocarMusicaDeFundo(String soundName) {
         try {
-            URL url = this.getClass().getClassLoader().getResource("ifpr/paranavai/jogo/recursos/Sons/" + soundName);
+            URL url = this.getClass().getClassLoader().getResource("/Sons/" + soundName);
             if (url == null) {
                 throw new RuntimeException("O arquivo de musica não foi encontrado: " + soundName);
             }

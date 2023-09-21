@@ -1,4 +1,4 @@
-package ifpr.paranavai.jogo.modelo;
+package main.java.modelo;
 import javax.swing.ImageIcon;
 
 
@@ -14,7 +14,7 @@ public class Tiro extends ElementoGrafico {
     }
 
     public void carregar() {
-        ImageIcon carregando = new ImageIcon("src/ifpr/paranavai/jogo/recursos/Imagens/laser.png");
+        ImageIcon carregando = new ImageIcon(getClass().getResource("/laser.png"));
         this.setImagem(carregando.getImage());
         this.setAlturaImagem(this.getImagem().getHeight(null));
         this.setLarguraImagem(this.getImagem().getWidth(null));

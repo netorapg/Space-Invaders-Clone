@@ -1,4 +1,4 @@
-package ifpr.paranavai.jogo.modelo;
+package main.java.modelo;
 import javax.swing.ImageIcon;
 
 public class SuperTiro  extends ElementoGrafico{
@@ -12,7 +12,7 @@ public class SuperTiro  extends ElementoGrafico{
     }
 
      public void carregar() {
-        ImageIcon carregando = new ImageIcon("src/ifpr/paranavai/jogo/recursos/Imagens/BigLaser.png");
+        ImageIcon carregando = new ImageIcon(getClass().getResource("/BigLaser.png"));
         this.setImagem(carregando.getImage());
         this.setLarguraImagem(this.getImagem().getWidth(null));
         this.setAlturaImagem(this.getImagem().getHeight(null));

@@ -1,4 +1,4 @@
-package ifpr.paranavai.jogo.modelo;
+package main.java.modelo;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -58,7 +58,7 @@ public class Personagem extends ElementoGrafico {
     
     
     public void carregar() {
-        ImageIcon loading = new ImageIcon("src/ifpr/paranavai/jogo/recursos/Imagens/spaceship.png");
+        ImageIcon loading = new ImageIcon(getClass().getResource("/spaceship.png"));
         setImagem(loading.getImage());
         setAlturaImagem(getImagem().getWidth(null));
         setLarguraImagem(getImagem().getHeight(null));
