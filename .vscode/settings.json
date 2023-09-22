@@ -5,5 +5,6 @@
         "lib/**/*.jar",
         "/home/netorapg/Downloads/lwjgl/lwjgl-cuda/lwjgl-cuda.jar",
         "/home/netorapg/Downloads/lwjgl/**/*.jar"
-    ]
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive"
 }
