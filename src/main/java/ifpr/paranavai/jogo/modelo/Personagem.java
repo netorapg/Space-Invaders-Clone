@@ -58,7 +58,7 @@ public class Personagem extends ElementoGrafico {
     
     
     public void carregar() {
-        ImageIcon loading = new ImageIcon(getClass().getResource("Imagens/spaceship.png"));
+        ImageIcon loading = new ImageIcon(getClass().getResource("/Imagens/spaceship.png"));
         setImagem(loading.getImage());
         setAlturaImagem(getImagem().getWidth(null));
         setLarguraImagem(getImagem().getHeight(null));

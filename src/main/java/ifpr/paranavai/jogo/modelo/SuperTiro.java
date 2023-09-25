@@ -12,7 +12,7 @@ public class SuperTiro  extends ElementoGrafico{
     }
 
      public void carregar() {
-        ImageIcon carregando = new ImageIcon(getClass().getResource("Imagens/BigLaser.png"));
+        ImageIcon carregando = new ImageIcon(getClass().getResource("/Imagens/BigLaser.png"));
         this.setImagem(carregando.getImage());
         this.setLarguraImagem(this.getImagem().getWidth(null));
         this.setAlturaImagem(this.getImagem().getHeight(null));

@@ -48,20 +48,20 @@ public abstract class Fase extends JPanel implements ActionListener, KeyListener
     public abstract void preencherEstrelas();
     public abstract void verificarColisoes();
 
-
-    public void salvarPontuacao(int pontuacao) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/ifpr/paranavai/jogo/modelo/pontuacao.txt", true))){
+    /* public void salvarPontuacao(int pontuacao) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("/pontuacao.txt", true))){
             writer.write(String.valueOf(pontuacao));
             writer.newLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }*/
+    
     private HashMap<String, Clip> soundClips = new HashMap<>();
     public void playSound(String soundName){
         try {
             if (!soundClips.containsKey(soundName)) {
-                URL url = this.getClass().getClassLoader().getResource("/Sons/" + soundName);
+                URL url = this.getClass().getResource("/Sons/" + soundName);
                 AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
                 Clip clip = AudioSystem.getClip();
                 clip.open(audioIn);
@@ -82,7 +82,7 @@ public abstract class Fase extends JPanel implements ActionListener, KeyListener
     private Clip clip;
     public void tocarMusicaDeFundo(String soundName) {
         try {
-            URL url = this.getClass().getClassLoader().getResource("/Sons/" + soundName);
+            URL url = this.getClass().getResource("/Sons/" + soundName);
             if (url == null) {
                 throw new RuntimeException("O arquivo de musica não foi encontrado: " + soundName);
             }

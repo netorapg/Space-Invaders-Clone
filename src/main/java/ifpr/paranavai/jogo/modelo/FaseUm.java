@@ -32,7 +32,7 @@ public class FaseUm extends Fase{
 
     public FaseUm() {
         super();
-        ImageIcon loading = new ImageIcon(getClass().getResource("Imagens/background.png"));
+        ImageIcon loading = new ImageIcon(getClass().getResource("/Imagens/background.png"));
         this.background = loading.getImage();
         personagem = new Personagem();
         personagem.carregar();
@@ -130,11 +130,11 @@ public class FaseUm extends Fase{
             graphics.setFont(new Font("Arial", Font.BOLD, 20));
             graphics.drawString("DEVELOPED BY RENATO AUGUSTO", 400, 150);
 
-            ImageIcon wasd = new ImageIcon(getClass().getResource("/wasd.png"));
-            ImageIcon enter = new ImageIcon(getClass().getResource("/enter.png"));
-            ImageIcon arrow = new ImageIcon(getClass().getResource("/arrows.png"));
-            ImageIcon space = new ImageIcon(getClass().getResource("/space.png"));
-            ImageIcon shift = new ImageIcon(getClass().getResource("/shift.png"));
+            ImageIcon wasd = new ImageIcon(getClass().getResource("/Imagens/wasd.png"));
+            ImageIcon enter = new ImageIcon(getClass().getResource("/Imagens/enter.png"));
+            ImageIcon arrow = new ImageIcon(getClass().getResource("/Imagens/arrows.png"));
+            ImageIcon space = new ImageIcon(getClass().getResource("/Imagens/space.png"));
+            ImageIcon shift = new ImageIcon(getClass().getResource("/Imagens/shift.png"));
             enter.paintIcon(this, graphics, 550, 440);
             graphics.setColor(Color.WHITE);
             graphics.setFont(new Font("Arial", Font.BOLD, 50));
@@ -313,7 +313,7 @@ public class FaseUm extends Fase{
                 if (personagem.getVidas() <= 0) {
                 emJogo = false;
                 vivo = false;
-                salvarPontuacao(pontuacao);
+              //  salvarPontuacao(pontuacao);
                 this.personagem.setVisivel(false);
              
                 }

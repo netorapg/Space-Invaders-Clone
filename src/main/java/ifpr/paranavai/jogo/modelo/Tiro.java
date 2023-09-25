@@ -14,7 +14,7 @@ public class Tiro extends ElementoGrafico {
     }
 
     public void carregar() {
-        ImageIcon carregando = new ImageIcon(getClass().getResource("Imagens/laser.png"));
+        ImageIcon carregando = new ImageIcon(getClass().getResource("/Imagens/laser.png"));
         this.setImagem(carregando.getImage());
         this.setAlturaImagem(this.getImagem().getHeight(null));
         this.setLarguraImagem(this.getImagem().getWidth(null));
