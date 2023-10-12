@@ -1,6 +1,10 @@
 package ifpr.paranavai.jogo.modelo;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.swing.ImageIcon;
 
+@Entity
+@Table(name = "tb_super_tiro")
 public class SuperTiro  extends ElementoGrafico{
     private static int VELOCIDADE = 2;
 

@@ -1,8 +1,12 @@
 package ifpr.paranavai.jogo.modelo;
 import java.awt.Rectangle;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.swing.ImageIcon;
 
+@Entity
+@Table(name = "tb_inimigo")
 public class Inimigo extends ElementoGrafico{
     private  int VELOCIDADE = 1;
     private boolean vivo;

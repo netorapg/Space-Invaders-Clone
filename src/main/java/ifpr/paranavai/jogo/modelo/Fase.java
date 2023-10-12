@@ -11,6 +11,9 @@ import javax.swing.Timer;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;

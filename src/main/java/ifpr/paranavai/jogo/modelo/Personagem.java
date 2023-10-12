@@ -2,11 +2,15 @@ package ifpr.paranavai.jogo.modelo;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.swing.ImageIcon;
 //import org.lwjgl.glfw.GLFW;
 //import org.lwjgl.glfw.GLFWGamepadState;
 
-
+@Entity
+@Table (name = "tb_personagem")
 public class Personagem extends ElementoGrafico {
     private static final int DESLOCAMENTO = 3;
     private static final int POSICAO_INICIAL_EM_X = 360;

@@ -1,6 +1,7 @@
 package ifpr.paranavai.jogo.principal;
 import javax.swing.JFrame;
 
+import ifpr.paranavai.jogo.conexao.HibernateUtil;
 import ifpr.paranavai.jogo.modelo.FaseUm;
 
 public class Principal extends JFrame{
@@ -16,6 +17,7 @@ public class Principal extends JFrame{
     }
 
     public static void main(String[] args) {
+        HibernateUtil.getSession();
         new Principal();
     }
 }

@@ -8,12 +8,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
 
 //import org.lwjgl.glfw.GLFW;
 //import org.lwjgl.glfw.GLFWGamepadState;
-
+@Entity
+@Table (name = "tb_fase")
 public class FaseUm extends Fase{
     private  Personagem personagem;
     private Timer timer;

@@ -7,7 +7,7 @@
 com.mysql.jdbc.Driver
 </property>
 <property name="hibernate.connection.username">root</property>
-<property name="hibernate.connection.password">root</property>
+<property name="hibernate.connection.password">#Galahad604Sword</property>
 <property name="hibernate.connection.url">
 jdbc:mysql://localhost/bd_jogo
 </property>
@@ -18,23 +18,12 @@ org.hibernate.dialect.MySQL8Dialect
 <property name="hibernate.format_sql">false</property>
 <property name="hbm2ddl.auto">update</property>
 <!-- Classes que serão persistidas no tutorial -->
-<mapping class="ifpr.paranavai.jogo.modelo.ElementoGrafico"/>
-<mapping class="ifpr.paranavai.jogo.modelo.Fase"/>
-<mapping class="ifpr.paranavai.jogo.modelo.FaseUm"/>
-<mapping class="ifpr.paranavai.jogo.modelo.Inimigo"/>
-<mapping class="ifpr.paranavai.jogo.modelo.Personagem"/>
-<mapping class="ifpr.paranavai.jogo.modelo.Star"/>
-<mapping class="ifpr.paranavai.jogo.modelo.Tiro"/>
-<mapping class="ifpr.paranavai.jogo.modelo.SuperTiro"/>
-<!-- Classes que serão persistidas em sala e/ou trabalho -->
-<!--
 <mapping class="ifpr.paranavai.jogo.modelo.ElementoGrafico" />
-<mapping class="ifpr.paranavai.jogo.modelo.Personagem" />
 <mapping class="ifpr.paranavai.jogo.modelo.Inimigo" />
+<mapping class="ifpr.paranavai.jogo.modelo.Personagem" />
+<mapping class="ifpr.paranavai.jogo.modelo.Jogador" />
+<mapping class="ifpr.paranavai.jogo.modelo.Star" />
 <mapping class="ifpr.paranavai.jogo.modelo.Tiro" />
-<mapping class="ifpr.paranavai.jogo.modelo.FaseUm" />
-<mapping class="ifpr.paranavai.jogo.modelo.Pessoa" />
-<mapping class="ifpr.paranavai.jogo.modelo.Asteroide" />
--->
+<mapping class="ifpr.paranavai.jogo.modelo.SuperTiro" />
 </session-factory>
 </hibernate-configuration>
