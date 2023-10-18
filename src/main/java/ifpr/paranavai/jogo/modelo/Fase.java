@@ -13,6 +13,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -22,7 +24,8 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 import java.net.URL;
 
-
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Fase extends JPanel implements ActionListener, KeyListener{
     public static final int DELAY = 5;
     public static final int ALTURA_DA_JANELA = 700;
@@ -38,8 +41,6 @@ public abstract class Fase extends JPanel implements ActionListener, KeyListener
     private boolean emJogo = false;
     private boolean menu = true;
  
-    
-    
     public Fase() {
         setFocusable(true);
         setDoubleBuffered(true);
