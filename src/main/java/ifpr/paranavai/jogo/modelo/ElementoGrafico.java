@@ -17,25 +17,25 @@ import javax.persistence.Transient;
 public abstract class ElementoGrafico {
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
-@Column(name = "id_elemento_grafico")
+@Column(name = "id_elemento_grafico") // colocar no banco
 private Integer idElementoGrafico;
 
-@Column(name = "posicao_em_x")
+@Column(name = "posicao_em_x") //colocar no banco
 private int posicaoEmX;
 
-@Column(name = "posicao_em_y")
+@Column(name = "posicao_em_y") //colocar no banco
 private int posicaoEmY;
 
 @Transient
 private Image imagem;
 
-@Column(name = "largura_imagem")
+@Transient
 private int larguraImagem;
 
-@Column(name = "altura_imagem")
+@Transient
 private int alturaImagem;
 
-@Column(name = "visivel")
+@Column(name = "visivel") //colocar no banco
 private boolean visivel = true;
 
     public boolean isVisivel() {

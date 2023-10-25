@@ -41,11 +41,6 @@ public class Inimigo extends ElementoGrafico{
         this.setPosicaoEmY(this.getPosicaoEmY() + VELOCIDADE);
     }
 
-
-    public boolean isVivo() {
-        return this.vivo;
-    }
-
     public boolean getVivo() {
         return this.vivo;
     }

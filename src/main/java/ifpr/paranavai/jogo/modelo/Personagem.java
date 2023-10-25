@@ -3,6 +3,7 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.swing.ImageIcon;
@@ -15,12 +16,26 @@ public class Personagem extends ElementoGrafico {
     private static final int DESLOCAMENTO = 3;
     private static final int POSICAO_INICIAL_EM_X = 360;
     private static final int POSICAO_INICIAL_EM_Y = 500;
+    @Column(name = "deslocamento_em_x")
     private int deslocamentoEmX;
+    @Column(name = "deslocamento_em_y")
     private int deslocamentoEmY;
     private ArrayList<Tiro> tiros;
     private ArrayList<SuperTiro> superTiros;
+    @Column(name = "vidas")
     private int vidas = 3;
+     @Column(name = "pontuacao")
+    private int pontuacao = 0;
     //private GLFWGamepadState state;
+
+    public int getPontuacao() {
+        return this.pontuacao;
+    }
+
+    public void setPontuacao(int pontuacao) {
+        this.pontuacao = pontuacao;
+    }
+   
 
     public Personagem() {
         this.tiros = new ArrayList<Tiro>();

@@ -1,8 +1,12 @@
 package ifpr.paranavai.jogo.principal;
 import javax.swing.JFrame;
 
+import org.hibernate.Session;
+
 import ifpr.paranavai.jogo.conexao.HibernateUtil;
 import ifpr.paranavai.jogo.modelo.FaseUm;
+import ifpr.paranavai.jogo.modelo.Personagem;
+import ifpr.paranavai.jogo.servico.PersonagemServico;
 
 public class Principal extends JFrame{
     public Principal(){
@@ -17,7 +21,10 @@ public class Principal extends JFrame{
     }
 
     public static void main(String[] args) {
-        HibernateUtil.getSession();
+       // Session sessao = HibernateUtil.getSession();
+        Personagem local = new Personagem();
+        PersonagemServico.inserir(local);
+
         new Principal();
     }
 }
