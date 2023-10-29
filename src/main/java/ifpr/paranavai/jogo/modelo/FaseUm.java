@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
 
+import ifpr.paranavai.jogo.servico.PersonagemServico;
+
 //import org.lwjgl.glfw.GLFW;
 //import org.lwjgl.glfw.GLFWGamepadState;
 @Entity
@@ -40,6 +42,7 @@ public class FaseUm extends Fase{
         this.background = loading.getImage();
         personagem = new Personagem();
         personagem.carregar();
+        PersonagemServico.inserir(personagem);
         this.inicializaInimigos();
         //int present = glfwJoystickPresent(GLFW_JOYSTICK_1);
         timer = new Timer(DELAY, this);
@@ -112,7 +115,7 @@ public class FaseUm extends Fase{
 
         graphics.setColor(Color.WHITE);
         graphics.setFont(new Font("Arial", Font.BOLD, 20));
-        graphics.drawString("Pontuação: " + pontuacao, 10, 20);
+        graphics.drawString("Pontuação: " + personagem.getPontuacao(), 10, 20);
         
         
         graphics.setColor(Color.WHITE);
@@ -169,7 +172,7 @@ public class FaseUm extends Fase{
             graphics.setColor(Color.WHITE);
             graphics.setFont(new Font("Arial", Font.BOLD, 50));
             graphics.drawString("GAME OVER", 20, 100);
-            graphics.drawString("PONTUAÇÃO: " + pontuacao, 20, 150);
+            graphics.drawString("PONTUAÇÃO: " + personagem.getPontuacao(), 20, 150);
             graphics.drawString("PRESSIONE R PARA REINICIAR", 20, 200);
         }
        
@@ -277,7 +280,8 @@ public class FaseUm extends Fase{
             emJogo = true;
             playSound("NaveEntrando.wav");
             vivo = true;
-            pontuacao = 0;
+            //pontuacao = 0;
+            personagem.setPontuacao(0);
             personagem.setVidas(3);
             personagem.setVisivel(true);
             inicializaInimigos();
@@ -332,6 +336,7 @@ public class FaseUm extends Fase{
                     inimigo.setVisivel(false);
                     tiro.setVisivel(false);
                     pontuacao += 10;
+                    personagem.setPontuacao(pontuacao);
                     
                 }
 
@@ -346,6 +351,7 @@ public class FaseUm extends Fase{
                 if (formaInimigo.intersects(formaSuperTiro)) {
                     inimigo.setVisivel(false);
                     pontuacao += 20;
+                    personagem.setPontuacao(pontuacao);
                 }
                 if (formaInimigo.intersects(formaPersonagem)) {
                     superTiro.setVisivel(false);

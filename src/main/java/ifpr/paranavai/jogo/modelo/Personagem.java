@@ -10,6 +10,8 @@ import javax.swing.ImageIcon;
 //import org.lwjgl.glfw.GLFW;
 //import org.lwjgl.glfw.GLFWGamepadState;
 
+import ifpr.paranavai.jogo.servico.PersonagemServico;
+
 @Entity
 @Table (name = "tb_personagem")
 public class Personagem extends ElementoGrafico {
@@ -17,9 +19,9 @@ public class Personagem extends ElementoGrafico {
     private static final int POSICAO_INICIAL_EM_X = 360;
     private static final int POSICAO_INICIAL_EM_Y = 500;
     @Column(name = "deslocamento_em_x")
-    private int deslocamentoEmX;
+    private int deslocamentoEmX = 0;
     @Column(name = "deslocamento_em_y")
-    private int deslocamentoEmY;
+    private int deslocamentoEmY = 0;
     private ArrayList<Tiro> tiros;
     private ArrayList<SuperTiro> superTiros;
     @Column(name = "vidas")
@@ -34,6 +36,7 @@ public class Personagem extends ElementoGrafico {
 
     public void setPontuacao(int pontuacao) {
         this.pontuacao = pontuacao;
+        PersonagemServico.atualizar(this);
     }
    
 

@@ -1,10 +1,10 @@
 <!DOCTYPE hibernate-configuration PUBLIC
 "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+"http://www.hibernate.org/dtd/hibernate-configuration">
 <hibernate-configuration>
 <session-factory>
 <property name="hibernate.connection.driver_class">
-com.mysql.jdbc.Driver
+com.mysql.cj.jdbc.Driver
 </property>
 <property name="hibernate.connection.username">root</property>
 <property name="hibernate.connection.password">#Galahad604Sword</property>

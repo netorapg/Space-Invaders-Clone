@@ -17,13 +17,13 @@ import javax.persistence.Transient;
 public abstract class ElementoGrafico {
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
-@Column(name = "id_elemento_grafico") // colocar no banco
+@Column(name = "id") 
 private Integer idElementoGrafico;
 
-@Column(name = "posicao_em_x") //colocar no banco
+@Column(name = "posicao_em_x") 
 private int posicaoEmX;
 
-@Column(name = "posicao_em_y") //colocar no banco
+@Column(name = "posicao_em_y") 
 private int posicaoEmY;
 
 @Transient
