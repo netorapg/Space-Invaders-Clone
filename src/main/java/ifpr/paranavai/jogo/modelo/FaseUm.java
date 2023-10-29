@@ -43,6 +43,11 @@ public class FaseUm extends Fase{
         personagem = new Personagem();
         personagem.carregar();
         PersonagemServico.inserir(personagem);
+        personagem = PersonagemServico.buscarPorId(personagem.getIdElementoGrafico());
+        if(personagem == null) {
+            personagem = new Personagem();
+            PersonagemServico.inserir(personagem);
+        }
         this.inicializaInimigos();
         //int present = glfwJoystickPresent(GLFW_JOYSTICK_1);
         timer = new Timer(DELAY, this);
