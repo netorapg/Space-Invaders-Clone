@@ -36,7 +36,7 @@ public class Personagem extends ElementoGrafico {
 
     public void setPontuacao(int pontuacao) {
         this.pontuacao = pontuacao;
-        PersonagemServico.atualizar(this);
+       // PersonagemServico.atualizar(this);
     }
    
 
