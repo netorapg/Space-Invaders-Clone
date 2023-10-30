@@ -2,15 +2,11 @@ package ifpr.paranavai.jogo.modelo;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.swing.ImageIcon;
-//import org.lwjgl.glfw.GLFW;
-//import org.lwjgl.glfw.GLFWGamepadState;
 
-import ifpr.paranavai.jogo.servico.PersonagemServico;
 
 @Entity
 @Table (name = "tb_personagem")
