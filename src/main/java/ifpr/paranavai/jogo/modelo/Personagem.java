@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.swing.ImageIcon;
 
-
 @Entity
 @Table (name = "tb_personagem")
 public class Personagem extends ElementoGrafico {
@@ -33,7 +32,6 @@ public class Personagem extends ElementoGrafico {
         this.pontuacao = pontuacao;
     }
    
-
     public Personagem() {
         this.tiros = new ArrayList<Tiro>();
         this.superTiros = new ArrayList<SuperTiro>();
@@ -59,7 +57,6 @@ public class Personagem extends ElementoGrafico {
         this.setPosicaoEmX(novaPosX);
         this.setPosicaoEmY(novaPosY);
     }
-    
     
     public void carregar() {
         ImageIcon loading = new ImageIcon(getClass().getResource("/Imagens/spaceship.png"));
@@ -89,6 +86,7 @@ public class Personagem extends ElementoGrafico {
     public ArrayList<SuperTiro> getSuperTiros() {
         return this.superTiros;
     }
+    
     public void setSuperTiros(ArrayList<SuperTiro> superTiros) {
         this.superTiros = new ArrayList<SuperTiro>();
         this.superTiros = superTiros;
@@ -99,7 +97,7 @@ public class Personagem extends ElementoGrafico {
         this.tiros = tiros;
     }
 
-    public void mover (/*GLFWGamepadState state,*/ KeyEvent tecla) {
+    public void mover (KeyEvent tecla) {
         int codigo = tecla.getKeyCode();
         switch (codigo) {
             case KeyEvent.VK_UP:
@@ -122,7 +120,8 @@ public class Personagem extends ElementoGrafico {
                 break;
         }
     }
-    public void parar (/*GLFWGamepadState state,*/ KeyEvent tecla) {
+    
+    public void parar (KeyEvent tecla) {
           int codigo = tecla.getKeyCode();
         switch (codigo) {
             case KeyEvent.VK_UP:
@@ -145,37 +144,49 @@ public class Personagem extends ElementoGrafico {
                 break;
         }
     }
+
     public void dispararTiro() {  
             atirar();
     }
+
     public void dispararSuperTiro() {
         superAtirar();
     }
+
     public Rectangle getBounds() {
         return null;
     }
+
     public void setVisivel(boolean b) {
     }
+
     public void morrer() {
     }
+
     public int getDeslocamentoEmX() {
         return this.deslocamentoEmX;
     }
+
     public void setDeslocamentoEmX(int deslocamentoEmX) {
         this.deslocamentoEmX = deslocamentoEmX;
     }
+
     public int getDeslocamentoEmY() {
         return this.deslocamentoEmY;
     }
+
     public void setDeslocamentoEmY(int deslocamentoEmY) {
         this.deslocamentoEmY = deslocamentoEmY;
     }
+
     public void perderVida() {
         this.vidas--;
     }
+
     public int getVidas() {
         return this.vidas;
     }
+    
    public void setVidas(int vidas) {
         this.vidas = vidas;
     }
