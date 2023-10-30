@@ -16,12 +16,11 @@ import javax.swing.Timer;
 
 import ifpr.paranavai.jogo.servico.PersonagemServico;
 
-//import org.lwjgl.glfw.GLFW;
-//import org.lwjgl.glfw.GLFWGamepadState;
 @Entity
 @Table (name = "tb_fase")
 public class FaseUm extends Fase{
     private  Personagem personagem;
+    private Inimigo inimigo;
     private Timer timer;
     //private static final int ALTURA_DA_JANELA = 640;
     private boolean podeAtirar = true;
@@ -238,6 +237,9 @@ public class FaseUm extends Fase{
 
     @Override
     public void keyPressed(KeyEvent e) {
+        // keypressed para salvar
+        // PersonsagemServico.inserir(personagem);
+
          if (e.getKeyCode() == KeyEvent.VK_SPACE && podeAtirar) {
             personagem.dispararTiro();
             podeAtirar = false;
@@ -254,9 +256,6 @@ public class FaseUm extends Fase{
             int posX = personagem.getPosicaoEmX();
             int posY = personagem.getPosicaoEmY();
 
-           // int larguraPersonagem = personagem.getImagem().getWidth(null);
-           // int alturaPersonagem = personagem.getImagem().getHeight(null);
-
 
             personagem.setPosicaoEmX(posX);
             personagem.setPosicaoEmY(posY);
@@ -272,13 +271,17 @@ public class FaseUm extends Fase{
             playSound("NaveEntrando.wav");
             vivo = true;
             personagem.setVisivel(true);
+           // inimigo.setVisivel(true);
+           // inimigo.setVivo(true);
             inicializaInimigos();
+            
         }
 
         if (e.getKeyCode() == KeyEvent.VK_P) {
             menu = true;
             emJogo = false;
             personagem.setVisivel(false);
+            inimigo.setVivo(false);
         }
 
         if (e.getKeyCode() == KeyEvent.VK_R) {
@@ -312,7 +315,6 @@ public class FaseUm extends Fase{
     public void keyTyped(KeyEvent e) {
     }
 
-
     @Override
     public void verificarColisoes() {
         Rectangle formaPersonagem = personagem.getRectangle();
@@ -323,12 +325,14 @@ public class FaseUm extends Fase{
                 personagem.perderVida();
                 inimigo.setVisivel(false);
 
-                if (personagem.getVidas() <= 0) {
+                if (personagem.getVidas() == 0) {
+                PersonagemServico.inserir(personagem); 
                 emJogo = false;
                 vivo = false;
-              //  salvarPontuacao(pontuacao);
+                //this.inimigo.setVisivel(false);
+                //inimigo.setVivo(false);
                 this.personagem.setVisivel(false);
-             
+                   
                 }
                 
             }

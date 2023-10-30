@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.swing.ImageIcon;
 
 @Entity
@@ -13,11 +14,13 @@ public class Personagem extends ElementoGrafico {
     private static final int DESLOCAMENTO = 3;
     private static final int POSICAO_INICIAL_EM_X = 360;
     private static final int POSICAO_INICIAL_EM_Y = 500;
-    @Column(name = "deslocamento_em_x")
+    @Transient
     private int deslocamentoEmX = 0;
-    @Column(name = "deslocamento_em_y")
+    @Transient
     private int deslocamentoEmY = 0;
+    @Transient
     private ArrayList<Tiro> tiros;
+    @Transient
     private ArrayList<SuperTiro> superTiros;
     @Column(name = "vidas")
     private int vidas = 3;
@@ -186,7 +189,7 @@ public class Personagem extends ElementoGrafico {
     public int getVidas() {
         return this.vidas;
     }
-    
+
    public void setVidas(int vidas) {
         this.vidas = vidas;
     }

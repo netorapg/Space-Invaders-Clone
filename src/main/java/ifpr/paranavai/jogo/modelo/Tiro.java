@@ -8,7 +8,6 @@ import javax.swing.ImageIcon;
 public class Tiro extends ElementoGrafico {
     private static int VELOCIDADE = 2;
 
-
     public Tiro(int posicaoPersonagemEmX, int posicaoPersonagemEmY) {
        this.carregar();
        this.setPosicaoEmX(posicaoPersonagemEmX - this.getLarguraImagem() / 2);

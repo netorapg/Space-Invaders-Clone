@@ -1,8 +1,6 @@
 package ifpr.paranavai.jogo.modelo;
-
 import java.awt.Color;
 import java.awt.Graphics2D;
-
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
