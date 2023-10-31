@@ -29,7 +29,7 @@ public class FaseUm extends Fase{
     private List<Star> stars;
     private ArrayList<Inimigo> inimigos;
     private int temporizador = 0;
-    private int QUANTIDADE_INIMIGOS = 5;
+    private int QUANTIDADE_INIMIGOS = 20;
     private boolean emJogo = false;
     private boolean menu = true;
     private int pontuacao = 0;
@@ -115,7 +115,7 @@ public class FaseUm extends Fase{
             Graphics2D g2d = (Graphics2D) g;
             g2d.setColor(Color.WHITE);
             g2d.setFont( new Font("Arial", Font.BOLD, 20));
-            g2d.drawString("Jogo salvo com sucesso", 10, 90);
+            g2d.drawString("Jogo salvo com sucesso", 500, 50);
         }
         if (emJogo){
         graphics.drawImage(personagem.getImagem(), personagem.getPosicaoEmX(), this.personagem.getPosicaoEmY(), this);
@@ -365,7 +365,8 @@ public class FaseUm extends Fase{
                 inimigo.setVisivel(false);
 
                 if (personagem.getVidas() == 0) {
-               // PersonagemServico.inserir(personagem); 
+                PersonagemServico.inserir(personagem);
+                exibirMensagemSalvo = true; 
                 emJogo = false;
                 vivo = false;
                 //this.inimigo.setVisivel(false);
@@ -385,7 +386,8 @@ public class FaseUm extends Fase{
                     tiro.setVisivel(false);
                     pontuacao += 10;
                     personagem.setPontuacao(pontuacao);
-                    QUANTIDADE_INIMIGOS++;
+                    //QUANTIDADE_INIMIGOS = QUANTIDADE_INIMIGOS + 1000;
+                    inimigo.setVELOCIDADE(inimigo.getVELOCIDADE() + 100);
                     
                 }
 
@@ -401,6 +403,7 @@ public class FaseUm extends Fase{
                     inimigo.setVisivel(false);
                     pontuacao += 20;
                     personagem.setPontuacao(pontuacao);
+                    inimigo.setVELOCIDADE(inimigo.getVELOCIDADE() + 100);
                 }
                 if (formaInimigo.intersects(formaPersonagem)) {
                     superTiro.setVisivel(false);
