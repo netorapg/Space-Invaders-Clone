@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,8 @@ public class FaseUm extends Fase{
     private boolean menu = true;
     private int pontuacao = 0;
     private boolean vivo = true;
+    private boolean exibirMensagemSalvo = false;
+    private Timer mensagemTimer;
 
 
 
@@ -57,6 +60,15 @@ public class FaseUm extends Fase{
         preencherEstrelas();
 
         tocarMusicaDeFundo("musicaDeFundo.wav");
+
+        mensagemTimer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirMensagemSalvo = false;
+                mensagemTimer.stop();
+                repaint();
+            }
+        });
     }
 
     public void inicializaInimigos(){
@@ -97,6 +109,13 @@ public class FaseUm extends Fase{
                 star.setPosicaoEmX((int) (Math.random() * getWidth()));
             }
             star.draw(graphics);
+        }
+
+        if (exibirMensagemSalvo) {
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.WHITE);
+            g2d.setFont( new Font("Arial", Font.BOLD, 20));
+            g2d.drawString("Jogo salvo com sucesso", 10, 90);
         }
         if (emJogo){
         graphics.drawImage(personagem.getImagem(), personagem.getPosicaoEmX(), this.personagem.getPosicaoEmY(), this);
@@ -153,10 +172,13 @@ public class FaseUm extends Fase{
             graphics.drawString("PRESS ENTER", 200, 500);
             graphics.drawString("TO START", 200, 550);
 
+            
+
             wasd.paintIcon(this, graphics, 100, 260);
             arrow.paintIcon(this, graphics, 170, 270);
             graphics.setColor(Color.WHITE);
             graphics.setFont(new Font("Arial", Font.BOLD, 20));
+            graphics.drawString("PRESS \"Q\" TO SAVE", 240, 250);
             graphics.drawString("USE WASD OR ARROW KEYS TO MOVE", 240, 310);
 
             space.paintIcon(this, graphics, 100, 320);
@@ -297,6 +319,8 @@ public class FaseUm extends Fase{
          
         if (e.getKeyCode() == KeyEvent.VK_Q) {
             PersonagemServico.inserir(personagem);
+            exibirMensagemSalvo = true;
+            mensagemTimer.start();
         }
 
         if (e.getKeyCode() == KeyEvent.VK_R) {
