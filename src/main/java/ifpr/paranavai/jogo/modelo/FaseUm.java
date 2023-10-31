@@ -29,7 +29,7 @@ public class FaseUm extends Fase{
     private List<Star> stars;
     private ArrayList<Inimigo> inimigos;
     private int temporizador = 0;
-    private int QUANTIDADE_INIMIGOS = 20;
+    private int QUANTIDADE_INIMIGOS = 5;
     private boolean emJogo = false;
     private boolean menu = true;
     private int pontuacao = 0;
@@ -179,17 +179,17 @@ public class FaseUm extends Fase{
             graphics.setColor(Color.WHITE);
             graphics.setFont(new Font("Arial", Font.BOLD, 20));
             graphics.drawString("PRESS \"Q\" TO SAVE", 240, 250);
-            graphics.drawString("USE WASD OR ARROW KEYS TO MOVE", 240, 310);
+            graphics.drawString("USE \"WASD\" OR \"ARROW KEYS\" TO MOVE", 240, 310);
 
             space.paintIcon(this, graphics, 100, 320);
             graphics.setColor(Color.WHITE);
             graphics.setFont(new Font("Arial", Font.BOLD, 20));
-            graphics.drawString("PRESS SPACE TO SHOOT", 170, 360);
+            graphics.drawString("PRESS \"SPACE\" TO SHOOT", 170, 360);
 
             shift.paintIcon(this, graphics, 100, 370);
             graphics.setColor(Color.WHITE);
             graphics.setFont(new Font("Arial", Font.BOLD, 20));
-            graphics.drawString("PRESS SHIFT TO SHOOT SUPER BULLET", 170, 420);
+            graphics.drawString("PRESS \"SHIFT\" TO SHOOT SUPER BULLET", 170, 420);
 
 
 
@@ -385,6 +385,7 @@ public class FaseUm extends Fase{
                     tiro.setVisivel(false);
                     pontuacao += 10;
                     personagem.setPontuacao(pontuacao);
+                    QUANTIDADE_INIMIGOS++;
                     
                 }
 
