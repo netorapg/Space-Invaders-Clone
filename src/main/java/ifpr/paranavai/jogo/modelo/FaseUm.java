@@ -12,6 +12,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 import ifpr.paranavai.jogo.servico.PersonagemServico;
@@ -239,8 +240,15 @@ public class FaseUm extends Fase{
     public void keyPressed(KeyEvent e) {
         // keypressed para salvar
         // PersonsagemServico.inserir(personagem);
-
-         if (e.getKeyCode() == KeyEvent.VK_SPACE && podeAtirar) {
+        if(menu){
+            if (e.getKeyCode() == KeyEvent.VK_ALT) {
+                String idDigitado = JOptionPane.showInputDialog("Digite seu ID:");
+                if (idDigitado != null && !idDigitado.isEmpty()) {
+                    emJogo = true;
+                }
+            }
+        }
+        if (e.getKeyCode() == KeyEvent.VK_SPACE && podeAtirar) {
             personagem.dispararTiro();
             podeAtirar = false;
         } else {
