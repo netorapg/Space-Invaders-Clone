@@ -240,10 +240,12 @@ public class FaseUm extends Fase{
     public void keyPressed(KeyEvent e) {
         // keypressed para salvar
         // PersonsagemServico.inserir(personagem);
+
         if(menu){
             if (e.getKeyCode() == KeyEvent.VK_ALT) {
                 String idDigitado = JOptionPane.showInputDialog("Digite seu ID:");
                 if (idDigitado != null && !idDigitado.isEmpty()) {
+                    menu = false;
                     emJogo = true;
                 }
             }
@@ -291,6 +293,10 @@ public class FaseUm extends Fase{
             personagem.setVisivel(false);
             inimigo.setVivo(false);
         }
+         
+        if (e.getKeyCode() == KeyEvent.VK_Q) {
+            PersonagemServico.inserir(personagem);
+        }
 
         if (e.getKeyCode() == KeyEvent.VK_R) {
             emJogo = true;
@@ -334,7 +340,7 @@ public class FaseUm extends Fase{
                 inimigo.setVisivel(false);
 
                 if (personagem.getVidas() == 0) {
-                PersonagemServico.inserir(personagem); 
+               // PersonagemServico.inserir(personagem); 
                 emJogo = false;
                 vivo = false;
                 //this.inimigo.setVisivel(false);
