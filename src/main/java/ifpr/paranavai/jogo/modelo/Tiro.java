@@ -1,10 +1,12 @@
 package ifpr.paranavai.jogo.modelo;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.swing.ImageIcon;
 
-
+@Entity
+@Table(name = "tb_tiro")
 public class Tiro extends ElementoGrafico {
     private static int VELOCIDADE = 2;
-
 
     public Tiro(int posicaoPersonagemEmX, int posicaoPersonagemEmY) {
        this.carregar();

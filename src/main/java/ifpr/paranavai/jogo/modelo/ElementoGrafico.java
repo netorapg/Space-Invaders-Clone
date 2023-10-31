@@ -3,12 +3,39 @@ package ifpr.paranavai.jogo.modelo;
 import java.awt.Image;
 import java.awt.Rectangle;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Transient;
+
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class ElementoGrafico {
+@Id
+@GeneratedValue(strategy = GenerationType.AUTO)
+@Column(name = "id") 
+private Integer idElementoGrafico;
+
+@Column(name = "posicao_em_x") 
 private int posicaoEmX;
+
+@Column(name = "posicao_em_y") 
 private int posicaoEmY;
+
+@Transient
 private Image imagem;
+
+@Transient
 private int larguraImagem;
+
+@Transient
 private int alturaImagem;
+
+@Column(name = "visivel") //colocar no banco
 private boolean visivel = true;
 
     public boolean isVisivel() {
@@ -65,6 +92,14 @@ private boolean visivel = true;
 
     public void setAlturaImagem(int alturaImagem) {
         this.alturaImagem = alturaImagem;
+    }
+
+    public Integer getIdElementoGrafico() {
+        return this.idElementoGrafico;
+    }
+
+    public void setIdElementoGrafico(Integer idElementoGrafico) {
+        this.idElementoGrafico = idElementoGrafico;
     }
 
 }

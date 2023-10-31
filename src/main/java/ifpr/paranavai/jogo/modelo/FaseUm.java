@@ -5,17 +5,24 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
-//import org.lwjgl.glfw.GLFW;
-//import org.lwjgl.glfw.GLFWGamepadState;
+import ifpr.paranavai.jogo.servico.PersonagemServico;
 
+@Entity
+@Table (name = "tb_fase")
 public class FaseUm extends Fase{
     private  Personagem personagem;
+    private Inimigo inimigo;
     private Timer timer;
     //private static final int ALTURA_DA_JANELA = 640;
     private boolean podeAtirar = true;
@@ -27,6 +34,8 @@ public class FaseUm extends Fase{
     private boolean menu = true;
     private int pontuacao = 0;
     private boolean vivo = true;
+    private boolean exibirMensagemSalvo = false;
+    private Timer mensagemTimer;
 
 
 
@@ -36,6 +45,12 @@ public class FaseUm extends Fase{
         this.background = loading.getImage();
         personagem = new Personagem();
         personagem.carregar();
+        PersonagemServico.inserir(personagem);
+        personagem = PersonagemServico.buscarPorId(personagem.getIdElementoGrafico());
+        if(personagem == null) {
+            personagem = new Personagem();
+            PersonagemServico.inserir(personagem);
+        }
         this.inicializaInimigos();
         //int present = glfwJoystickPresent(GLFW_JOYSTICK_1);
         timer = new Timer(DELAY, this);
@@ -45,6 +60,15 @@ public class FaseUm extends Fase{
         preencherEstrelas();
 
         tocarMusicaDeFundo("musicaDeFundo.wav");
+
+        mensagemTimer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirMensagemSalvo = false;
+                mensagemTimer.stop();
+                repaint();
+            }
+        });
     }
 
     public void inicializaInimigos(){
@@ -86,6 +110,13 @@ public class FaseUm extends Fase{
             }
             star.draw(graphics);
         }
+
+        if (exibirMensagemSalvo) {
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.WHITE);
+            g2d.setFont( new Font("Arial", Font.BOLD, 20));
+            g2d.drawString("Jogo salvo com sucesso", 10, 90);
+        }
         if (emJogo){
         graphics.drawImage(personagem.getImagem(), personagem.getPosicaoEmX(), this.personagem.getPosicaoEmY(), this);
         ArrayList<Tiro> tiros = personagem.getTiros();
@@ -108,7 +139,7 @@ public class FaseUm extends Fase{
 
         graphics.setColor(Color.WHITE);
         graphics.setFont(new Font("Arial", Font.BOLD, 20));
-        graphics.drawString("Pontuação: " + pontuacao, 10, 20);
+        graphics.drawString("Pontuação: " + personagem.getPontuacao(), 10, 20);
         
         
         graphics.setColor(Color.WHITE);
@@ -141,10 +172,13 @@ public class FaseUm extends Fase{
             graphics.drawString("PRESS ENTER", 200, 500);
             graphics.drawString("TO START", 200, 550);
 
+            
+
             wasd.paintIcon(this, graphics, 100, 260);
             arrow.paintIcon(this, graphics, 170, 270);
             graphics.setColor(Color.WHITE);
             graphics.setFont(new Font("Arial", Font.BOLD, 20));
+            graphics.drawString("PRESS \"Q\" TO SAVE", 240, 250);
             graphics.drawString("USE WASD OR ARROW KEYS TO MOVE", 240, 310);
 
             space.paintIcon(this, graphics, 100, 320);
@@ -165,7 +199,7 @@ public class FaseUm extends Fase{
             graphics.setColor(Color.WHITE);
             graphics.setFont(new Font("Arial", Font.BOLD, 50));
             graphics.drawString("GAME OVER", 20, 100);
-            graphics.drawString("PONTUAÇÃO: " + pontuacao, 20, 150);
+            graphics.drawString("PONTUAÇÃO: " + personagem.getPontuacao(), 20, 150);
             graphics.drawString("PRESSIONE R PARA REINICIAR", 20, 200);
         }
        
@@ -226,7 +260,20 @@ public class FaseUm extends Fase{
 
     @Override
     public void keyPressed(KeyEvent e) {
-         if (e.getKeyCode() == KeyEvent.VK_SPACE && podeAtirar) {
+        // keypressed para salvar
+        // PersonsagemServico.inserir(personagem);
+
+        if(menu){
+            if (e.getKeyCode() == KeyEvent.VK_ALT) {
+                String idDigitado = JOptionPane.showInputDialog("Digite seu ID:");
+                if (idDigitado != null && !idDigitado.isEmpty()) {
+                    personagem.setIdElementoGrafico(Integer.parseInt(idDigitado)); 
+                    menu = false;
+                    emJogo = true;
+                }
+            }
+        }
+        if (e.getKeyCode() == KeyEvent.VK_SPACE && podeAtirar) {
             personagem.dispararTiro();
             podeAtirar = false;
         } else {
@@ -241,9 +288,6 @@ public class FaseUm extends Fase{
 
             int posX = personagem.getPosicaoEmX();
             int posY = personagem.getPosicaoEmY();
-
-           // int larguraPersonagem = personagem.getImagem().getWidth(null);
-           // int alturaPersonagem = personagem.getImagem().getHeight(null);
 
 
             personagem.setPosicaoEmX(posX);
@@ -260,20 +304,31 @@ public class FaseUm extends Fase{
             playSound("NaveEntrando.wav");
             vivo = true;
             personagem.setVisivel(true);
+           // inimigo.setVisivel(true);
+           // inimigo.setVivo(true);
             inicializaInimigos();
+            
         }
 
         if (e.getKeyCode() == KeyEvent.VK_P) {
             menu = true;
             emJogo = false;
             personagem.setVisivel(false);
+            inimigo.setVivo(false);
+        }
+         
+        if (e.getKeyCode() == KeyEvent.VK_Q) {
+            PersonagemServico.inserir(personagem);
+            exibirMensagemSalvo = true;
+            mensagemTimer.start();
         }
 
         if (e.getKeyCode() == KeyEvent.VK_R) {
             emJogo = true;
             playSound("NaveEntrando.wav");
             vivo = true;
-            pontuacao = 0;
+            //pontuacao = 0;
+            personagem.setPontuacao(0);
             personagem.setVidas(3);
             personagem.setVisivel(true);
             inicializaInimigos();
@@ -299,7 +354,6 @@ public class FaseUm extends Fase{
     public void keyTyped(KeyEvent e) {
     }
 
-
     @Override
     public void verificarColisoes() {
         Rectangle formaPersonagem = personagem.getRectangle();
@@ -310,12 +364,14 @@ public class FaseUm extends Fase{
                 personagem.perderVida();
                 inimigo.setVisivel(false);
 
-                if (personagem.getVidas() <= 0) {
+                if (personagem.getVidas() == 0) {
+               // PersonagemServico.inserir(personagem); 
                 emJogo = false;
                 vivo = false;
-              //  salvarPontuacao(pontuacao);
+                //this.inimigo.setVisivel(false);
+                //inimigo.setVivo(false);
                 this.personagem.setVisivel(false);
-             
+                   
                 }
                 
             }
@@ -328,6 +384,7 @@ public class FaseUm extends Fase{
                     inimigo.setVisivel(false);
                     tiro.setVisivel(false);
                     pontuacao += 10;
+                    personagem.setPontuacao(pontuacao);
                     
                 }
 
@@ -342,6 +399,7 @@ public class FaseUm extends Fase{
                 if (formaInimigo.intersects(formaSuperTiro)) {
                     inimigo.setVisivel(false);
                     pontuacao += 20;
+                    personagem.setPontuacao(pontuacao);
                 }
                 if (formaInimigo.intersects(formaPersonagem)) {
                     superTiro.setVisivel(false);

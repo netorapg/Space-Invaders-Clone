@@ -1,8 +1,11 @@
 package ifpr.paranavai.jogo.modelo;
 import java.awt.Rectangle;
-
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.swing.ImageIcon;
 
+@Entity 
+@Table(name = "tb_inimigo")
 public class Inimigo extends ElementoGrafico{
     private  int VELOCIDADE = 1;
     private boolean vivo;
@@ -28,18 +31,13 @@ public class Inimigo extends ElementoGrafico{
         this.setImagem(loading.getImage());
         this.setAlturaImagem(this.getImagem().getWidth(null));
         this.setLarguraImagem(this.getImagem().getHeight(null));
-
     }
+
     public void atualizar() {
         if (!vivo){
             return;
         }
         this.setPosicaoEmY(this.getPosicaoEmY() + VELOCIDADE);
-    }
-
-
-    public boolean isVivo() {
-        return this.vivo;
     }
 
     public boolean getVivo() {
@@ -50,10 +48,7 @@ public class Inimigo extends ElementoGrafico{
         this.vivo = vivo;
     }
 
-
     public Rectangle getBounds() {
          return new Rectangle(getPosicaoEmX(), getPosicaoEmY(), getImagem().getWidth(null), getImagem().getHeight(null));
     }
-    
-    
 }
