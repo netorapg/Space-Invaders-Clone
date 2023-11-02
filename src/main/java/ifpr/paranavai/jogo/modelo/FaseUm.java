@@ -29,13 +29,14 @@ public class FaseUm extends Fase{
     private List<Star> stars;
     private ArrayList<Inimigo> inimigos;
     private int temporizador = 0;
-    private int QUANTIDADE_INIMIGOS = 20;
+    private int q_inimigos = 20;
     private boolean emJogo = false;
     private boolean menu = true;
     private int pontuacao = 0;
     private boolean vivo = true;
     private boolean exibirMensagemSalvo = false;
     private Timer mensagemTimer;
+
 
 
 
@@ -74,7 +75,8 @@ public class FaseUm extends Fase{
     public void inicializaInimigos(){
         inimigos = new ArrayList<Inimigo>();
 
-        for (int i = 0; i < QUANTIDADE_INIMIGOS; i++) {
+        for (int i = 0; i < q_inimigos
+; i++) {
             int y = (int) (Math.random() * 800 - 1024);
             int x = (int) (Math.random() * 650 + 30);
             Inimigo inimigo = new Inimigo(x, y);
@@ -240,14 +242,15 @@ public class FaseUm extends Fase{
         }
     }
 
-    for (int i = 0; i < inimigos.size(); i++) {
+    for (int i = inimigos.size() - 1; i >= 0; i--) {
         Inimigo inimigo = this.inimigos.get(i);
         if (inimigo.getPosicaoEmY() > 800 || !inimigo.getVisivel()) {
-            inimigos.remove(inimigo);
+            inimigos.remove(i);
             int y = (int) (Math.random() * 800 - 1024);
             int x = (int) (Math.random() * 650 + 30);
             Inimigo inimigos = new Inimigo(x, y);
             this.inimigos.add(inimigos);
+            
         } else {
             inimigo.atualizar();
         }
@@ -356,8 +359,9 @@ public class FaseUm extends Fase{
 
     @Override
     public void verificarColisoes() {
+        if (emJogo == true){
         Rectangle formaPersonagem = personagem.getRectangle();
-        for (int i = 0; i < this.inimigos.size(); i++) {
+        for (int i = inimigos.size() - 1; i >= 0; i--) {
             Inimigo inimigo = inimigos.get(i);
             Rectangle formaInimigo = inimigo.getRectangle();
             if (formaInimigo.intersects(formaPersonagem)) {
@@ -371,12 +375,10 @@ public class FaseUm extends Fase{
                 vivo = false;
                 //this.inimigo.setVisivel(false);
                 //inimigo.setVivo(false);
-                this.personagem.setVisivel(false);
-                   
-                }
-                
+                this.personagem.setVisivel(false);  
+                }   
             }
-
+        
             ArrayList<Tiro> tiros = personagem.getTiros();
             for (int j  = 0; j < tiros.size(); j++) {
                 Tiro tiro = tiros.get(j);
@@ -385,12 +387,10 @@ public class FaseUm extends Fase{
                     inimigo.setVisivel(false);
                     tiro.setVisivel(false);
                     pontuacao += 10;
+                    q_inimigos += 10;
                     personagem.setPontuacao(pontuacao);
-                    //QUANTIDADE_INIMIGOS = QUANTIDADE_INIMIGOS + 1000;
-                    inimigo.setVELOCIDADE(inimigo.getVELOCIDADE() + 100);
-                    
+                    inimigo.setVELOCIDADE(inimigo.getVELOCIDADE() + 100);   
                 }
-
                 if (formaInimigo.intersects(formaPersonagem)) {
                     tiro.setVisivel(false);
                 }
@@ -402,6 +402,7 @@ public class FaseUm extends Fase{
                 if (formaInimigo.intersects(formaSuperTiro)) {
                     inimigo.setVisivel(false);
                     pontuacao += 20;
+                    q_inimigos += 10;
                     personagem.setPontuacao(pontuacao);
                     inimigo.setVELOCIDADE(inimigo.getVELOCIDADE() + 100);
                 }
@@ -412,4 +413,5 @@ public class FaseUm extends Fase{
 
         }
     }
+}
 }
