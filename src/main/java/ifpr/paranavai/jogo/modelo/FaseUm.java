@@ -29,13 +29,14 @@ public class FaseUm extends Fase{
     private List<Star> stars;
     private ArrayList<Inimigo> inimigos;
     private int temporizador = 0;
-    private int QUANTIDADE_INIMIGOS = 20;
+    private int q_inimigos = 20;
     private boolean emJogo = false;
     private boolean menu = true;
     private int pontuacao = 0;
     private boolean vivo = true;
     private boolean exibirMensagemSalvo = false;
     private Timer mensagemTimer;
+
 
 
 
@@ -74,7 +75,8 @@ public class FaseUm extends Fase{
     public void inicializaInimigos(){
         inimigos = new ArrayList<Inimigo>();
 
-        for (int i = 0; i < QUANTIDADE_INIMIGOS; i++) {
+        for (int i = 0; i < q_inimigos
+; i++) {
             int y = (int) (Math.random() * 800 - 1024);
             int x = (int) (Math.random() * 650 + 30);
             Inimigo inimigo = new Inimigo(x, y);
@@ -115,7 +117,7 @@ public class FaseUm extends Fase{
             Graphics2D g2d = (Graphics2D) g;
             g2d.setColor(Color.WHITE);
             g2d.setFont( new Font("Arial", Font.BOLD, 20));
-            g2d.drawString("Jogo salvo com sucesso", 10, 90);
+            g2d.drawString("Jogo salvo com sucesso", 500, 50);
         }
         if (emJogo){
         graphics.drawImage(personagem.getImagem(), personagem.getPosicaoEmX(), this.personagem.getPosicaoEmY(), this);
@@ -179,17 +181,17 @@ public class FaseUm extends Fase{
             graphics.setColor(Color.WHITE);
             graphics.setFont(new Font("Arial", Font.BOLD, 20));
             graphics.drawString("PRESS \"Q\" TO SAVE", 240, 250);
-            graphics.drawString("USE WASD OR ARROW KEYS TO MOVE", 240, 310);
+            graphics.drawString("USE \"WASD\" OR \"ARROW KEYS\" TO MOVE", 240, 310);
 
             space.paintIcon(this, graphics, 100, 320);
             graphics.setColor(Color.WHITE);
             graphics.setFont(new Font("Arial", Font.BOLD, 20));
-            graphics.drawString("PRESS SPACE TO SHOOT", 170, 360);
+            graphics.drawString("PRESS \"SPACE\" TO SHOOT", 170, 360);
 
             shift.paintIcon(this, graphics, 100, 370);
             graphics.setColor(Color.WHITE);
             graphics.setFont(new Font("Arial", Font.BOLD, 20));
-            graphics.drawString("PRESS SHIFT TO SHOOT SUPER BULLET", 170, 420);
+            graphics.drawString("PRESS \"SHIFT\" TO SHOOT SUPER BULLET", 170, 420);
 
 
 
@@ -240,14 +242,15 @@ public class FaseUm extends Fase{
         }
     }
 
-    for (int i = 0; i < inimigos.size(); i++) {
+    for (int i = inimigos.size() - 1; i >= 0; i--) {
         Inimigo inimigo = this.inimigos.get(i);
         if (inimigo.getPosicaoEmY() > 800 || !inimigo.getVisivel()) {
-            inimigos.remove(inimigo);
+            inimigos.remove(i);
             int y = (int) (Math.random() * 800 - 1024);
             int x = (int) (Math.random() * 650 + 30);
             Inimigo inimigos = new Inimigo(x, y);
             this.inimigos.add(inimigos);
+            
         } else {
             inimigo.atualizar();
         }
@@ -356,8 +359,9 @@ public class FaseUm extends Fase{
 
     @Override
     public void verificarColisoes() {
+        if (emJogo == true){
         Rectangle formaPersonagem = personagem.getRectangle();
-        for (int i = 0; i < this.inimigos.size(); i++) {
+        for (int i = inimigos.size() - 1; i >= 0; i--) {
             Inimigo inimigo = inimigos.get(i);
             Rectangle formaInimigo = inimigo.getRectangle();
             if (formaInimigo.intersects(formaPersonagem)) {
@@ -365,17 +369,16 @@ public class FaseUm extends Fase{
                 inimigo.setVisivel(false);
 
                 if (personagem.getVidas() == 0) {
-               // PersonagemServico.inserir(personagem); 
+                PersonagemServico.inserir(personagem);
+                exibirMensagemSalvo = true; 
                 emJogo = false;
                 vivo = false;
                 //this.inimigo.setVisivel(false);
                 //inimigo.setVivo(false);
-                this.personagem.setVisivel(false);
-                   
-                }
-                
+                this.personagem.setVisivel(false);  
+                }   
             }
-
+        
             ArrayList<Tiro> tiros = personagem.getTiros();
             for (int j  = 0; j < tiros.size(); j++) {
                 Tiro tiro = tiros.get(j);
@@ -384,10 +387,10 @@ public class FaseUm extends Fase{
                     inimigo.setVisivel(false);
                     tiro.setVisivel(false);
                     pontuacao += 10;
+                    q_inimigos += 100;
                     personagem.setPontuacao(pontuacao);
-                    
+                    inimigo.setVELOCIDADE(inimigo.getVELOCIDADE() + 100);   
                 }
-
                 if (formaInimigo.intersects(formaPersonagem)) {
                     tiro.setVisivel(false);
                 }
@@ -399,7 +402,9 @@ public class FaseUm extends Fase{
                 if (formaInimigo.intersects(formaSuperTiro)) {
                     inimigo.setVisivel(false);
                     pontuacao += 20;
+                    q_inimigos += 100;
                     personagem.setPontuacao(pontuacao);
+                    inimigo.setVELOCIDADE(inimigo.getVELOCIDADE() + 100);
                 }
                 if (formaInimigo.intersects(formaPersonagem)) {
                     superTiro.setVisivel(false);
@@ -408,4 +413,5 @@ public class FaseUm extends Fase{
 
         }
     }
+}
 }
