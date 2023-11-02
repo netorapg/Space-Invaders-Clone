@@ -271,7 +271,7 @@ public class FaseUm extends Fase{
                 String idDigitado = JOptionPane.showInputDialog("Digite seu ID:");
                 if (idDigitado != null && !idDigitado.isEmpty()) { 
                     int id = Integer.parseInt(idDigitado);
-                    PersonagemServico.buscarPorId(id);
+                    Personagem personagem = PersonagemServico.buscarPorId(id);
                     
                     menu = false;
                     emJogo = true;
