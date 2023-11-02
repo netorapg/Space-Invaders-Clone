@@ -387,7 +387,7 @@ public class FaseUm extends Fase{
                     inimigo.setVisivel(false);
                     tiro.setVisivel(false);
                     pontuacao += 10;
-                    q_inimigos += 10;
+                    q_inimigos += 100;
                     personagem.setPontuacao(pontuacao);
                     inimigo.setVELOCIDADE(inimigo.getVELOCIDADE() + 100);   
                 }
@@ -402,7 +402,7 @@ public class FaseUm extends Fase{
                 if (formaInimigo.intersects(formaSuperTiro)) {
                     inimigo.setVisivel(false);
                     pontuacao += 20;
-                    q_inimigos += 10;
+                    q_inimigos += 100;
                     personagem.setPontuacao(pontuacao);
                     inimigo.setVELOCIDADE(inimigo.getVELOCIDADE() + 100);
                 }
