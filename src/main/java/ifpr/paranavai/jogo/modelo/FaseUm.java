@@ -269,8 +269,10 @@ public class FaseUm extends Fase{
         if(menu){
             if (e.getKeyCode() == KeyEvent.VK_ALT) {
                 String idDigitado = JOptionPane.showInputDialog("Digite seu ID:");
-                if (idDigitado != null && !idDigitado.isEmpty()) {
-                    personagem.setIdElementoGrafico(Integer.parseInt(idDigitado)); 
+                if (idDigitado != null && !idDigitado.isEmpty()) { 
+                    int id = Integer.parseInt(idDigitado);
+                    PersonagemServico.buscarPorId(id);
+                    
                     menu = false;
                     emJogo = true;
                 }
