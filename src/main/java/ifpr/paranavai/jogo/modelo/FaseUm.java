@@ -81,7 +81,7 @@ public class FaseUm extends Fase{
     @Override
     public void preencherEstrelas() {
         int quantidadeEstrelas = 100;
-        int distanciaMaxima = 1000;
+        int distanciaMaxima = 1;
         int centroX = getWidth() / 2;
         int centroY = getHeight() / 2;
         
