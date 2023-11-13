@@ -24,7 +24,6 @@ public class FaseUm extends Fase{
     private  Personagem personagem;
     private Inimigo inimigo;
     private Timer timer;
-    //private static final int ALTURA_DA_JANELA = 640;
     private boolean podeAtirar = true;
     private List<Star> stars;
     private ArrayList<Inimigo> inimigos;
@@ -36,9 +35,6 @@ public class FaseUm extends Fase{
     private boolean vivo = true;
     private boolean exibirMensagemSalvo = false;
     private Timer mensagemTimer;
-
-
-
 
     public FaseUm() {
         super();
@@ -75,8 +71,7 @@ public class FaseUm extends Fase{
     public void inicializaInimigos(){
         inimigos = new ArrayList<Inimigo>();
 
-        for (int i = 0; i < q_inimigos
-; i++) {
+        for (int i = 0; i < q_inimigos; i++) {
             int y = (int) (Math.random() * 800 - 1024);
             int x = (int) (Math.random() * 650 + 30);
             Inimigo inimigo = new Inimigo(x, y);
