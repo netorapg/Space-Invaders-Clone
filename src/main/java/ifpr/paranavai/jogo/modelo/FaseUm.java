@@ -22,7 +22,7 @@ import ifpr.paranavai.jogo.servico.PersonagemServico;
 @Table (name = "tb_fase")
 public class FaseUm extends Fase{
     private  Personagem personagem;
-    private Inimigo inimigo;
+   // private Inimigo inimigo;
     private Timer timer;
     private boolean podeAtirar = true;
     private List<Star> stars;
@@ -309,7 +309,7 @@ public class FaseUm extends Fase{
             playSound("NaveEntrando.wav");
             vivo = true;
             personagem.setVisivel(true);
-            inimigo.setVisivel(true);
+            //inimigo.setVisivel(true);
            // inimigo.setVivo(true);
             inicializaInimigos();
             
@@ -319,7 +319,7 @@ public class FaseUm extends Fase{
             menu = true;
             emJogo = false;
             personagem.setVisivel(false);
-            inimigo.setVisivel(false);
+            //inimigo.setVisivel(false);
         }
          
         if (e.getKeyCode() == KeyEvent.VK_Q) {
