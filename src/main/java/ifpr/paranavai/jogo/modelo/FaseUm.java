@@ -76,6 +76,13 @@ public class FaseUm extends Fase{
             int y = (int) (Math.random() * 800 - 1024);
             int x = (int) (Math.random() * 650 + 30);
             Inimigo inimigo = new Inimigo(x, y);
+            //evite que os inimigos nasçam um em cima do outro
+            for (Inimigo inimigoExistente : inimigos) {
+                if (inimigo.getRectangle().intersects(inimigoExistente.getRectangle())) {
+                    inimigo.setPosicaoEmX((int) (Math.random() * 650 + 30));
+                    inimigo.setPosicaoEmY((int) (Math.random() * 800 - 1024));
+                }
+            }
             inimigos.add(inimigo);
         }
     }
@@ -302,7 +309,7 @@ public class FaseUm extends Fase{
             playSound("NaveEntrando.wav");
             vivo = true;
             personagem.setVisivel(true);
-           // inimigo.setVisivel(true);
+            inimigo.setVisivel(true);
            // inimigo.setVivo(true);
             inicializaInimigos();
             
@@ -312,7 +319,7 @@ public class FaseUm extends Fase{
             menu = true;
             emJogo = false;
             personagem.setVisivel(false);
-            inimigo.setVivo(false);
+            inimigo.setVisivel(false);
         }
          
         if (e.getKeyCode() == KeyEvent.VK_Q) {

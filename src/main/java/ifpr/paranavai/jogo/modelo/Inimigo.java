@@ -8,14 +8,14 @@ import javax.swing.ImageIcon;
 @Table(name = "tb_inimigo")
 public class Inimigo extends ElementoGrafico{
     private  int VELOCIDADE = 1;
-    private boolean vivo;
+   // private boolean vivo;
 
     public Inimigo (int xAleatorio, int yAleatorio) {
         this.carregar();
         setPosicaoEmX(xAleatorio);
         setPosicaoEmY(yAleatorio);
         this.VELOCIDADE = 1;
-        this.vivo = true;
+        //this.vivo = true;
     }
 
     public int getVELOCIDADE() {
@@ -34,19 +34,20 @@ public class Inimigo extends ElementoGrafico{
     }
 
     public void atualizar() {
-        if (!vivo){
+        if (!getVisivel()){
             return;
         }
         this.setPosicaoEmY(this.getPosicaoEmY() + VELOCIDADE);
     }
 
-    public boolean getVivo() {
+    /*    public boolean getVivo() {
         return this.vivo;
     }
 
     public void setVivo(boolean vivo) {
         this.vivo = vivo;
-    }
+    } */    
+
 
     public Rectangle getBounds() {
          return new Rectangle(getPosicaoEmX(), getPosicaoEmY(), getImagem().getWidth(null), getImagem().getHeight(null));
