@@ -66,8 +66,6 @@ public class Personagem extends ElementoGrafico {
         setImagem(loading.getImage());
         setAlturaImagem(getImagem().getWidth(null));
         setLarguraImagem(getImagem().getHeight(null));
-        setPosicaoEmX(POSICAO_INICIAL_EM_X);
-        setPosicaoEmY(POSICAO_INICIAL_EM_Y);
     }
 
     public void atirar() {

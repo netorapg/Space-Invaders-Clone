@@ -32,6 +32,7 @@ public class FaseUm extends Fase{
     private boolean emJogo = false;
     private boolean menu = true;
     private int pontuacao = 0;
+    private int id;
     private boolean vivo = true;
     private boolean exibirMensagemSalvo = false;
     private Timer mensagemTimer;
@@ -43,7 +44,7 @@ public class FaseUm extends Fase{
         personagem = new Personagem();
         personagem.carregar();
         PersonagemServico.inserir(personagem);
-        personagem = PersonagemServico.buscarPorId(personagem.getIdElementoGrafico());
+       // personagem = PersonagemServico.buscarPorId(personagem.getIdElementoGrafico());
         if(personagem == null) {
             personagem = new Personagem();
             PersonagemServico.inserir(personagem);
@@ -254,22 +255,19 @@ public class FaseUm extends Fase{
     this.verificarColisoes();
     repaint();
 }
-
-
     @Override
     public void keyPressed(KeyEvent e) {
         // keypressed para salvar
         // PersonsagemServico.inserir(personagem);
-
         if(menu){
             if (e.getKeyCode() == KeyEvent.VK_ALT) {
                 String idDigitado = JOptionPane.showInputDialog("Digite seu ID:");
                 if (idDigitado != null && !idDigitado.isEmpty()) { 
                     int id = Integer.parseInt(idDigitado);
-                    Personagem personagem = PersonagemServico.buscarPorId(id);
-                    
-                    menu = false;
+                    personagem = PersonagemServico.buscarPorId(id);
+                    personagem.carregar();
                     emJogo = true;
+                    menu = false;
                 }
             }
         }
@@ -407,7 +405,6 @@ public class FaseUm extends Fase{
                     superTiro.setVisivel(false);
                 }
             }
-
         }
     }
 }
