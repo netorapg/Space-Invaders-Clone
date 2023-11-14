@@ -24,7 +24,6 @@ public class FaseUm extends Fase{
     private  Personagem personagem;
     private Inimigo inimigo;
     private Timer timer;
-    //private static final int ALTURA_DA_JANELA = 640;
     private boolean podeAtirar = true;
     private List<Star> stars;
     private ArrayList<Inimigo> inimigos;
@@ -33,12 +32,10 @@ public class FaseUm extends Fase{
     private boolean emJogo = false;
     private boolean menu = true;
     private int pontuacao = 0;
+    private int id;
     private boolean vivo = true;
     private boolean exibirMensagemSalvo = false;
     private Timer mensagemTimer;
-
-
-
 
     public FaseUm() {
         super();
@@ -47,7 +44,7 @@ public class FaseUm extends Fase{
         personagem = new Personagem();
         personagem.carregar();
         PersonagemServico.inserir(personagem);
-        personagem = PersonagemServico.buscarPorId(personagem.getIdElementoGrafico());
+       // personagem = PersonagemServico.buscarPorId(personagem.getIdElementoGrafico());
         if(personagem == null) {
             personagem = new Personagem();
             PersonagemServico.inserir(personagem);
@@ -75,8 +72,7 @@ public class FaseUm extends Fase{
     public void inicializaInimigos(){
         inimigos = new ArrayList<Inimigo>();
 
-        for (int i = 0; i < q_inimigos
-; i++) {
+        for (int i = 0; i < q_inimigos; i++) {
             int y = (int) (Math.random() * 800 - 1024);
             int x = (int) (Math.random() * 650 + 30);
             Inimigo inimigo = new Inimigo(x, y);
@@ -86,7 +82,7 @@ public class FaseUm extends Fase{
     @Override
     public void preencherEstrelas() {
         int quantidadeEstrelas = 100;
-        int distanciaMaxima = 1000;
+        int distanciaMaxima = 1;
         int centroX = getWidth() / 2;
         int centroY = getHeight() / 2;
         
@@ -259,20 +255,19 @@ public class FaseUm extends Fase{
     this.verificarColisoes();
     repaint();
 }
-
-
     @Override
     public void keyPressed(KeyEvent e) {
         // keypressed para salvar
         // PersonsagemServico.inserir(personagem);
-
         if(menu){
             if (e.getKeyCode() == KeyEvent.VK_ALT) {
                 String idDigitado = JOptionPane.showInputDialog("Digite seu ID:");
-                if (idDigitado != null && !idDigitado.isEmpty()) {
-                    personagem.setIdElementoGrafico(Integer.parseInt(idDigitado)); 
-                    menu = false;
+                if (idDigitado != null && !idDigitado.isEmpty()) { 
+                    int id = Integer.parseInt(idDigitado);
+                    personagem = PersonagemServico.buscarPorId(id);
+                    personagem.carregar();
                     emJogo = true;
+                    menu = false;
                 }
             }
         }
@@ -410,7 +405,6 @@ public class FaseUm extends Fase{
                     superTiro.setVisivel(false);
                 }
             }
-
         }
     }
 }
