@@ -183,6 +183,7 @@ public class FaseUm extends Fase{
             arrow.paintIcon(this, graphics, 170, 270);
             graphics.setColor(Color.WHITE);
             graphics.setFont(new Font("Arial", Font.BOLD, 20));
+            graphics.drawString("PRESS \"ALT\" TO LOAD GAME", 240, 200);
             graphics.drawString("PRESS \"Q\" TO SAVE", 240, 250);
             graphics.drawString("USE \"WASD\" OR \"ARROW KEYS\" TO MOVE", 240, 310);
 
