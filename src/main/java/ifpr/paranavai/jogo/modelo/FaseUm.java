@@ -255,6 +255,7 @@ public class FaseUm extends Fase {
                 if (idDigitado != null && !idDigitado.isEmpty()) {
                     int id = Integer.parseInt(idDigitado);
                     personagem = PersonagemServico.buscarPorId(id);
+                    FaseEntidadeServico.buscarPorId(id);
                     personagem.carregar();
                     faseEntidade.setEmJogo(true);
                     menu = false;
@@ -304,6 +305,7 @@ public class FaseUm extends Fase {
         }
 
         if (e.getKeyCode() == KeyEvent.VK_Q) {
+            FaseEntidadeServico.inserir(faseEntidade);
             PersonagemServico.inserir(personagem);
             exibirMensagemSalvo = true;
             mensagemTimer.start();
@@ -350,6 +352,7 @@ public class FaseUm extends Fase {
 
                 if (personagem.getVidas() == 0) {
                     PersonagemServico.inserir(personagem);
+                    FaseEntidadeServico.inserir(faseEntidade);
                     exibirMensagemSalvo = true;
                     faseEntidade.setEmJogo(false);
                     // this.inimigo.setVisivel(false);
