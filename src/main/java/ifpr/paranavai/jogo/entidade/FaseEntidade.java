@@ -1,4 +1,4 @@
-package ifpr.paranavai.jogo.modelo;
+package ifpr.paranavai.jogo.entidade;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +9,7 @@ import java.awt.event.KeyListener;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import ifpr.paranavai.jogo.modelo.Fase;
 import ifpr.paranavai.jogo.modelo.Inimigo;
 import ifpr.paranavai.jogo.modelo.Personagem;
 import ifpr.paranavai.jogo.modelo.Star;
@@ -33,7 +34,7 @@ import java.net.URL;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class FaseEntidade{
+public abstract class FaseEntidade extends Fase{
     public static final int DELAY = 5;
     public static final int ALTURA_DA_JANELA = 700;
     public static final int QUANTIDADE_INIMIGOS = 40;
@@ -55,25 +56,14 @@ public abstract class FaseEntidade{
     private boolean emJogo = false;
     private boolean menu = true;
  
-    public Fase() {
-        setFocusable(true);
-        setDoubleBuffered(true);
-        addKeyListener(this);
-        this.emJogo = true;
+    public FaseEntidade() {
     }
+
 
     public abstract void inicializaInimigos();
     public abstract void preencherEstrelas();
     public abstract void verificarColisoes();
 
-    /* public void salvarPontuacao(int pontuacao) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("/pontuacao.txt", true))){
-            writer.write(String.valueOf(pontuacao));
-            writer.newLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
     
     private HashMap<String, Clip> soundClips = new HashMap<>();
     public void playSound(String soundName){

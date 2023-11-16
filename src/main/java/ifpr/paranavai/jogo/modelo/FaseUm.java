@@ -16,11 +16,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
+import ifpr.paranavai.jogo.entidade.FaseEntidade;
 import ifpr.paranavai.jogo.servico.PersonagemServico;
 
 @Entity
 @Table (name = "tb_fase")
-public class FaseUm extends Fase{
+public class FaseUm extends FaseEntidade{
     private  Personagem personagem;
    // private Inimigo inimigo;
     private Timer timer;

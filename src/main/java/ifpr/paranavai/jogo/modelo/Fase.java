@@ -24,8 +24,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 import java.net.URL;
 
-@Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+
 public abstract class Fase extends JPanel implements ActionListener, KeyListener{
     public static final int DELAY = 5;
     public static final int ALTURA_DA_JANELA = 700;
@@ -52,14 +51,6 @@ public abstract class Fase extends JPanel implements ActionListener, KeyListener
     public abstract void preencherEstrelas();
     public abstract void verificarColisoes();
 
-    /* public void salvarPontuacao(int pontuacao) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("/pontuacao.txt", true))){
-            writer.write(String.valueOf(pontuacao));
-            writer.newLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
     
     private HashMap<String, Clip> soundClips = new HashMap<>();
     public void playSound(String soundName){
