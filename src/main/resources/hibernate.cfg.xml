@@ -25,5 +25,6 @@ org.hibernate.dialect.MySQL8Dialect
 <mapping class="ifpr.paranavai.jogo.modelo.Star" />
 <mapping class="ifpr.paranavai.jogo.modelo.Tiro" />
 <mapping class="ifpr.paranavai.jogo.modelo.SuperTiro" />
+<mapping class="ifpr.paranavai.jogo.entidade.FaseEntidade" />
 </session-factory>
 </hibernate-configuration>

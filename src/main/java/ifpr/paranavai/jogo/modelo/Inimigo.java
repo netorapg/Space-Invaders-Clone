@@ -1,30 +1,45 @@
 package ifpr.paranavai.jogo.modelo;
-import java.awt.Rectangle;
+
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.swing.ImageIcon;
 
-@Entity 
-@Table(name = "tb_inimigo")
-public class Inimigo extends ElementoGrafico{
-    private  int VELOCIDADE = 1;
-   // private boolean vivo;
+import org.hibernate.annotations.ManyToAny;
 
-    public Inimigo (int xAleatorio, int yAleatorio) {
+import ifpr.paranavai.jogo.entidade.FaseEntidade;
+
+@Entity
+@Table(name = "tb_inimigo")
+public class Inimigo extends ElementoGrafico {
+    private int velocidade = 1;
+    @ManyToOne
+    private FaseEntidade fase;
+
+    public Inimigo(int xAleatorio, int yAleatorio) {
         this.carregar();
         setPosicaoEmX(xAleatorio);
         setPosicaoEmY(yAleatorio);
-        this.VELOCIDADE = 1;
-        //this.vivo = true;
+        this.velocidade = 1;
     }
 
-    public int getVELOCIDADE() {
-        return this.VELOCIDADE;
+    public int getVelocidade() {
+        return this.velocidade;
     }
 
-    public void setVELOCIDADE(int VELOCIDADE) {
-        this.VELOCIDADE = VELOCIDADE;
+    public void setVelocidade(int velocidade) {
+        this.velocidade = velocidade;
     }
+
+
+    public FaseEntidade getFase() {
+        return this.fase;
+    }
+
+    public void setFase(FaseEntidade fase) {
+        this.fase = fase;
+    }
+    
 
     public void carregar() {
         ImageIcon loading = new ImageIcon(getClass().getResource("/Imagens/ufo.png"));
@@ -34,22 +49,10 @@ public class Inimigo extends ElementoGrafico{
     }
 
     public void atualizar() {
-        if (!getVisivel()){
+        if (!getVisivel()) {
             return;
         }
-        this.setPosicaoEmY(this.getPosicaoEmY() + VELOCIDADE);
+        this.setPosicaoEmY(this.getPosicaoEmY() + velocidade);
     }
 
-    /*    public boolean getVivo() {
-        return this.vivo;
-    }
-
-    public void setVivo(boolean vivo) {
-        this.vivo = vivo;
-    } */    
-
-
-    public Rectangle getBounds() {
-         return new Rectangle(getPosicaoEmX(), getPosicaoEmY(), getImagem().getWidth(null), getImagem().getHeight(null));
-    }
 }

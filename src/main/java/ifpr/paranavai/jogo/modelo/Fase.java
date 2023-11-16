@@ -2,49 +2,41 @@ package ifpr.paranavai.jogo.modelo;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import javax.swing.JPanel;
-import javax.swing.Timer;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URL;
+import java.util.HashMap;
 
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.Table;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import java.io.IOException;
-import java.net.URL;
+import javax.swing.JPanel;
+import javax.swing.Timer;
+
+import ifpr.paranavai.jogo.entidade.FaseEntidade;
 
 
 public abstract class Fase extends JPanel implements ActionListener, KeyListener{
     public static final int DELAY = 5;
-    public static final int ALTURA_DA_JANELA = 700;
-    public static final int QUANTIDADE_INIMIGOS = 40;
+
 
     protected Image background;
     protected Personagem personagem;
     protected Timer timer;
     protected boolean podeAtirar = true;
-    protected ArrayList<Inimigo> inimigos;
-    protected int temporizador = 0;
-    protected ArrayList<Star> stars;
-    private boolean emJogo = false;
-    private boolean menu = true;
- 
+    protected boolean menu = true;
+    protected FaseEntidade faseEntidade;
+    private HashMap<String, Clip> soundClips = new HashMap<>();
+    private Clip clip;
+
     public Fase() {
+        this.faseEntidade = new FaseEntidade();
         setFocusable(true);
         setDoubleBuffered(true);
         addKeyListener(this);
-        this.emJogo = true;
     }
 
     public abstract void inicializaInimigos();
@@ -52,7 +44,6 @@ public abstract class Fase extends JPanel implements ActionListener, KeyListener
     public abstract void verificarColisoes();
 
     
-    private HashMap<String, Clip> soundClips = new HashMap<>();
     public void playSound(String soundName){
         try {
             if (!soundClips.containsKey(soundName)) {
@@ -74,7 +65,7 @@ public abstract class Fase extends JPanel implements ActionListener, KeyListener
         }
     }
 
-    private Clip clip;
+    
     public void tocarMusicaDeFundo(String soundName) {
         try {
             URL url = this.getClass().getResource("/Sons/" + soundName);
@@ -94,16 +85,4 @@ public abstract class Fase extends JPanel implements ActionListener, KeyListener
             clip.stop();
         }
     }
-    @Override
-    public abstract void keyTyped(KeyEvent e);
-
-    @Override
-    public abstract void keyPressed(KeyEvent e);
-    
-    @Override
-    public abstract void keyReleased(KeyEvent e);
-
-    @Override
-    public abstract void actionPerformed(ActionEvent e);
-
 }

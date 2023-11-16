@@ -154,15 +154,7 @@ public class Personagem extends ElementoGrafico {
         superAtirar();
     }
 
-    public Rectangle getBounds() {
-        return null;
-    }
-
-    public void setVisivel(boolean b) {
-    }
-
-    public void morrer() {
-    }
+   
 
     public int getDeslocamentoEmX() {
         return this.deslocamentoEmX;
@@ -190,5 +182,9 @@ public class Personagem extends ElementoGrafico {
 
    public void setVidas(int vidas) {
         this.vidas = vidas;
+    }
+
+    public void incrementaPontuacao(int valor){
+        this.pontuacao += valor;
     }
 }
