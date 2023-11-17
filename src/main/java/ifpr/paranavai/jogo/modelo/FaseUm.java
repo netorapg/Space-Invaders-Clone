@@ -255,9 +255,9 @@ public class FaseUm extends Fase {
                 if (idDigitado != null && !idDigitado.isEmpty()) {
                     int id = Integer.parseInt(idDigitado);
                     personagem = PersonagemServico.buscarPorId(id);
-                    FaseEntidadeServico.buscarPorId(id);
+                    faseEntidade = FaseEntidadeServico.buscarPorId(id);
                     personagem.carregar();
-                    faseEntidade.setEmJogo(true);
+                    faseEntidade.isEmJogo();
                     menu = false;
                 }
             }
@@ -368,7 +368,7 @@ public class FaseUm extends Fase {
                     inimigo.setVisivel(false);
                     tiro.setVisivel(false);
                     personagem.incrementaPontuacao(10);
-                    qInimigos += 5;
+                   // qInimigos += 5;
                     inimigo.setVelocidade(inimigo.getVelocidade() + 5);
                 }
                 if (formaInimigo.intersects(formaPersonagem)) {
@@ -382,7 +382,7 @@ public class FaseUm extends Fase {
                 if (formaInimigo.intersects(formaSuperTiro)) {
                     inimigo.setVisivel(false);
                     personagem.incrementaPontuacao(20);
-                    qInimigos += 5;
+                    //qInimigos += 5;
                     inimigo.setVelocidade(inimigo.getVelocidade() + 5);
                 }
                 if (formaInimigo.intersects(formaPersonagem)) {
