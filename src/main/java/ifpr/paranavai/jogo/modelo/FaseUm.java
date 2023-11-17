@@ -301,7 +301,6 @@ public class FaseUm extends Fase {
             menu = true;
             faseEntidade.setEmJogo(false);
             personagem.setVisivel(false);
-            // inimigo.setVisivel(false);
         }
 
         if (e.getKeyCode() == KeyEvent.VK_Q) {
