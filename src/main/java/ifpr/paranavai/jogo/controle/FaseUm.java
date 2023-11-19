@@ -1,5 +1,4 @@
-package ifpr.paranavai.jogo.modelo;
-
+package ifpr.paranavai.jogo.controle;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -9,11 +8,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
+import ifpr.paranavai.jogo.modelo.Inimigo;
+import ifpr.paranavai.jogo.modelo.Personagem;
+import ifpr.paranavai.jogo.modelo.Star;
+import ifpr.paranavai.jogo.modelo.SuperTiro;
+import ifpr.paranavai.jogo.modelo.Tiro;
 import ifpr.paranavai.jogo.servico.FaseEntidadeServico;
 import ifpr.paranavai.jogo.servico.PersonagemServico;
 
@@ -26,7 +29,7 @@ public class FaseUm extends Fase {
         super();
         ImageIcon loading = new ImageIcon(getClass().getResource("/Imagens/background.png"));
         this.background = loading.getImage();
-        FaseEntidadeServico.inserir(faseEntidade);
+        //FaseEntidadeServico.inserir(faseEntidade);
         personagem = new Personagem();
         personagem.carregar();
         PersonagemServico.inserir(personagem);
@@ -255,9 +258,9 @@ public class FaseUm extends Fase {
                 if (idDigitado != null && !idDigitado.isEmpty()) {
                     int id = Integer.parseInt(idDigitado);
                     personagem = PersonagemServico.buscarPorId(id);
-                    faseEntidade = FaseEntidadeServico.buscarPorId(id);
+                  //  faseEntidade = FaseEntidadeServico.buscarPorId(id);
                     personagem.carregar();
-                    faseEntidade.isEmJogo();
+                    //faseEntidade.isEmJogo();
                     menu = false;
                 }
             }
@@ -304,7 +307,7 @@ public class FaseUm extends Fase {
         }
 
         if (e.getKeyCode() == KeyEvent.VK_Q) {
-            FaseEntidadeServico.inserir(faseEntidade);
+          //  FaseEntidadeServico.inserir(faseEntidade);
             PersonagemServico.inserir(personagem);
             exibirMensagemSalvo = true;
             mensagemTimer.start();
@@ -351,7 +354,7 @@ public class FaseUm extends Fase {
 
                 if (personagem.getVidas() == 0) {
                     PersonagemServico.inserir(personagem);
-                    FaseEntidadeServico.inserir(faseEntidade);
+                  //  FaseEntidadeServico.inserir(faseEntidade);
                     exibirMensagemSalvo = true;
                     faseEntidade.setEmJogo(false);
                     // this.inimigo.setVisivel(false);

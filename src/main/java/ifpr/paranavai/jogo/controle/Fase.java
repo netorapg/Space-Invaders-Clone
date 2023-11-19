@@ -1,4 +1,4 @@
-package ifpr.paranavai.jogo.modelo;
+package ifpr.paranavai.jogo.controle;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import ifpr.paranavai.jogo.entidade.FaseEntidade;
+import ifpr.paranavai.jogo.modelo.Personagem;
 
 
 public abstract class Fase extends JPanel implements ActionListener, KeyListener{

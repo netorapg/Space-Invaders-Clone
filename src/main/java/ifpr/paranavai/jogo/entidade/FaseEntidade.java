@@ -19,7 +19,7 @@ import ifpr.paranavai.jogo.modelo.Star;
 public class FaseEntidade {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = "id_fase")
     private Integer idFaseEntidade;
     @Column(name = "pode_atirar")
     private boolean podeAtirar = true;
