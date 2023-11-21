@@ -51,7 +51,12 @@ private boolean visivel = true;
     }
 
     public Rectangle getRectangle() {
-        return new Rectangle(this.getPosicaoEmX(), this.getPosicaoEmY(), this.getImagem().getWidth(null), this.getImagem().getHeight(null));
+        if (getImagem() != null) {
+            int largura = getLarguraImagem() > 0 ? getLarguraImagem() : getImagem().getWidth(null);
+            int altura = getAlturaImagem() > 0 ? getAlturaImagem() : getImagem().getHeight(null);
+            return new Rectangle(getPosicaoEmX(), getPosicaoEmY(), largura, altura);
+        }
+        return new Rectangle();
     }
 
     public int getPosicaoEmX() {
