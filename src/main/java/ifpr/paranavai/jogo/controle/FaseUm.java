@@ -299,7 +299,7 @@ public class FaseUm extends Fase {
         }
 
         if (e.getKeyCode() == KeyEvent.VK_Q) {
-            FaseEntidadeServico.inserir(faseEntidade);
+            FaseEntidadeServico.atualizar(faseEntidade);
             exibirMensagemSalvo = true;
             mensagemTimer.start();
         }
@@ -358,7 +358,7 @@ public class FaseUm extends Fase {
 
                 if (personagem.getVidas() == 0) {
                     
-                    FaseEntidadeServico.inserir(faseEntidade);
+                    FaseEntidadeServico.atualizar(faseEntidade);
                     exibirMensagemSalvo = true;
                     faseEntidade.setEmJogo(false);
                     // this.inimigo.setVisivel(false);
