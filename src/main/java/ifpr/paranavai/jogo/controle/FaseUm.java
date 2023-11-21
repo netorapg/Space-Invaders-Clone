@@ -20,7 +20,7 @@ import ifpr.paranavai.jogo.modelo.Tiro;
 import ifpr.paranavai.jogo.servico.FaseEntidadeServico;
 
 public class FaseUm extends Fase {
-    private int qInimigos = 20;
+    private int qInimigos = 1;
     private boolean exibirMensagemSalvo = false;
     private Timer mensagemTimer;
 
@@ -234,6 +234,7 @@ public class FaseUm extends Fase {
             }
 
             this.verificarColisoes();
+            
 
         }
         repaint();
@@ -332,6 +333,19 @@ public class FaseUm extends Fase {
     public void keyTyped(KeyEvent e) {
     }
 
+    public void adicionarNovoInimigo(){
+        int y = (int) (Math.random() * 800 - 1024);
+        int x = (int) (Math.random() * 650 + 30);
+        Inimigo inimigo = new Inimigo(x, y);
+        for (Inimigo inimigoExistente : faseEntidade.getInimigos()) {
+            if (inimigo.getRectangle().intersects(inimigoExistente.getRectangle())){
+                inimigo.setPosicaoEmX((int) (Math.random() * 650 + 30));
+                inimigo.setPosicaoEmY((int) (Math.random() * 800 - 1024));
+            }
+        }
+        faseEntidade.getInimigos().add(inimigo);
+    }
+
     @Override
     public void verificarColisoes() {
         Rectangle formaPersonagem = personagem.getRectangle();
@@ -361,8 +375,9 @@ public class FaseUm extends Fase {
                     inimigo.setVisivel(false);
                     tiro.setVisivel(false);
                     personagem.incrementaPontuacao(10);
-                   // qInimigos += 5;
                     inimigo.setVelocidade(inimigo.getVelocidade() + 5);
+                    adicionarNovoInimigo();
+                    qInimigos++;
                 }
                 if (formaInimigo.intersects(formaPersonagem)) {
                     tiro.setVisivel(false);
@@ -375,8 +390,9 @@ public class FaseUm extends Fase {
                 if (formaInimigo.intersects(formaSuperTiro)) {
                     inimigo.setVisivel(false);
                     personagem.incrementaPontuacao(20);
-                    //qInimigos += 5;
                     inimigo.setVelocidade(inimigo.getVelocidade() + 5);
+                    adicionarNovoInimigo();
+                    qInimigos++;
                 }
                 if (formaInimigo.intersects(formaPersonagem)) {
                     superTiro.setVisivel(false);
