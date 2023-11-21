@@ -15,6 +15,7 @@ import javax.persistence.Table;
 
 import java.util.List;
 import ifpr.paranavai.jogo.modelo.Inimigo;
+import ifpr.paranavai.jogo.modelo.Personagem;
 import ifpr.paranavai.jogo.modelo.Star;
 
 @Entity
@@ -36,11 +37,14 @@ public class FaseEntidade {
     private List<Star> stars;
     @Column(name = "em_jogo")
     private boolean emJogo = false;
-    
+    @OneToOne (cascade = CascadeType.ALL)
+    @JoinColumn(name = "chave_personagem")
+    private Personagem personagem;
 
     public FaseEntidade() {
         stars = new ArrayList<Star>();
         inimigos = new ArrayList<Inimigo>();
+        this.personagem = new Personagem();
     }
 
     public boolean isPodeAtirar() {
@@ -101,6 +105,14 @@ public class FaseEntidade {
 
     public boolean getEmJogo() {
         return this.emJogo;
+    }
+
+    public Personagem getPersonagem() {
+        return this.personagem;
+    }
+
+    public void setPersonagem(Personagem personagem) {
+        this.personagem = personagem;
     }
 
 

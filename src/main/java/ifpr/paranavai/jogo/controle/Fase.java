@@ -35,6 +35,7 @@ public abstract class Fase extends JPanel implements ActionListener, KeyListener
 
     public Fase() {
         this.faseEntidade = new FaseEntidade();
+        this.personagem = this.faseEntidade.getPersonagem();
         setFocusable(true);
         setDoubleBuffered(true);
         addKeyListener(this);

@@ -2,11 +2,9 @@ package ifpr.paranavai.jogo.modelo;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
-import ifpr.paranavai.jogo.entidade.FaseEntidade;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_star")
@@ -14,6 +12,8 @@ public class Star extends ElementoGrafico {
 
     private int tamanho;
 
+    public Star(){
+    }
     public Star(int posicaoX, int posicaoY, int tamanho) {
         this.setPosicaoEmX(posicaoY);
         this.setPosicaoEmY(posicaoY);

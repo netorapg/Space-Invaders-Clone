@@ -18,7 +18,6 @@ import ifpr.paranavai.jogo.modelo.Star;
 import ifpr.paranavai.jogo.modelo.SuperTiro;
 import ifpr.paranavai.jogo.modelo.Tiro;
 import ifpr.paranavai.jogo.servico.FaseEntidadeServico;
-import ifpr.paranavai.jogo.servico.PersonagemServico;
 
 public class FaseUm extends Fase {
     private int qInimigos = 20;
@@ -30,13 +29,7 @@ public class FaseUm extends Fase {
         ImageIcon loading = new ImageIcon(getClass().getResource("/Imagens/background.png"));
         this.background = loading.getImage();
         FaseEntidadeServico.inserir(faseEntidade);
-        personagem = new Personagem();
         personagem.carregar();
-        PersonagemServico.inserir(personagem);
-        if (personagem == null) {
-            personagem = new Personagem();
-            PersonagemServico.inserir(personagem);
-        }
         this.inicializaInimigos();
         // int present = glfwJoystickPresent(GLFW_JOYSTICK_1);
         timer = new Timer(DELAY, this);
@@ -255,8 +248,8 @@ public class FaseUm extends Fase {
                 String idDigitado = JOptionPane.showInputDialog("Digite seu ID:");
                 if (idDigitado != null && !idDigitado.isEmpty()) {
                     int id = Integer.parseInt(idDigitado);
-                    personagem = PersonagemServico.buscarPorId(id);
                     faseEntidade = FaseEntidadeServico.buscarPorId(id);
+                    personagem = faseEntidade.getPersonagem();
                     personagem.carregar();
                     faseEntidade.getEmJogo();
                     menu = false;
@@ -306,7 +299,6 @@ public class FaseUm extends Fase {
 
         if (e.getKeyCode() == KeyEvent.VK_Q) {
             FaseEntidadeServico.inserir(faseEntidade);
-            PersonagemServico.inserir(personagem);
             exibirMensagemSalvo = true;
             mensagemTimer.start();
         }
@@ -351,8 +343,8 @@ public class FaseUm extends Fase {
                 inimigo.setVisivel(false);
 
                 if (personagem.getVidas() == 0) {
-                    PersonagemServico.inserir(personagem);
-                  //  FaseEntidadeServico.inserir(faseEntidade);
+                    
+                    FaseEntidadeServico.inserir(faseEntidade);
                     exibirMensagemSalvo = true;
                     faseEntidade.setEmJogo(false);
                     // this.inimigo.setVisivel(false);

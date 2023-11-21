@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 public class Inimigo extends ElementoGrafico {
     private int velocidade = 1;
 
+    public Inimigo(){}
     public Inimigo(int xAleatorio, int yAleatorio) {
         this.carregar();
         setPosicaoEmX(xAleatorio);
