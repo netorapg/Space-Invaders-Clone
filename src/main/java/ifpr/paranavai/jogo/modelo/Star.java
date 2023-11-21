@@ -13,8 +13,6 @@ import ifpr.paranavai.jogo.entidade.FaseEntidade;
 public class Star extends ElementoGrafico {
 
     private int tamanho;
-    @ManyToOne
-    private FaseEntidade fase;
 
     public Star(int posicaoX, int posicaoY, int tamanho) {
         this.setPosicaoEmX(posicaoY);
@@ -30,14 +28,6 @@ public class Star extends ElementoGrafico {
         this.tamanho = tamanho;
     }
 
-
-    public FaseEntidade getFase() {
-        return this.fase;
-    }
-
-    public void setFase(FaseEntidade fase) {
-        this.fase = fase;
-    }
    
 
     public void draw(Graphics2D graphics) {

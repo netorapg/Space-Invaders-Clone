@@ -2,12 +2,15 @@ package ifpr.paranavai.jogo.entidade;
 
 import java.util.ArrayList;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import java.util.List;
@@ -23,14 +26,17 @@ public class FaseEntidade {
     private Integer idFaseEntidade;
     @Column(name = "pode_atirar")
     private boolean podeAtirar = true;
-    @OneToMany(mappedBy = "fase")
+    @OneToMany (cascade = CascadeType.ALL)
+    @JoinColumn (name = "chave_fase")
     private List<Inimigo> inimigos;
     @Column(name = "temporizador")
     private int temporizador = 0;
-    @OneToMany(mappedBy = "fase")
+    @OneToMany (cascade = CascadeType.ALL)
+    @JoinColumn (name = "chave_fase")
     private List<Star> stars;
     @Column(name = "em_jogo")
     private boolean emJogo = false;
+    
 
     public FaseEntidade() {
         stars = new ArrayList<Star>();
@@ -92,5 +98,10 @@ public class FaseEntidade {
     public void incrementaTemporizador() {
         this.temporizador++;
     }
+
+    public boolean getEmJogo() {
+        return this.emJogo;
+    }
+
 
 }

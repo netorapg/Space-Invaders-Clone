@@ -29,12 +29,10 @@ public class FaseUm extends Fase {
         super();
         ImageIcon loading = new ImageIcon(getClass().getResource("/Imagens/background.png"));
         this.background = loading.getImage();
-        //FaseEntidadeServico.inserir(faseEntidade);
+        FaseEntidadeServico.inserir(faseEntidade);
         personagem = new Personagem();
         personagem.carregar();
         PersonagemServico.inserir(personagem);
-        // personagem =
-        // PersonagemServico.buscarPorId(personagem.getIdElementoGrafico());
         if (personagem == null) {
             personagem = new Personagem();
             PersonagemServico.inserir(personagem);
@@ -258,9 +256,9 @@ public class FaseUm extends Fase {
                 if (idDigitado != null && !idDigitado.isEmpty()) {
                     int id = Integer.parseInt(idDigitado);
                     personagem = PersonagemServico.buscarPorId(id);
-                  //  faseEntidade = FaseEntidadeServico.buscarPorId(id);
+                    faseEntidade = FaseEntidadeServico.buscarPorId(id);
                     personagem.carregar();
-                    //faseEntidade.isEmJogo();
+                    faseEntidade.getEmJogo();
                     menu = false;
                 }
             }
@@ -307,7 +305,7 @@ public class FaseUm extends Fase {
         }
 
         if (e.getKeyCode() == KeyEvent.VK_Q) {
-          //  FaseEntidadeServico.inserir(faseEntidade);
+            FaseEntidadeServico.inserir(faseEntidade);
             PersonagemServico.inserir(personagem);
             exibirMensagemSalvo = true;
             mensagemTimer.start();
