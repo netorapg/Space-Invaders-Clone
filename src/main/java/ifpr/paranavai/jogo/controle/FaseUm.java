@@ -26,7 +26,7 @@ public class FaseUm extends Fase {
 
     public FaseUm() {
         super();
-        ImageIcon loading = new ImageIcon(getClass().getResource("/Imagens/background.png"));
+        ImageIcon loading = new ImageIcon(getClass().getResource("/assets/background.png"));
         this.background = loading.getImage();
         FaseEntidadeServico.inserir(faseEntidade);
         personagem.carregar();
@@ -374,10 +374,12 @@ public class FaseUm extends Fase {
                 if (formaInimigo.intersects(formaTiro)) {
                     inimigo.setVisivel(false);
                     tiro.setVisivel(false);
-                    personagem.incrementaPontuacao(10);
-                    inimigo.setVelocidade(inimigo.getVelocidade() + 5);
+                    personagem.incrementaPontuacao(1);
+                    //inimigo.setVelocidade(inimigo.getVelocidade() + 5);
                     adicionarNovoInimigo();
-                    qInimigos++;
+                    if (personagem.getPontuacao() % 100 == 0) {
+                        qInimigos++;
+                    }
                 }
                 if (formaInimigo.intersects(formaPersonagem)) {
                     tiro.setVisivel(false);
@@ -389,10 +391,12 @@ public class FaseUm extends Fase {
                 Rectangle formaSuperTiro = superTiro.getRectangle();
                 if (formaInimigo.intersects(formaSuperTiro)) {
                     inimigo.setVisivel(false);
-                    personagem.incrementaPontuacao(20);
-                    inimigo.setVelocidade(inimigo.getVelocidade() + 5);
+                    personagem.incrementaPontuacao(4);
+                 //   inimigo.setVelocidade(inimigo.getVelocidade() + 5);
                     adicionarNovoInimigo();
-                    qInimigos++;
+                    if (personagem.getPontuacao() % 100 == 0) {
+                        qInimigos++;
+                    }
                 }
                 if (formaInimigo.intersects(formaPersonagem)) {
                     superTiro.setVisivel(false);
