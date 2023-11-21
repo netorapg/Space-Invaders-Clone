@@ -1,6 +1,8 @@
 package ifpr.paranavai.jogo.modelo;
+
 import java.awt.Color;
 import java.awt.Graphics2D;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -10,7 +12,9 @@ public class Star extends ElementoGrafico {
 
     private int tamanho;
 
-    public Star(int posicaoX, int posicaoY, int tamanho){
+    public Star(){
+    }
+    public Star(int posicaoX, int posicaoY, int tamanho) {
         this.setPosicaoEmX(posicaoY);
         this.setPosicaoEmY(posicaoY);
         this.tamanho = tamanho;
@@ -24,7 +28,9 @@ public class Star extends ElementoGrafico {
         this.tamanho = tamanho;
     }
 
-    public void draw (Graphics2D graphics) {
+   
+
+    public void draw(Graphics2D graphics) {
         graphics.setColor(Color.WHITE);
         graphics.fillOval(this.getPosicaoEmX(), this.getPosicaoEmY(), tamanho, tamanho);
     }
@@ -33,4 +39,3 @@ public class Star extends ElementoGrafico {
         this.setPosicaoEmY(this.getPosicaoEmY() + 2);
     }
 }
-

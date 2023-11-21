@@ -17,7 +17,7 @@ import javax.persistence.Transient;
 public abstract class ElementoGrafico {
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
-@Column(name = "id") 
+@Column(name = "id_elemento") 
 private Integer idElementoGrafico;
 
 @Column(name = "posicao_em_x") 
