@@ -20,7 +20,7 @@ import ifpr.paranavai.jogo.modelo.Tiro;
 import ifpr.paranavai.jogo.servico.FaseEntidadeServico;
 
 public class FaseUm extends Fase {
-    private int qInimigos = 1;
+    private int qInimigos = 10;
     private boolean exibirMensagemSalvo = false;
     private Timer mensagemTimer;
 
@@ -376,8 +376,8 @@ public class FaseUm extends Fase {
                     tiro.setVisivel(false);
                     personagem.incrementaPontuacao(1);
                     //inimigo.setVelocidade(inimigo.getVelocidade() + 5);
-                    adicionarNovoInimigo();
                     if (personagem.getPontuacao() % 100 == 0) {
+                        adicionarNovoInimigo();
                         qInimigos++;
                     }
                 }
@@ -393,8 +393,9 @@ public class FaseUm extends Fase {
                     inimigo.setVisivel(false);
                     personagem.incrementaPontuacao(4);
                  //   inimigo.setVelocidade(inimigo.getVelocidade() + 5);
-                    adicionarNovoInimigo();
+                    
                     if (personagem.getPontuacao() % 100 == 0) {
+                        adicionarNovoInimigo();
                         qInimigos++;
                     }
                 }
