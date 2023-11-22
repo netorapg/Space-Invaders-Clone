@@ -15,7 +15,7 @@ public class Principal extends JFrame{
     super.setVisible(true);
     }
     
-
+    
     public static void main(String[] args) {
         //Session sessao = HibernateUtil.getSession();
         new Principal();
